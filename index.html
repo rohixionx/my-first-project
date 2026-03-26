@@ -3,374 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parabyte | Premium Developer Portfolio</title>
+    <title>Parabyte | Pro Developer Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
     <style>
         /* =========================================
-           1. CSS VARIABLES & BASE SETUP
+           1. APPLE-STYLE BASE SETUP
            ========================================= */
         :root {
-            --bg-dark: #030508;
-            --bg-surface: rgba(255, 255, 255, 0.03);
-            --primary-cyan: #00f3ff;
-            --primary-purple: #7000ff;
-            --text-main: #ffffff;
-            --text-muted: #8a95ab;
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-main: #ffffff;          /* Pure White */
+            --bg-secondary: #fbfbfd;     /* Apple's Light Gray */
+            --text-dark: #1d1d1f;        /* Deep Apple Black */
+            --text-gray: #86868b;        /* Subtle Gray for paragraphs */
+            --accent-blue: #0066cc;      /* Apple Link Blue */
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
         }
 
         * {
             margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-            scroll-behavior: smooth;
+            /* Apple's Native Font Stack */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--bg-dark); color: var(--text-main);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--bg-surface); border-radius: 10px; border: 1px solid var(--glass-border); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary-cyan); }
-
-        /* Custom Selection */
-        ::selection { background: var(--primary-cyan); color: #000; }
-
-        /* =========================================
-           2. ADVANCED BACKGROUND EFFECTS
-           ========================================= */
-        .ambient-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
-            background: radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 25%),
-                        radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.15), transparent 25%);
-        }
-
-        .grid-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background-image: linear-gradient(var(--glass-border) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-            background-size: 50px 50px; opacity: 0.2;
-            mask-image: linear-gradient(to bottom, transparent, black, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black, transparent);
+        /* Smooth reveal animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* =========================================
-           3. PREMIUM NAVIGATION
+           2. MINIMALIST NAVIGATION
            ========================================= */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(3, 5, 8, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+            padding: 15px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .logo {
-            font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
-            color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 5px;
+            font-size: 20px; font-weight: 600; color: var(--text-dark);
+            text-decoration: none; letter-spacing: -0.5px;
         }
-        .logo i { color: var(--primary-cyan); font-size: 32px; }
-        .logo span { background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .nav-links { display: flex; gap: 40px; }
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a {
-            color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 500;
-            transition: all 0.3s ease; position: relative; padding: 5px 0;
+            color: var(--text-dark); text-decoration: none; font-size: 14px;
+            font-weight: 400; opacity: 0.8; transition: opacity 0.2s ease;
         }
-        .nav-links a:hover { color: var(--text-main); text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
-        .nav-links a::after {
-            content: ''; position: absolute; left: 0; bottom: 0; width: 0%; height: 2px;
-            background: var(--primary-cyan); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { opacity: 1; }
 
         /* =========================================
-           4. HERO SECTION (CINEMATIC)
+           3. HERO SECTION (CLEAN & BOLD)
            ========================================= */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px; position: relative; margin-top: 50px;
+            min-height: 90vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 0 20px; margin-top: 50px;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
-        .status-badge {
-            background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.2);
-            padding: 8px 20px; border-radius: 30px; color: var(--primary-cyan);
-            font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 30px;
-            display: inline-flex; align-items: center; gap: 8px;
-            animation: float 3s ease-in-out infinite;
-        }
-        .status-badge .dot { width: 8px; height: 8px; background: var(--primary-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--primary-cyan); }
 
         .hero h1 {
-            font-family: 'Space Grotesk', sans-serif; font-size: 5.5rem; font-weight: 800;
-            line-height: 1.1; margin-bottom: 25px; letter-spacing: -2px;
-            background: linear-gradient(180deg, #ffffff 0%, #a0aabf 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 5rem; font-weight: 700; letter-spacing: -2.5px;
+            line-height: 1.05; margin-bottom: 20px; color: var(--text-dark);
         }
+
         .hero h1 span {
-            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+            background: linear-gradient(90deg, #ff2a5f, #ff6a00);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.3rem; color: var(--text-muted); max-width: 700px;
-            margin-bottom: 50px; font-weight: 300; line-height: 1.8;
+            font-size: 1.5rem; color: var(--text-gray); max-width: 600px;
+            margin-bottom: 40px; font-weight: 400; letter-spacing: -0.5px;
         }
 
-        .hero-btns { display: flex; gap: 20px; }
+        .hero-btns { display: flex; gap: 15px; }
         
+        /* Apple-style Pill Buttons */
         .btn-primary {
-            background: var(--primary-cyan); color: #000; padding: 16px 40px;
-            border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none;
-            transition: all 0.3s ease; box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-            position: relative; overflow: hidden; z-index: 1;
+            background: var(--text-dark); color: #fff; padding: 14px 28px;
+            border-radius: 980px; font-size: 15px; font-weight: 500;
+            text-decoration: none; transition: transform 0.2s ease, background 0.2s ease;
         }
-        .btn-primary:hover { box-shadow: 0 0 40px rgba(0, 243, 255, 0.6); transform: translateY(-3px); }
+        .btn-primary:hover { background: #000; transform: scale(1.02); }
 
         .btn-secondary {
-            background: var(--bg-surface); color: var(--text-main); padding: 16px 40px;
-            border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none;
-            border: 1px solid var(--glass-border); transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            background: transparent; color: var(--text-dark); padding: 14px 28px;
+            border-radius: 980px; font-size: 15px; font-weight: 500;
+            text-decoration: none; border: 1px solid var(--text-dark);
+            transition: transform 0.2s ease, background 0.2s ease;
         }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--text-main); transform: translateY(-3px); }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        .btn-secondary:hover { background: rgba(0,0,0,0.03); transform: scale(1.02); }
 
         /* =========================================
-           5. INFINITE SCROLLING TECH MARQUEE
+           4. PREMIUM CARDS (WHITE/GRAY UI)
            ========================================= */
-        .tech-marquee {
-            width: 100%; overflow: hidden; padding: 40px 0; background: rgba(0,0,0,0.3);
-            border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
-            position: relative;
+        .features-section {
+            padding: 100px 8%; background-color: var(--bg-secondary);
         }
-        .tech-marquee::before, .tech-marquee::after {
-            content: ''; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
-        }
-        .tech-marquee::before { left: 0; background: linear-gradient(to right, var(--bg-dark), transparent); }
-        .tech-marquee::after { right: 0; background: linear-gradient(to left, var(--bg-dark), transparent); }
 
-        .marquee-content {
-            display: flex; gap: 50px; width: max-content;
-            animation: scrollMarquee 20s linear infinite;
+        .section-title {
+            text-align: center; font-size: 3rem; font-weight: 600;
+            letter-spacing: -1.5px; margin-bottom: 60px; color: var(--text-dark);
         }
-        .marquee-item {
-            display: flex; align-items: center; gap: 10px;
-            font-size: 1.5rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif;
-        }
-        .marquee-item i { font-size: 2rem; color: var(--primary-cyan); }
-
-        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* =========================================
-           6. PREMIUM FEATURE CARDS
-           ========================================= */
-        .section-title { text-align: center; margin: 100px 0 50px; font-family: 'Space Grotesk', sans-serif; font-size: 3rem; }
-        .section-title span { color: var(--primary-cyan); }
 
         .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px; padding: 0 8%; max-width: 1400px; margin: 0 auto 100px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 0 auto;
         }
 
         .card {
-            position: relative; background: var(--bg-surface); border-radius: 24px;
-            padding: 40px; overflow: hidden; z-index: 1; text-decoration: none;
-            border: 1px solid var(--glass-border); backdrop-filter: blur(10px);
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            background: #ffffff; border-radius: 24px; padding: 40px;
+            text-decoration: none; color: var(--text-dark);
+            box-shadow: var(--card-shadow); border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; align-items: flex-start;
         }
 
-        /* Animated Glowing Border Effect */
-        .card::before {
-            content: ""; position: absolute; inset: -2px; border-radius: 26px; z-index: -1;
-            background: conic-gradient(from var(--angle), transparent 70%, var(--primary-cyan), var(--primary-purple));
-            opacity: 0; transition: opacity 0.4s;
-            animation: spinBorder 4s linear infinite;
-        }
-        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-        @keyframes spinBorder { to { --angle: 360deg; } }
-
-        .card::after {
-            content: ""; position: absolute; inset: 2px; background: #070a10;
-            border-radius: 22px; z-index: -1;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
-        .card:hover { transform: translateY(-15px); }
-        .card:hover::before { opacity: 1; }
+        .card i { font-size: 40px; color: var(--text-dark); margin-bottom: 20px; }
 
-        .card-icon {
-            width: 70px; height: 70px; background: rgba(0, 243, 255, 0.1); border-radius: 16px;
-            display: flex; justify-content: center; align-items: center; font-size: 35px;
-            color: var(--primary-cyan); margin-bottom: 25px; border: 1px solid rgba(0, 243, 255, 0.2);
-        }
+        .card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .card p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.5; font-weight: 400; }
 
-        .card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 15px; }
-        .card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px; }
-        
-        .card-footer-tag {
-            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
-            color: var(--primary-purple); background: rgba(112, 0, 255, 0.1);
-            padding: 6px 15px; border-radius: 20px; font-weight: 600;
+        .learn-more {
+            margin-top: auto; padding-top: 20px; color: var(--accent-blue);
+            font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 5px;
         }
+        .learn-more i { font-size: 16px; margin: 0; color: var(--accent-blue); transition: transform 0.2s ease; }
+        .card:hover .learn-more i { transform: translateX(4px); }
 
         /* =========================================
-           7. FOOTER (MADE BY ROHIT)
+           5. CLEAN FOOTER & "DESIGNED BY ROHIT"
            ========================================= */
         footer {
-            background: linear-gradient(to top, #020305, var(--bg-dark));
-            padding: 80px 8% 40px; border-top: 1px solid var(--glass-border);
-            margin-top: 50px; position: relative; overflow: hidden;
+            background-color: var(--bg-secondary);
+            padding: 60px 8% 40px; border-top: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
         }
-        
-        /* Footer Top */
-        .footer-content {
-            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 60px;
-        }
-        .footer-brand h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; }
-        .footer-brand p { color: var(--text-muted); max-width: 400px; }
-        .social-icons { display: flex; gap: 15px; margin-top: 25px; }
-        .social-icons a {
-            width: 45px; height: 45px; border-radius: 50%; background: var(--bg-surface);
-            display: flex; justify-content: center; align-items: center; color: var(--text-main);
-            font-size: 20px; text-decoration: none; border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
-        }
-        .social-icons a:hover { background: var(--primary-cyan); color: #000; transform: translateY(-5px); }
 
-        /* Footer Bottom - Made by Rohit */
-        .footer-bottom {
-            text-align: center; padding-top: 40px; border-top: 1px solid var(--glass-border);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        
-        .made-by-rohit {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700;
-            color: var(--text-muted); letter-spacing: 1px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .made-by-rohit span {
-            font-size: 1.8rem;
-            background: linear-gradient(90deg, #ff007f, var(--primary-purple), var(--primary-cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: hueShift 3s infinite alternate;
-        }
-        .heart { color: #ff007f; animation: beat 1s infinite; font-size: 1.8rem;}
+        .footer-brand { font-size: 24px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 10px; }
+        .footer-desc { color: var(--text-gray); font-size: 14px; margin-bottom: 40px; }
 
-        @keyframes hueShift { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(45deg); } }
-        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        .rohit-signature {
+            font-size: 16px; font-weight: 500; color: var(--text-dark);
+            padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+        }
 
-        /* Responsive Details */
-        @media (max-width: 900px) {
+        .rohit-signature span { font-weight: 700; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
-            .social-icons { justify-content: center; }
+            .nav-links { display: none; }
             .hero-btns { flex-direction: column; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-bg"></div>
-    <div class="grid-overlay"></div>
-
     <nav>
-        <a href="#" class="logo"><i class='bx bx-cube-alt'></i> Para<span>byte</span></a>
+        <a href="#" class="logo">Parabyte.</a>
         <div class="nav-links">
             <a href="#python">Python</a>
             <a href="#cpp">C++</a>
-            <a href="#projects">Hardware</a>
+            <a href="#hardware">Hardware</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="status-badge">
-            <div class="dot"></div> Open for innovation
-        </div>
-        <h1>Design. Code. <span>Deploy.</span></h1>
-        <p>A high-performance developer portfolio built for the future. Explore premium code snippets, complex algorithms, and real-world Arduino + Python integrations.</p>
+        <h1>Code. <span>Redefined.</span></h1>
+        <p>A beautifully simple developer portfolio. Featuring clean Python snippets, structured C++ logic, and real-world hardware integration.</p>
         <div class="hero-btns">
-            <a href="#projects" class="btn-primary">View Projects</a>
-            <a href="#github" class="btn-secondary">Explore GitHub</a>
+            <a href="#explore" class="btn-primary">Explore Portfolio</a>
+            <a href="#about" class="btn-secondary">View GitHub</a>
         </div>
     </section>
 
-    <div class="tech-marquee">
-        <div class="marquee-content">
-            <div class="marquee-item"><i class='bx bxl-python'></i> Python</div>
-            <div class="marquee-item"><i class='bx bxl-c-plus-plus'></i> C++</div>
-            <div class="marquee-item"><i class='bx bx-microchip'></i> Arduino</div>
-            <div class="marquee-item"><i class='bx bxl-html5'></i> HTML5</div>
-            <div class="marquee-item"><i class='bx bxl-css3'></i> CSS3</div>
-            <div class="marquee-item"><i class='bx bxl-javascript'></i> JavaScript</div>
-            <div class="marquee-item"><i class='bx bxl-git'></i> Git</div>
-            <div class="marquee-item"><i class='bx bxl-python'></i> Python</div>
-            <div class="marquee-item"><i class='bx bxl-c-plus-plus'></i> C++</div>
-            <div class="marquee-item"><i class='bx bx-microchip'></i> Arduino</div>
-            <div class="marquee-item"><i class='bx bxl-html5'></i> HTML5</div>
-            <div class="marquee-item"><i class='bx bxl-css3'></i> CSS3</div>
-            <div class="marquee-item"><i class='bx bxl-javascript'></i> JavaScript</div>
-            <div class="marquee-item"><i class='bx bxl-git'></i> Git</div>
-        </div>
-    </div>
-
-    <h2 class="section-title">Core <span>Expertise</span></h2>
-    <section class="features-grid">
+    <section class="features-section" id="explore">
+        <h2 class="section-title">The core architecture.</h2>
         
-        <a href="#" class="card" id="python">
-            <div class="card-icon"><i class='bx bxl-python'></i></div>
-            <h3>Python Scripts</h3>
-            <p>Production-ready code snippets. From data analysis to web scraping and automation, everything you need in one place.</p>
-            <div class="card-footer-tag"><i class='bx bx-code-block'></i> 50+ Snippets</div>
-        </a>
+        <div class="features-grid">
+            
+            <a href="python.html" class="card" id="python">
+                <i class='bx bxl-python'></i>
+                <h3>Python</h3>
+                <p>Clean, readable, and ready-to-use code snippets. Designed for fast implementation and easy learning.</p>
+                <div class="learn-more">Learn more <i class='bx bx-chevron-right'></i></div>
+            </a>
 
-        <a href="#" class="card" id="cpp">
-            <div class="card-icon"><i class='bx bxl-c-plus-plus'></i></div>
-            <h3>C++ & DSA</h3>
-            <p>Master the fundamentals. Explore optimized logic, memory management, and advanced Data Structures & Algorithms.</p>
-            <div class="card-footer-tag"><i class='bx bx-brain'></i> Logic Built</div>
-        </a>
+            <a href="cpp.html" class="card" id="cpp">
+                <i class='bx bxl-c-plus-plus'></i>
+                <h3>C++ & Logic</h3>
+                <p>High-performance algorithms and core data structures, explained with absolute clarity.</p>
+                <div class="learn-more">Learn more <i class='bx bx-chevron-right'></i></div>
+            </a>
 
-        <a href="#" class="card" id="projects">
-            <div class="card-icon"><i class='bx bx-microchip'></i></div>
-            <h3>Hardware + Code</h3>
-            <p>Where software meets reality. Unique integrations combining Python scripts with Arduino microcontrollers.</p>
-            <div class="card-footer-tag" style="background: rgba(0, 243, 255, 0.1); color: var(--primary-cyan);">
-                <i class='bx bx-rocket'></i> Premium Projects
-            </div>
-        </a>
+            <a href="projects.html" class="card" id="hardware">
+                <i class='bx bx-microchip'></i>
+                <h3>Hardware Setup</h3>
+                <p>Bridging the gap between software and reality with advanced Arduino and Python integrations.</p>
+                <div class="learn-more">Learn more <i class='bx bx-chevron-right'></i></div>
+            </a>
 
+        </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h2>Para<span>byte</span></h2>
-                <p>Bridging the gap between software logic and hardware execution. A modern portfolio designed for the next generation of developers.</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-github'></i></a>
-                    <a href="#"><i class='bx bxl-linkedin'></i></a>
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
-                </div>
-            </div>
-        </div>
+        <div class="footer-brand">Parabyte.</div>
+        <div class="footer-desc">Simplicity is the ultimate sophistication.</div>
         
-        <div class="footer-bottom">
-            <div class="made-by-rohit">
-                Crafted with <i class='bx bxs-heart heart'></i> by <span>Rohit</span>
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
-                © 2026 Parabyte. All rights reserved.
-            </p>
+        <div class="rohit-signature">
+            Designed by <span>Rohit.</span>
         </div>
     </footer>
 
