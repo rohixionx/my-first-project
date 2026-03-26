@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,76 +9,42 @@
 <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #000);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  font-family: Arial;
+  background: #0f2027;
   color: white;
-}
-
-/* Background Animation */
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
 }
 
 /* Navbar */
 .navbar {
-  backdrop-filter: blur(10px);
+  background: #000;
 }
 
 /* Hero */
 .hero {
   text-align: center;
-  padding: 120px 20px;
-  animation: fadeIn 2s ease;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  opacity: 0.8;
+  padding: 80px 20px;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 /* Cards */
 .card {
-  border-radius: 20px;
-  transition: 0.4s;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+  background: #1c1c1c;
+  border-radius: 15px;
+  transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
-/* Button Glow */
-.btn-glow {
-  background: #0d6efd;
-  border: none;
-  box-shadow: 0 0 10px #0d6efd;
-}
-
-.btn-glow:hover {
-  box-shadow: 0 0 25px #0d6efd;
-}
-
-/* Fade Animation */
+/* Animation */
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 a {
@@ -91,52 +58,48 @@ a {
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-dark bg-dark px-4">
-  <a class="navbar-brand fw-bold" href="#">🚀 Parabyte</a>
-  <div>
-    <a href="python.html" class="btn btn-outline-light btn-sm">Python</a>
-    <a href="cpp.html" class="btn btn-outline-light btn-sm">C++</a>
-    <a href="projects.html" class="btn btn-outline-light btn-sm">Projects</a>
+<nav class="navbar navbar-dark">
+  <div class="container">
+    <span class="navbar-brand">🚀 Parabyte</span>
   </div>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
   <h1>Welcome to Parabyte 🚀</h1>
-  <p>Free Code Snippets | Projects | Developer Portfolio</p>
-  <a href="python.html" class="btn btn-glow mt-3">Start Learning</a>
+  <p>Code | Projects | Developer Portfolio</p>
 </div>
 
 <!-- Cards -->
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row text-center">
 
     <!-- Python -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-3">
       <a href="python.html">
         <div class="card p-4">
           <h3>🐍 Python</h3>
-          <p>Beginner to Advanced Python Codes</p>
+          <p>Learn Python easily</p>
         </div>
       </a>
     </div>
 
     <!-- C++ -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-3">
       <a href="cpp.html">
         <div class="card p-4">
           <h3>⚙️ C++</h3>
-          <p>Logic Building & DSA Codes</p>
+          <p>Logic & Programs</p>
         </div>
       </a>
     </div>
 
     <!-- Projects -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-3">
       <a href="projects.html">
         <div class="card p-4">
           <h3>💻 Projects</h3>
-          <p>Real World Mini Projects</p>
+          <p>Build real projects</p>
         </div>
       </a>
     </div>
@@ -145,9 +108,9 @@ a {
 </div>
 
 <!-- Footer -->
-<footer class="text-center mt-5 p-4">
-  <p>© 2026 Parabyte | Built by Rohit 💻🔥</p>
-</footer>
+<div class="text-center mt-5 p-3">
+  <p>© 2026 Parabyte | Rohit 💻</p>
+</div>
 
 </body>
 </html>
