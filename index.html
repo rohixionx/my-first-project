@@ -5,183 +5,374 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parabyte | Premium Developer Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
     <style>
-        /* --- Base Setup --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #03050a; color: #ffffff; line-height: 1.6; overflow-x: hidden; }
-
-        /* --- Animations --- */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulseGlow {
-            0% { opacity: 0.1; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(1.1); }
-            100% { opacity: 0.1; transform: scale(1); }
+        /* =========================================
+           1. CSS VARIABLES & BASE SETUP
+           ========================================= */
+        :root {
+            --bg-dark: #030508;
+            --bg-surface: rgba(255, 255, 255, 0.03);
+            --primary-cyan: #00f3ff;
+            --primary-purple: #7000ff;
+            --text-main: #ffffff;
+            --text-muted: #8a95ab;
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        /* --- Background Glow Effects --- */
-        .bg-glow {
-            position: fixed; width: 400px; height: 400px; filter: blur(180px);
-            border-radius: 50%; z-index: -1; animation: pulseGlow 8s infinite alternate ease-in-out;
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
         }
-        .glow-1 { top: -150px; left: -150px; background: #00f3ff; }
-        .glow-2 { bottom: -150px; right: -150px; background: #3b00ff; animation-delay: 2s; }
 
-        /* --- Navigation --- */
+        body {
+            background-color: var(--bg-dark); color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-surface); border-radius: 10px; border: 1px solid var(--glass-border); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-cyan); }
+
+        /* Custom Selection */
+        ::selection { background: var(--primary-cyan); color: #000; }
+
+        /* =========================================
+           2. ADVANCED BACKGROUND EFFECTS
+           ========================================= */
+        .ambient-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
+            background: radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.15), transparent 25%);
+        }
+
+        .grid-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-image: linear-gradient(var(--glass-border) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+            background-size: 50px 50px; opacity: 0.2;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black, transparent);
+        }
+
+        /* =========================================
+           3. PREMIUM NAVIGATION
+           ========================================= */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; background: rgba(3, 5, 10, 0.7);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(3, 5, 8, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
         }
+
         .logo {
-            font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700;
-            color: #ffffff; text-decoration: none; letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
+            color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 5px;
         }
-        .logo span { color: #00f3ff; }
-        
-        .nav-links { display: flex; gap: 30px; }
+        .logo i { color: var(--primary-cyan); font-size: 32px; }
+        .logo span { background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .nav-links { display: flex; gap: 40px; }
         .nav-links a {
-            color: #a0aabf; text-decoration: none; font-size: 0.95rem; font-weight: 500;
-            transition: color 0.3s ease; position: relative;
+            color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 500;
+            transition: all 0.3s ease; position: relative; padding: 5px 0;
         }
-        .nav-links a:hover { color: #ffffff; }
+        .nav-links a:hover { color: var(--text-main); text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
         .nav-links a::after {
-            content: ''; position: absolute; left: 0; bottom: -5px; width: 0%; height: 2px;
-            background: #00f3ff; transition: width 0.3s ease;
+            content: ''; position: absolute; left: 0; bottom: 0; width: 0%; height: 2px;
+            background: var(--primary-cyan); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-links a:hover::after { width: 100%; }
 
-        /* --- Hero Section --- */
+        /* =========================================
+           4. HERO SECTION (CINEMATIC)
+           ========================================= */
         .hero {
-            text-align: center; padding: 120px 20px 80px; max-width: 800px; margin: 0 auto;
-            animation: fadeUp 1s ease-out forwards;
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px; position: relative; margin-top: 50px;
         }
+
+        .status-badge {
+            background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 8px 20px; border-radius: 30px; color: var(--primary-cyan);
+            font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 30px;
+            display: inline-flex; align-items: center; gap: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .status-badge .dot { width: 8px; height: 8px; background: var(--primary-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--primary-cyan); }
+
         .hero h1 {
-            font-family: 'Space Grotesk', sans-serif; font-size: 4rem; margin-bottom: 20px;
-            background: linear-gradient(to right, #ffffff, #8a95ab, #00f3ff);
+            font-family: 'Space Grotesk', sans-serif; font-size: 5.5rem; font-weight: 800;
+            line-height: 1.1; margin-bottom: 25px; letter-spacing: -2px;
+            background: linear-gradient(180deg, #ffffff 0%, #a0aabf 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.1; letter-spacing: -1px;
         }
-        .hero p { font-size: 1.15rem; color: #8a95ab; margin-bottom: 40px; font-weight: 300; }
-
-        /* Premium Button */
-        .btn-primary {
-            display: inline-block; padding: 14px 35px; font-size: 1rem; font-weight: 500;
-            color: #ffffff; text-decoration: none; border-radius: 30px;
-            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), rgba(0, 102, 255, 0.1));
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-            transition: all 0.4s ease; cursor: pointer;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(90deg, rgba(0, 243, 255, 0.2), rgba(0, 102, 255, 0.2));
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
-            transform: translateY(-3px); border-color: #00f3ff;
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* --- Glassmorphism Cards Container --- */
-        .cards-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px; padding: 0 5%; margin-bottom: 100px;
-            opacity: 0; animation: fadeUp 1s ease-out 0.4s forwards;
+        .hero p {
+            font-size: 1.3rem; color: var(--text-muted); max-width: 700px;
+            margin-bottom: 50px; font-weight: 300; line-height: 1.8;
         }
 
-        /* --- Individual Card Styling --- */
-        .card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px;
-            padding: 40px 30px; text-align: left;
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer; text-decoration: none; color: white; display: block;
-            position: relative; overflow: hidden;
-        }
+        .hero-btns { display: flex; gap: 20px; }
         
-        /* Subtle gradient line on top of card */
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.5), transparent);
-            opacity: 0; transition: opacity 0.4s ease;
+        .btn-primary {
+            background: var(--primary-cyan); color: #000; padding: 16px 40px;
+            border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none;
+            transition: all 0.3s ease; box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            position: relative; overflow: hidden; z-index: 1;
+        }
+        .btn-primary:hover { box-shadow: 0 0 40px rgba(0, 243, 255, 0.6); transform: translateY(-3px); }
+
+        .btn-secondary {
+            background: var(--bg-surface); color: var(--text-main); padding: 16px 40px;
+            border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none;
+            border: 1px solid var(--glass-border); transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--text-main); transform: translateY(-3px); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .card:hover {
-            transform: translateY(-12px); border-color: rgba(0, 243, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.05);
-            background: rgba(255, 255, 255, 0.04);
+        /* =========================================
+           5. INFINITE SCROLLING TECH MARQUEE
+           ========================================= */
+        .tech-marquee {
+            width: 100%; overflow: hidden; padding: 40px 0; background: rgba(0,0,0,0.3);
+            border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
+            position: relative;
         }
+        .tech-marquee::before, .tech-marquee::after {
+            content: ''; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
+        }
+        .tech-marquee::before { left: 0; background: linear-gradient(to right, var(--bg-dark), transparent); }
+        .tech-marquee::after { right: 0; background: linear-gradient(to left, var(--bg-dark), transparent); }
+
+        .marquee-content {
+            display: flex; gap: 50px; width: max-content;
+            animation: scrollMarquee 20s linear infinite;
+        }
+        .marquee-item {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 1.5rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif;
+        }
+        .marquee-item i { font-size: 2rem; color: var(--primary-cyan); }
+
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* =========================================
+           6. PREMIUM FEATURE CARDS
+           ========================================= */
+        .section-title { text-align: center; margin: 100px 0 50px; font-family: 'Space Grotesk', sans-serif; font-size: 3rem; }
+        .section-title span { color: var(--primary-cyan); }
+
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px; padding: 0 8%; max-width: 1400px; margin: 0 auto 100px;
+        }
+
+        .card {
+            position: relative; background: var(--bg-surface); border-radius: 24px;
+            padding: 40px; overflow: hidden; z-index: 1; text-decoration: none;
+            border: 1px solid var(--glass-border); backdrop-filter: blur(10px);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* Animated Glowing Border Effect */
+        .card::before {
+            content: ""; position: absolute; inset: -2px; border-radius: 26px; z-index: -1;
+            background: conic-gradient(from var(--angle), transparent 70%, var(--primary-cyan), var(--primary-purple));
+            opacity: 0; transition: opacity 0.4s;
+            animation: spinBorder 4s linear infinite;
+        }
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes spinBorder { to { --angle: 360deg; } }
+
+        .card::after {
+            content: ""; position: absolute; inset: 2px; background: #070a10;
+            border-radius: 22px; z-index: -1;
+        }
+
+        .card:hover { transform: translateY(-15px); }
         .card:hover::before { opacity: 1; }
 
-        .card i { font-size: 2.5rem; color: #00f3ff; margin-bottom: 20px; display: inline-block; transition: transform 0.3s ease; }
-        .card:hover i { transform: scale(1.1); }
-
-        .card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 15px; transition: color 0.3s ease; }
-        .card p { color: #8a95ab; font-size: 0.95rem; font-weight: 300; }
-
-        .special-badge {
-            display: inline-flex; align-items: center; gap: 5px;
-            background: rgba(0, 243, 255, 0.05); color: #00f3ff;
-            padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 500;
-            margin-top: 25px; border: 1px solid rgba(0, 243, 255, 0.2);
-            backdrop-filter: blur(5px);
+        .card-icon {
+            width: 70px; height: 70px; background: rgba(0, 243, 255, 0.1); border-radius: 16px;
+            display: flex; justify-content: center; align-items: center; font-size: 35px;
+            color: var(--primary-cyan); margin-bottom: 25px; border: 1px solid rgba(0, 243, 255, 0.2);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .nav-links { display: none; } /* Hide links on mobile for cleaner look */
-            .cards-container { padding: 0 20px; }
+        .card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 15px; }
+        .card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px; }
+        
+        .card-footer-tag {
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
+            color: var(--primary-purple); background: rgba(112, 0, 255, 0.1);
+            padding: 6px 15px; border-radius: 20px; font-weight: 600;
+        }
+
+        /* =========================================
+           7. FOOTER (MADE BY ROHIT)
+           ========================================= */
+        footer {
+            background: linear-gradient(to top, #020305, var(--bg-dark));
+            padding: 80px 8% 40px; border-top: 1px solid var(--glass-border);
+            margin-top: 50px; position: relative; overflow: hidden;
+        }
+        
+        /* Footer Top */
+        .footer-content {
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 60px;
+        }
+        .footer-brand h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; }
+        .footer-brand p { color: var(--text-muted); max-width: 400px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 25px; }
+        .social-icons a {
+            width: 45px; height: 45px; border-radius: 50%; background: var(--bg-surface);
+            display: flex; justify-content: center; align-items: center; color: var(--text-main);
+            font-size: 20px; text-decoration: none; border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover { background: var(--primary-cyan); color: #000; transform: translateY(-5px); }
+
+        /* Footer Bottom - Made by Rohit */
+        .footer-bottom {
+            text-align: center; padding-top: 40px; border-top: 1px solid var(--glass-border);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        
+        .made-by-rohit {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700;
+            color: var(--text-muted); letter-spacing: 1px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .made-by-rohit span {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #ff007f, var(--primary-purple), var(--primary-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: hueShift 3s infinite alternate;
+        }
+        .heart { color: #ff007f; animation: beat 1s infinite; font-size: 1.8rem;}
+
+        @keyframes hueShift { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(45deg); } }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        /* Responsive Details */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.5rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .hero-btns { flex-direction: column; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
+    <div class="ambient-bg"></div>
+    <div class="grid-overlay"></div>
 
     <nav>
-        <a href="#" class="logo">Para<span>byte</span></a>
+        <a href="#" class="logo"><i class='bx bx-cube-alt'></i> Para<span>byte</span></a>
         <div class="nav-links">
-            <a href="python.html">Python</a>
-            <a href="cpp.html">C++</a>
-            <a href="projects.html">Projects</a>
+            <a href="#python">Python</a>
+            <a href="#cpp">C++</a>
+            <a href="#projects">Hardware</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1>Building the Future,<br>One Line at a Time.</h1>
-        <p>A premium developer portfolio featuring ready-to-use code snippets, beginner-friendly tutorials, and unique real-world hardware integrations.</p>
-        <a href="#explore" class="btn-primary">Explore My Work</a>
-    </header>
+    <section class="hero">
+        <div class="status-badge">
+            <div class="dot"></div> Open for innovation
+        </div>
+        <h1>Design. Code. <span>Deploy.</span></h1>
+        <p>A high-performance developer portfolio built for the future. Explore premium code snippets, complex algorithms, and real-world Arduino + Python integrations.</p>
+        <div class="hero-btns">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a href="#github" class="btn-secondary">Explore GitHub</a>
+        </div>
+    </section>
 
-    <section class="cards-container" id="explore">
+    <div class="tech-marquee">
+        <div class="marquee-content">
+            <div class="marquee-item"><i class='bx bxl-python'></i> Python</div>
+            <div class="marquee-item"><i class='bx bxl-c-plus-plus'></i> C++</div>
+            <div class="marquee-item"><i class='bx bx-microchip'></i> Arduino</div>
+            <div class="marquee-item"><i class='bx bxl-html5'></i> HTML5</div>
+            <div class="marquee-item"><i class='bx bxl-css3'></i> CSS3</div>
+            <div class="marquee-item"><i class='bx bxl-javascript'></i> JavaScript</div>
+            <div class="marquee-item"><i class='bx bxl-git'></i> Git</div>
+            <div class="marquee-item"><i class='bx bxl-python'></i> Python</div>
+            <div class="marquee-item"><i class='bx bxl-c-plus-plus'></i> C++</div>
+            <div class="marquee-item"><i class='bx bx-microchip'></i> Arduino</div>
+            <div class="marquee-item"><i class='bx bxl-html5'></i> HTML5</div>
+            <div class="marquee-item"><i class='bx bxl-css3'></i> CSS3</div>
+            <div class="marquee-item"><i class='bx bxl-javascript'></i> JavaScript</div>
+            <div class="marquee-item"><i class='bx bxl-git'></i> Git</div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Core <span>Expertise</span></h2>
+    <section class="features-grid">
         
-        <a href="python.html" class="card">
-            <i class='bx bxl-python'></i>
-            <h2>Python</h2>
-            <p>Clean, ready-to-use code snippets and practical examples to master automation and scripting.</p>
+        <a href="#" class="card" id="python">
+            <div class="card-icon"><i class='bx bxl-python'></i></div>
+            <h3>Python Scripts</h3>
+            <p>Production-ready code snippets. From data analysis to web scraping and automation, everything you need in one place.</p>
+            <div class="card-footer-tag"><i class='bx bx-code-block'></i> 50+ Snippets</div>
         </a>
 
-        <a href="cpp.html" class="card">
-            <i class='bx bxl-c-plus-plus'></i>
-            <h2>C++</h2>
-            <p>Core logic-based programs and Data Structures & Algorithms (DSA) built for performance.</p>
+        <a href="#" class="card" id="cpp">
+            <div class="card-icon"><i class='bx bxl-c-plus-plus'></i></div>
+            <h3>C++ & DSA</h3>
+            <p>Master the fundamentals. Explore optimized logic, memory management, and advanced Data Structures & Algorithms.</p>
+            <div class="card-footer-tag"><i class='bx bx-brain'></i> Logic Built</div>
         </a>
 
-        <a href="projects.html" class="card">
-            <i class='bx bx-microchip'></i>
-            <h2>Projects</h2>
-            <p>Real-world applications and hardware integrations that bridge software with the physical world.</p>
-            <div class="special-badge"><i class='bx bxs-hot'></i> Arduino + Python</div>
+        <a href="#" class="card" id="projects">
+            <div class="card-icon"><i class='bx bx-microchip'></i></div>
+            <h3>Hardware + Code</h3>
+            <p>Where software meets reality. Unique integrations combining Python scripts with Arduino microcontrollers.</p>
+            <div class="card-footer-tag" style="background: rgba(0, 243, 255, 0.1); color: var(--primary-cyan);">
+                <i class='bx bx-rocket'></i> Premium Projects
+            </div>
         </a>
 
     </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Para<span>byte</span></h2>
+                <p>Bridging the gap between software logic and hardware execution. A modern portfolio designed for the next generation of developers.</p>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="made-by-rohit">
+                Crafted with <i class='bx bxs-heart heart'></i> by <span>Rohit</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+                © 2026 Parabyte. All rights reserved.
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>
