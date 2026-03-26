@@ -1,83 +1,153 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Parabyte</title>
-</head>
-<body style="background-color:black; color:white; text-align:center;">
-
-<h1>🚀 Welcome to Parabyte</h1>
-<p>Rohit is learning coding 💻</p>
-
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Parabyte</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parabyte 🚀</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #000);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  color: white;
+}
+
+/* Background Animation */
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Navbar */
+.navbar {
+  backdrop-filter: blur(10px);
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  animation: fadeIn 2s ease;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Cards */
+.card {
+  border-radius: 20px;
+  transition: 0.4s;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Button Glow */
+.btn-glow {
+  background: #0d6efd;
+  border: none;
+  box-shadow: 0 0 10px #0d6efd;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px #0d6efd;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+</style>
+
 </head>
 
-<body class="bg-dark text-white">
+<body>
 
-<nav class="navbar navbar-dark bg-black">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">🚀 Parabyte</a>
-
-    <div>
-      <a href="python.html" class="btn btn-outline-light btn-sm">Python</a>
-      <a href="cpp.html" class="btn btn-outline-light btn-sm">C++</a>
-      <a href="projects.html" class="btn btn-outline-light btn-sm">Projects</a>
-    </div>
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark px-4">
+  <a class="navbar-brand fw-bold" href="#">🚀 Parabyte</a>
+  <div>
+    <a href="python.html" class="btn btn-outline-light btn-sm">Python</a>
+    <a href="cpp.html" class="btn btn-outline-light btn-sm">C++</a>
+    <a href="projects.html" class="btn btn-outline-light btn-sm">Projects</a>
   </div>
 </nav>
 
-<div class="container mt-5">
-  <div class="row">
-
-    <div class="col-md-4">
-  <a href="python.html" style="text-decoration:none;">
-    <div class="card bg-dark text-white">
-      </div>
-  </a>
+<!-- Hero -->
+<div class="hero">
+  <h1>Welcome to Parabyte 🚀</h1>
+  <p>Free Code Snippets | Projects | Developer Portfolio</p>
+  <a href="python.html" class="btn btn-glow mt-3">Start Learning</a>
 </div>
-        <div class="card-body">
-          <h5>🐍 Python</h5>
-          <p>Learn Python basics and codes</p>
+
+<!-- Cards -->
+<div class="container mt-5">
+  <div class="row text-center">
+
+    <!-- Python -->
+    <div class="col-md-4 mb-4">
+      <a href="python.html">
+        <div class="card p-4">
+          <h3>🐍 Python</h3>
+          <p>Beginner to Advanced Python Codes</p>
         </div>
-      </div>
+      </a>
     </div>
 
-    <div class="col-md-4">
-      <div class="card bg-dark text-white">
-        <div class="card-body">
-          <h5>⚙️ C++</h5>
-          <p>Logic building and C++ programs</p>
+    <!-- C++ -->
+    <div class="col-md-4 mb-4">
+      <a href="cpp.html">
+        <div class="card p-4">
+          <h3>⚙️ C++</h3>
+          <p>Logic Building & DSA Codes</p>
         </div>
-      </div>
+      </a>
     </div>
 
-    <div class="col-md-4">
-      <div class="card bg-dark text-white">
-        <div class="card-body">
-          <h5>💻 Projects</h5>
-          <p>Mini projects and ideas</p>
+    <!-- Projects -->
+    <div class="col-md-4 mb-4">
+      <a href="projects.html">
+        <div class="card p-4">
+          <h3>💻 Projects</h3>
+          <p>Real World Mini Projects</p>
         </div>
-      </div>
+      </a>
     </div>
 
   </div>
 </div>
-  <h1>Welcome Rohit 👋</h1>
-  <p class="lead">Future Developer 💻</p>
 
-  <a href="python.html" class="btn btn-primary m-2">Python</a>
-  <a href="#" class="btn btn-success m-2">C++</a>
-  <a href="#" class="btn btn-warning m-2">Projects</a>
-</div>
+<!-- Footer -->
+<footer class="text-center mt-5 p-4">
+  <p>© 2026 Parabyte | Built by Rohit 💻🔥</p>
+</footer>
 
 </body>
 </html>
