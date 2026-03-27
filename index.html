@@ -1,53 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Python Menu | Parabyte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Python Calculator | Parabyte</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
 
-<style>
-  body {
-    background-color: #0b1f1f;
-    color: white;
-    font-family: Arial, sans-serif;
-  }
+  <style>
+    body {
+      background-color: #0b1f1f;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
 
-  .hero {
-    text-align: center;
-    padding: 40px 20px;
-  }
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-  .code-box {
-    background: #000;
-    padding: 20px;
-    border-radius: 10px;
-    font-family: monospace;
-    overflow-x: auto;
-    box-shadow: 0 0 15px rgba(0,255,255,0.2);
-  }
+    .menu-item {
+      background: #0b2a3a;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-radius: 12px;
+      transition: 0.3s;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+    }
 
-  .btn-custom {
-    background: cyan;
-    color: black;
-    border: none;
-  }
+    .menu-item:hover {
+      background: cyan;
+      color: black;
+      transform: translateX(5px);
+    }
 
-  .btn-custom:hover {
-    background: #00cccc;
-  }
+    .menu-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
 
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #061414;
-    margin-top: 40px;
-  }
-</style>
-
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #061414;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 
 <body>
@@ -57,50 +64,63 @@
   <div class="container">
 
     <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="Picsart_26-03-25_19-54-56-374.png" width="40" class="me-2">
+      <img src="Picsart_26-03-25_19-54-56-374.png" width="50" class="me-2">
       Parabyte
     </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="pythonmenu.html">Python</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">C++</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">GDScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+      </ul>
+    </div>
 
   </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero Section -->
 <div class="hero">
-  <h1>Basic Python Calculator</h1>
-  <p>Simple calculator using Python functions</p>
 
-  <a href="pythonmenu.html" class="btn btn-custom mt-3">← Back to Menu</a>
+  <!-- BIG SITE LOGO -->
+  <img src="Picsart_26-03-25_19-54-56-374.png"
+       class="img-fluid"
+       style="max-width: 280px;">
+
+  <h1 class="mt-3">Python Menu</h1>
+  <p>Select a function or project</p>
+
+  <!-- Python Logo -->
+  <img src="1774487642667.png"
+       width="80"
+       class="mt-2"
+       style="filter: drop-shadow(0 0 10px cyan);">
+
 </div>
 
-<!-- Code Section -->
+<!-- Menu -->
 <div class="container">
 
-  <div class="code-box">
-<pre>
-def add(n1, n2): return n1 + n2
-def subtract(n1, n2): return n1 - n2
-def multiply(n1, n2): return n1 * n2
-def divide(n1, n2): return n1 / n2 if n2 != 0 else "Error"
+  <a href="calculator.html" class="menu-link">
+    <div class="menu-item">
+      Calculator
+    </div>
+  </a>
 
-# User menu
-print("Select: 1.Add, 2.Subtract, 3.Multiply, 4.Divide")
-choice = input("Enter choice(1-4): ")
-
-if choice in ('1', '2', '3', '4'):
-    try:
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
-        
-        if choice == '1': print(f"Result: {add(num1, num2)}")
-        elif choice == '2': print(f"Result: {subtract(num1, num2)}")
-        elif choice == '3': print(f"Result: {multiply(num1, num2)}")
-        elif choice == '4': print(f"Result: {divide(num1, num2)}")
-    except ValueError:
-        print("Invalid input! Please enter numbers.")
-else:
-    print("Invalid choice")
-</pre>
-  </div>
+  <!-- COPY THIS -->
+  <!--
+  <a href="yourpage.html" class="menu-link">
+    <div class="menu-item">
+      Your Function Name
+    </div>
+  </a>
+  -->
 
 </div>
 
@@ -108,6 +128,8 @@ else:
 <footer>
   <p>© 2026 Parabyte</p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
