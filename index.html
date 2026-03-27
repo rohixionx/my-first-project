@@ -1,134 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parabyte | Developer Portfolio</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit Portfolio</title>
 
-    <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Inter', sans-serif; }
-        h1, h2, h3, .navbar-brand { font-family: 'Space Grotesk', sans-serif; color: #ffffff; }
-        
-        .navbar { background-color: #161b22 !important; border-bottom: 1px solid #30363d; padding: 15px 0; }
-        .navbar-brand span { color: #00f3ff; } 
-        
-        /* Hero Section */
-        .hero-section { padding: 100px 0; text-align: center; background: radial-gradient(circle at 50% 50%, #161b22 0%, #0d1117 100%); }
-        .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; }
-        .hero-title span { color: #00f3ff; }
-        
-        /* Feature Cards */
-        .feature-card { background-color: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 30px; transition: 0.3s; height: 100%; text-align: center; }
-        .feature-card:hover { border-color: #00f3ff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 243, 255, 0.1); }
-        .feature-icon { font-size: 2.5rem; color: #00f3ff; margin-bottom: 15px; }
-        
-        /* Team Section */
-        .team-box { background-color: #010409; border: 1px dashed #30363d; border-radius: 12px; padding: 25px; margin-top: 20px; }
-        .team-role { color: #58a6ff; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Buttons */
-        .btn-custom { background-color: #00f3ff; color: #0d1117; font-weight: 600; padding: 12px 30px; border-radius: 8px; transition: 0.3s; border: none; }
-        .btn-custom:hover { background-color: #00c4cc; color: #0d1117; transform: scale(1.05); }
-    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0a0f1f;
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  background: black;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  color: #00f0ff;
+  text-shadow: 0 0 20px #00f0ff;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00f0ff;
+}
+
+</style>
 </head>
+
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-4" href="index.html">Para<span>byte</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="python.html">Python</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cpp.html">C++</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-dark px-4">
+  <span class="navbar-brand">🚀 Rohit</span>
+</nav>
 
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Code. Build. <span>Innovate.</span></h1>
-            <p class="lead mb-5" style="max-width: 600px; margin: 0 auto; color: #8b949e;">
-                Welcome to Parabyte. A developer portfolio offering ready-to-use snippets, real-world hardware integrations, and advanced coding logic.
-            </p>
-            <a href="#explore" class="btn btn-custom mt-3">Explore Snippets</a>
-        </div>
-    </section>
+<!-- Hero -->
+<div class="hero">
+  <h1>Hi, I'm Rohit 👋</h1>
+  <p>Future Developer 💻</p>
+</div>
 
-    <section id="explore" class="py-5">
-        <div class="container py-5">
-            <h2 class="text-center mb-5 fw-bold">Our Tech Stack</h2>
-            <div class="row g-4">
-                
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <i class="bi bi-filetype-py feature-icon"></i>
-                        <h4 class="text-white">Python Engine</h4>
-                        <p class="text-muted">Clean scripts, automation tools, and beginner-friendly examples ready to deploy.</p>
-                        <a href="python.html" class="text-decoration-none" style="color: #00f3ff;">View Code &rarr;</a>
-                    </div>
-                </div>
+<!-- Sections -->
+<div class="container text-center">
 
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <i class="bi bi-cpu feature-icon" style="color: #58a6ff;"></i>
-                        <h4 class="text-white">C++ Core</h4>
-                        <p class="text-muted">High-performance logic, memory management, and competitive programming templates.</p>
-                        <a href="cpp.html" class="text-decoration-none" style="color: #58a6ff;">View Code &rarr;</a>
-                    </div>
-                </div>
+  <h2>Skills</h2>
+  <div class="row mt-4">
+    <div class="col-4"><div class="card p-3">Python</div></div>
+    <div class="col-4"><div class="card p-3">C++</div></div>
+    <div class="col-4"><div class="card p-3">Arduino</div></div>
+  </div>
 
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <i class="bi bi-motherboard feature-icon" style="color: #3fb950;"></i>
-                        <h4 class="text-white">Hardware Lab</h4>
-                        <p class="text-muted">Special Arduino + Python integrations bridging software with real-world electronics.</p>
-                        <a href="projects.html" class="text-decoration-none" style="color: #3fb950;">View Projects &rarr;</a>
-                    </div>
-                </div>
+  <h2 class="mt-5">Projects</h2>
+  <div class="row mt-4">
+    <div class="col-6"><div class="card p-3">Project 1</div></div>
+    <div class="col-6"><div class="card p-3">Project 2</div></div>
+  </div>
 
-            </div>
-        </div>
-    </section>
+</div>
 
-    <section class="py-5 mb-5">
-        <div class="container">
-            <h2 class="text-center mb-4 fw-bold">The Developers Behind Parabyte</h2>
-            <div class="row justify-content-center">
-                
-                <div class="col-md-5">
-                    <div class="team-box text-center">
-                        <p class="team-role mb-1">Frontend & Architecture</p>
-                        <h3 class="text-white mb-3">Kundan</h3>
-                        <p class="text-muted mb-0">Specializes in UI/UX, website structure, GDScript for games, and Python basics.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-5">
-                    <div class="team-box text-center">
-                        <p class="team-role mb-1" style="color: #ff7b72;">Backend & Logic</p>
-                        <h3 class="text-white mb-3">Rohit</h3>
-                        <p class="text-muted mb-0">Master of C++ core logic, data structures, and upcoming Python backend systems.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-center py-4" style="border-top: 1px solid #30363d;">
-        <p class="mb-0" style="color: #8b949e;">&copy; 2026 Parabyte. Built by Kundan & Rohit.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
