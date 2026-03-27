@@ -8,162 +8,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           1. ROYAL THEME SETUP
-           ========================================= */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
-
+        /* Base Setup & Royal Dark Background */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body {
-            /* Deep Royal Purple Room Lighting */
             background: radial-gradient(circle at 50% 40%, #3a1c5e 0%, #150529 60%, #05010d 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: #ffffff; min-height: 100vh; overflow-x: hidden;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Subtle wall texture/grid */
-        body::before {
-            content: ''; position: fixed; inset: 0;
-            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; pointer-events: none;
-        }
-
-        /* =========================================
-           2. PREMIUM NAVIGATION
-           ========================================= */
+        /* Navigation */
         nav {
-            width: 90%; max-width: 1200px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 40px; margin-top: 20px;
-            background: rgba(20, 5, 40, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            width: 90%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 40px; margin-top: 20px; background: rgba(20, 5, 40, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 15px; backdrop-filter: blur(10px);
         }
-
-        .logo {
-            font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700;
-            color: #fcf6ba; letter-spacing: 2px; text-decoration: none;
-        }
-
+        .logo { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; color: #fcf6ba; text-decoration: none; }
         .nav-links { display: flex; gap: 40px; }
-        .nav-links a {
-            color: #d4af37; text-decoration: none; font-size: 14px;
-            font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px rgba(212, 175, 55, 0.8); }
+        .nav-links a { color: #d4af37; text-decoration: none; font-size: 14px; font-weight: 600; text-transform: uppercase; }
 
-        /* =========================================
-           3. THE GOLDEN HEADER
-           ========================================= */
-        header { text-align: center; margin-top: 60px; margin-bottom: 50px; }
-
+        /* Golden Header */
+        header { text-align: center; margin-top: 60px; margin-bottom: 80px; }
         .gold-text {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem; font-weight: 800; letter-spacing: 3px; line-height: 1.2;
-            /* Premium Metallic Gold Gradient */
+            font-family: 'Cinzel', serif; font-size: 3.5rem; font-weight: 800; letter-spacing: 3px; line-height: 1.2;
             background: linear-gradient(to bottom right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             -webkit-background-clip: text; color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-            margin-bottom: 10px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); margin-bottom: 10px;
         }
+        header p { color: #c5b3d6; font-size: 1.2rem; font-weight: 300; }
 
-        header p { color: #c5b3d6; font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; }
-
-        /* =========================================
-           4. THE 3D EXHIBIT STANDS (LAYOUT)
-           ========================================= */
+        /* 3D Exhibit Stands */
         .exhibit-hall {
-            display: flex; justify-content: center; align-items: flex-end;
-            gap: 50px; width: 100%; max-width: 1200px; padding-bottom: 80px;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; align-items: flex-end; gap: 50px;
+            width: 100%; max-width: 1200px; padding-bottom: 80px; flex-wrap: wrap;
         }
 
-        /* Black Marble Pedestal (Stand) */
         .pedestal {
-            background: linear-gradient(145deg, #1a1a24, #0d0d14);
-            border: 2px solid #2a2a36;
-            border-top: 4px solid #b38728; /* Gold Rim */
-            border-radius: 8px; width: 320px; padding: 30px;
-            text-align: center; position: relative;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.8), inset 0 5px 15px rgba(255,255,255,0.05);
+            background: linear-gradient(145deg, #1a1a24, #0d0d14); border: 2px solid #2a2a36;
+            border-top: 4px solid #b38728; border-radius: 8px; width: 320px; padding: 30px;
+            text-align: center; position: relative; box-shadow: 0 30px 50px rgba(0,0,0,0.8);
             transition: transform 0.4s ease;
         }
-        
-        /* Center Pedestal is slightly larger */
         .pedestal.center-piece { transform: scale(1.05); z-index: 10; border-top: 4px solid #fcf6ba; }
-        .pedestal.center-piece:hover { transform: scale(1.08); }
         .pedestal:hover { transform: translateY(-10px); }
 
-        /* =========================================
-           5. FLOATING 3D OBJECTS (MAGIC HAPPENS HERE)
-           ========================================= */
+        /* Floating 3D Logos (Auto-Fetched from Web) */
         .floating-object-container {
-            position: absolute;
-            top: -180px; /* Stands ke upar hawa mein */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px; height: 250px;
-            display: flex; justify-content: center; align-items: flex-end;
-            pointer-events: none; /* Mouse sidha button par click ho */
+            position: absolute; top: -140px; left: 50%; transform: translateX(-50%);
+            width: 180px; height: 180px; display: flex; justify-content: center; align-items: flex-end;
         }
-
         .floating-object-container img {
-            max-width: 100%; max-height: 100%; object-fit: contain;
-            /* Smooth 3D Floating Animation */
+            max-width: 100%; max-height: 100%;
             animation: float3D 4s ease-in-out infinite;
-            filter: drop-shadow(0 30px 20px rgba(0,0,0,0.7));
+            /* SVG ko 3D glow dene ka magic */
+            filter: drop-shadow(0 20px 15px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
         }
-
-        /* Delay animations so they don't bounce together */
-        .delay-1 { animation-delay: 0s !important; }
-        .delay-2 { animation-delay: 1.5s !important; }
-        .delay-3 { animation-delay: 0.7s !important; }
 
         @keyframes float3D {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); filter: drop-shadow(0 50px 25px rgba(0,0,0,0.5)); }
+            50% { transform: translateY(-15px); }
         }
 
-        /* =========================================
-           6. STAND DETAILS & BUTTONS
-           ========================================= */
-        .pedestal h3 {
-            font-family: 'Cinzel', serif; font-size: 1.8rem; color: #fcf6ba;
-            margin-top: 60px; /* Spacing for the floating image */
-            margin-bottom: 10px;
-        }
-
+        /* Stand Text & Buttons */
+        .pedestal h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #fcf6ba; margin-top: 60px; margin-bottom: 10px; }
         .pedestal p { color: #a593b8; font-size: 0.95rem; margin-bottom: 25px; }
 
-        /* Royal Gold Button */
         .gold-btn {
-            background: linear-gradient(to bottom, #fcf6ba, #b38728);
-            border: 2px solid #fff; border-radius: 30px;
-            color: #2b1055; font-size: 1rem; font-weight: 700;
-            padding: 12px 30px; cursor: pointer; text-decoration: none;
+            background: linear-gradient(to bottom, #fcf6ba, #b38728); border: 2px solid #fff; border-radius: 30px;
+            color: #2b1055; font-size: 1rem; font-weight: 700; padding: 12px 30px; text-decoration: none;
             display: inline-block; transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.5);
         }
+        .gold-btn:hover { background: linear-gradient(to bottom, #fff, #fcf6ba); transform: translateY(-3px); }
 
-        .gold-btn:hover {
-            background: linear-gradient(to bottom, #fff, #fcf6ba);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Responsive */
         @media (max-width: 900px) {
-            .exhibit-hall { gap: 150px; padding-top: 150px; } /* Mobile mein images ke liye extra space */
-            .gold-text { font-size: 2.5rem; }
+            .exhibit-hall { gap: 120px; padding-top: 100px; }
+            .gold-text { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -187,29 +105,29 @@
         
         <div class="pedestal" id="python">
             <div class="floating-object-container">
-                <img src="https://via.placeholder.com/250x250/2b1055/fcf6ba?text=Add+Snake.png+Here" alt="3D Python" class="delay-1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo">
             </div>
             <h3>Python</h3>
             <p>Advanced Scripts & Automation.</p>
-            <a href="python.html" class="gold-btn">Explore Python</a>
+            <a href="#" class="gold-btn">Explore Python</a>
         </div>
 
         <div class="pedestal center-piece" id="cpp">
             <div class="floating-object-container">
-                <img src="https://via.placeholder.com/280x280/2b1055/fcf6ba?text=Add+C%2B%2B.png+Here" alt="3D C++" class="delay-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
             </div>
             <h3>C++ Core</h3>
             <p>High-Performance Logic & DSA.</p>
-            <a href="cpp.html" class="gold-btn">Explore C++</a>
+            <a href="#" class="gold-btn">Explore C++</a>
         </div>
 
         <div class="pedestal" id="projects">
             <div class="floating-object-container">
-                <img src="https://via.placeholder.com/250x250/2b1055/fcf6ba?text=Add+Arduino.png+Here" alt="3D Arduino" class="delay-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg" alt="Arduino Logo">
             </div>
             <h3>Projects</h3>
             <p>Real-World Hardware + Software.</p>
-            <a href="projects.html" class="gold-btn">View Projects</a>
+            <a href="#" class="gold-btn">View Projects</a>
         </div>
 
     </main>
