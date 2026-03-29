@@ -21,7 +21,8 @@
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border);
+            background: rgba(3, 3, 5, 0.85); /* Navbar Fix for Mobile */
         }
         .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; text-decoration: none; }
         .logo span { color: var(--accent-cyan); }
@@ -31,9 +32,9 @@
 
         .hero {
             min-height: 100vh; display: flex; align-items: center;
-            justify-content: space-around; padding: 100px 40px 40px; position: relative; flex-wrap: wrap-reverse;
+            justify-content: space-around; padding: 120px 40px 40px; position: relative;
         }
-        .hero-content { flex: 1; max-width: 550px; text-align: left; }
+        .hero-content { flex: 1; max-width: 550px; text-align: left; z-index: 2; }
         .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 15px; }
         .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
         .hero p { color: var(--text-muted); font-size: clamp(0.95rem, 1.5vw, 1.1rem); margin-bottom: 35px; line-height: 1.6; }
@@ -46,7 +47,7 @@
         .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2); }
 
         .model-container {
-            flex: 1; height: 400px; min-width: 300px;
+            flex: 1; height: 450px; min-width: 300px;
             display: flex; justify-content: center; align-items: center; position: relative;
         }
         model-viewer { width: 100%; height: 100%; --poster-color: transparent; touch-action: pan-y; outline: none; }
@@ -80,13 +81,19 @@
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 10px; }
 
+        /* ======== MOBILE FIXES ======== */
         @media (max-width: 768px) {
-            nav { padding: 15px 25px; } .nav-links { display: none; }
-            .hero { padding: 120px 20px 60px; text-align: center; }
-            .hero-content { text-align: center; max-width: 100%; margin-top: 30px;}
-            .hero h1 { font-size: 2.8rem; }
-            .model-container { height: 300px; order: 1;} .hero-content { order: 2; }
-            .model-glow { width: 150px; height: 150px; filter: blur(70px); }
+            nav { padding: 15px 20px; flex-direction: column; gap: 12px; }
+            .nav-links { display: flex; gap: 15px; justify-content: center; width: 100%; }
+            .nav-links a { font-size: 0.85rem; }
+            
+            .hero { padding: 140px 20px 60px; flex-direction: column; text-align: center; gap: 20px; }
+            .hero-content { order: 1; text-align: center; max-width: 100%; margin-top: 0; }
+            .hero h1 { font-size: 3rem; }
+            
+            .model-container { order: 2; height: 350px; width: 100%; min-width: auto; }
+            .model-glow { width: 180px; height: 180px; filter: blur(70px); }
+            
             .tech-model-wrapper { height: 350px; }
         }
     </style>
