@@ -22,7 +22,7 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
             backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border);
-            background: rgba(3, 3, 5, 0.85); /* Navbar Fix for Mobile */
+            background: rgba(3, 3, 5, 0.85);
         }
         .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; text-decoration: none; }
         .logo span { color: var(--accent-cyan); }
@@ -57,10 +57,25 @@
             border-radius: 50%; filter: blur(100px); opacity: 0.25; z-index: -1;
             animation: pulse 5s infinite alternate;
         }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.35; } }
 
-        /* Naya 3D Model Section */
-        .tech-showcase { padding: 40px 20px 80px; max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; }
+        /* ==== Naya Beech Wala Section CSS ==== */
+        .mid-section {
+            display: flex; justify-content: center; align-items: center;
+            position: relative; width: 100%; height: 350px; 
+            margin-top: -30px; z-index: 10;
+        }
+        .mid-section model-viewer { width: 100%; max-width: 450px; height: 100%; }
+        .mid-glow {
+            position: absolute; width: 180px; height: 180px; background: var(--accent-cyan);
+            border-radius: 50%; filter: blur(90px); opacity: 0.15; z-index: -1;
+            animation: pulse-cyan 4s infinite alternate;
+        }
+
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.35; } }
+        @keyframes pulse-cyan { 0% { transform: scale(1); opacity: 0.1; } 100% { transform: scale(1.2); opacity: 0.25; } }
+
+        /* Tech Showcase CSS */
+        .tech-showcase { padding: 20px 20px 80px; max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; }
         .tech-model-wrapper { width: 100%; height: 500px; position: relative; display: flex; justify-content: center; }
 
         .skills-section { padding: 50px 20px 100px; max-width: 1200px; margin: 0 auto; }
@@ -87,13 +102,14 @@
             .nav-links { display: flex; gap: 15px; justify-content: center; width: 100%; }
             .nav-links a { font-size: 0.85rem; }
             
-            .hero { padding: 140px 20px 60px; flex-direction: column; text-align: center; gap: 20px; }
+            .hero { padding: 140px 20px 60px; flex-direction: column; text-align: center; gap: 20px; min-height: auto;}
             .hero-content { order: 1; text-align: center; max-width: 100%; margin-top: 0; }
             .hero h1 { font-size: 3rem; }
             
             .model-container { order: 2; height: 350px; width: 100%; min-width: auto; }
             .model-glow { width: 180px; height: 180px; filter: blur(70px); }
             
+            .mid-section { height: 280px; margin-top: 0; margin-bottom: 30px; }
             .tech-model-wrapper { height: 350px; }
         }
     </style>
@@ -118,11 +134,25 @@
         </div>
     </section>
 
+    <section class="mid-section gsap-slide-up">
+        <div class="mid-glow"></div>
+        <model-viewer
+            src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/SciFiHelmet/glTF/SciFiHelmet.gltf"
+            alt="Sci-Fi Core"
+            auto-rotate
+            rotation-per-second="10deg"
+            camera-controls
+            shadow-intensity="1.5"
+            exposure="1"
+            interaction-prompt="none">
+        </model-viewer>
+    </section>
+
     <section class="tech-showcase gsap-slide-up">
         <div class="tech-model-wrapper">
             <model-viewer
                 src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/BrainStem/glTF-Binary/BrainStem.glb"
-                alt="New 3D Robot Model"
+                alt="3D Robot Model"
                 auto-rotate
                 camera-controls
                 shadow-intensity="1"
