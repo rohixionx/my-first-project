@@ -11,15 +11,9 @@
 
     <style>
         :root {
-            --bg-dark: #0a0e17; /* Thoda aur deep space theme */
-            --text-main: #ffffff; 
-            --text-muted: #8b949e;
-            --accent-cyan: #00f3ff; 
-            --accent-blue: #2563eb;
-            --accent-yellow: #f1e05a;
-            --accent-teal: #00979d;
-            --glass-bg: rgba(16, 22, 34, 0.7); 
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-dark: #030305; --text-main: #ffffff; --text-muted: #8b949e;
+            --accent-cyan: #00f3ff; --accent-blue: #2563eb;
+            --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
@@ -27,22 +21,21 @@
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
-            backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border);
-            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border);
         }
         .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; text-decoration: none; }
         .logo span { color: var(--accent-cyan); }
         .nav-links { display: flex; gap: 25px; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-cyan); }
 
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             justify-content: space-around; padding: 100px 40px 40px; position: relative; flex-wrap: wrap-reverse;
         }
-        .hero-content { flex: 1; max-width: 550px; text-align: left; z-index: 2; }
+        .hero-content { flex: 1; max-width: 550px; text-align: left; }
         .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 15px; }
-        .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.6); }
+        .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
         .hero p { color: var(--text-muted); font-size: clamp(0.95rem, 1.5vw, 1.1rem); margin-bottom: 35px; line-height: 1.6; }
         
         .cta-btn {
@@ -50,7 +43,7 @@
             border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
             transition: 0.3s; box-shadow: 0 5px 15px rgba(255,255,255,0.05); display: inline-block;
         }
-        .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2); color: #000; }
+        .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2); }
 
         .model-container {
             flex: 1; height: 400px; min-width: 300px;
@@ -59,67 +52,29 @@
         model-viewer { width: 100%; height: 100%; --poster-color: transparent; touch-action: pan-y; outline: none; }
 
         .model-glow {
-            position: absolute; width: 300px; height: 300px; background: rgba(0, 243, 255, 0.15);
-            border-radius: 50%; filter: blur(100px); opacity: 0.5; z-index: -1;
+            position: absolute; width: 250px; height: 250px; background: var(--accent-blue);
+            border-radius: 50%; filter: blur(100px); opacity: 0.25; z-index: -1;
             animation: pulse 5s infinite alternate;
         }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(1.2); opacity: 0.6; } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.35; } }
 
-        /* Naya Integrated Systems Hub Section */
-        .hub-section {
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 60%);
-        }
-        .hub-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
-        .hub-subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 40px; }
-        
-        .tech-model-wrapper {
-            width: 100%;
-            height: 450px;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            box-shadow: inset 0 0 50px rgba(0, 243, 255, 0.05);
-        }
+        /* Naya 3D Model Section */
+        .tech-showcase { padding: 40px 20px 80px; max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; }
+        .tech-model-wrapper { width: 100%; height: 500px; position: relative; display: flex; justify-content: center; }
 
-        /* Upgraded Skills Section */
-        .skills-section { padding: 60px 20px 100px; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 40px; text-align: left; padding-left: 10px; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
+        .skills-section { padding: 50px 20px 100px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 50px; text-align: center; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .glass-card {
-            background: var(--glass-bg); 
-            border: 1px solid var(--glass-border);
-            border-radius: 12px; padding: 30px 25px; transition: 0.4s ease;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 15px; padding: 35px 25px; transition: 0.4s ease;
             backdrop-filter: blur(10px); text-align: left;
-            position: relative;
-            overflow: hidden;
         }
-        
-        /* Specific Card Borders & Glows based on Tech */
-        .card-cpp { border-top: 3px solid #58a6ff; }
-        .card-cpp:hover { border-color: #58a6ff; box-shadow: 0 10px 30px rgba(88, 166, 255, 0.15); transform: translateY(-5px); }
-        
-        .card-python { border-top: 3px solid var(--accent-yellow); background: rgba(241, 224, 90, 0.03); }
-        .card-python:hover { border-color: var(--accent-yellow); box-shadow: 0 10px 30px rgba(241, 224, 90, 0.1); transform: translateY(-5px); }
-        
-        .card-hardware { border-top: 3px solid var(--accent-teal); }
-        .card-hardware:hover { border-color: var(--accent-teal); box-shadow: 0 10px 30px rgba(0, 151, 157, 0.15); transform: translateY(-5px); }
-
-        .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .card-icon { font-size: 2rem; }
-        .glass-card h3 { font-size: 1.2rem; color: #fff; font-family: 'Space Grotesk', sans-serif;}
-        .glass-card p { color: #a3aed0; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
-        
-        .card-link { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; transition: 0.3s; }
-        .card-link:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
+        .glass-card:hover { border-color: rgba(0, 243, 255, 0.3); transform: translateY(-7px); }
+        .card-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--accent-cyan); }
+        .glass-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff;}
+        .glass-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+        .card-link { display: inline-block; margin-top: 15px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 1px;}
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
@@ -131,8 +86,8 @@
             .hero-content { text-align: center; max-width: 100%; margin-top: 30px;}
             .hero h1 { font-size: 2.8rem; }
             .model-container { height: 300px; order: 1;} .hero-content { order: 2; }
-            .hub-title { font-size: 2rem; }
-            .tech-model-wrapper { height: 300px; }
+            .model-glow { width: 150px; height: 150px; filter: blur(70px); }
+            .tech-model-wrapper { height: 350px; }
         }
     </style>
 </head>
@@ -145,7 +100,7 @@
 
     <section class="hero">
         <div class="hero-content gsap-reveal">
-            <h1>Solo <span class="outline">DEVELOPER.</span><br>Core Logic.</h1>
+            <h1>Solo <span class="outline">Developer.</span><br>Core Logic.</h1>
             <p>I architect high-performance C++ engines, automate complex workflows with Python, and bridge software with Arduino hardware lab.</p>
             <a href="projects.html" class="cta-btn">View Projects</a>
         </div>
@@ -156,18 +111,14 @@
         </div>
     </section>
 
-    <section class="hub-section gsap-slide-up">
-        <h2 class="hub-title">Integrated Systems Hub</h2>
-        <p class="hub-subtitle">3D Integrated Systems Hub - Your command center for advanced digital projects</p>
-        
+    <section class="tech-showcase gsap-slide-up">
         <div class="tech-model-wrapper">
             <model-viewer
-                src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/SciFiHelmet/glTF/SciFiHelmet.gltf"
-                alt="3D Space Station / Hub Model"
+                src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/BrainStem/glTF-Binary/BrainStem.glb"
+                alt="New 3D Robot Model"
                 auto-rotate
-                rotation-per-second="10deg"
                 camera-controls
-                shadow-intensity="1.5"
+                shadow-intensity="1"
                 exposure="1"
                 interaction-prompt="none"
                 autoplay>
@@ -178,34 +129,24 @@
     <section id="expertise" class="skills-section">
         <h2 class="section-title gsap-slide-up">Technical Arsenal</h2>
         <div class="grid-container">
-            
-            <div class="glass-card card-cpp gsap-slide-up">
-                <div class="card-header">
-                    <i class='bx bx-code-alt card-icon' style="color: #58a6ff;"></i>
-                    <h3>C++ Engine</h3>
-                </div>
-                <p>I architect high-performance C++ engines, automate complex workflows with Python, and bridge software with Arduino.</p>
-                <a href="cpp.html" class="card-link">Learn More &rarr;</a>
+            <div class="glass-card gsap-slide-up">
+                <i class='bx bx-code-alt card-icon' style="color: #58a6ff;"></i>
+                <h3>C++ Engine</h3>
+                <p>Developing memory-efficient, high-performance logic, competitive algorithms, and memory-safe Modern C++ execution.</p>
+                <a href="cpp.html" class="card-link">View Snippets &rarr;</a>
             </div>
-            
-            <div class="glass-card card-python gsap-slide-up">
-                <div class="card-header">
-                    <i class='bx bxl-python card-icon' style="color: #f1e05a;"></i>
-                    <h3>Python Scripts</h3>
-                </div>
-                <p>Architect high-performance C++ automate complex workflows with Python and Accessories.</p>
-                <a href="python.html" class="card-link">Python Scripts &rarr;</a>
+            <div class="glass-card gsap-slide-up">
+                <i class='bx bxl-python card-icon' style="color: #f1e05a;"></i>
+                <h3>Python Scripts</h3>
+                <p>Building specialized automation tools, data processing pipelines, and scalable backend services from the ground up.</p>
+                <a href="python.html" class="card-link">View Library &rarr;</a>
             </div>
-            
-            <div class="glass-card card-hardware gsap-slide-up">
-                <div class="card-header">
-                    <i class='bx bx-chip card-icon' style="color: #00979d;"></i>
-                    <h3>Hardware Lab</h3>
-                </div>
-                <p>Hardware lab is performance technically and combines, and bridge software with Arduino hardware lab.</p>
-                <a href="projects.html" class="card-link">Hardware Lab &rarr;</a>
+            <div class="glass-card gsap-slide-up">
+                <i class='bx bx-chip card-icon' style="color: #00979d;"></i>
+                <h3>Hardware Lab</h3>
+                <p>Bridging software and reality using Arduino + Python serial interfaces for IoT and physical computing projects.</p>
+                <a href="projects.html" class="card-link">View Projects &rarr;</a>
             </div>
-
         </div>
     </section>
 
@@ -213,20 +154,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
-        
-        // Hero Animations
         gsap.from(".gsap-reveal", { y: 60, opacity: 0, duration: 1.2, stagger: 0.25, ease: "power4.out", delay: 0.3 });
-        
-        // Scroll Animations for Hub and Cards
         gsap.utils.toArray(".gsap-slide-up").forEach((element, i) => {
-            gsap.from(element, { 
-                scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" }, 
-                y: 50, 
-                opacity: 0, 
-                duration: 0.8, 
-                ease: "power3.out", 
-                delay: i * 0.1 
-            });
+            gsap.from(element, { scrollTrigger: { trigger: element, start: "top 88%", toggleActions: "play none none reverse" }, y: 70, opacity: 0, duration: 1, ease: "power3.out", delay: i * 0.15 });
         });
     </script>
 </body>
