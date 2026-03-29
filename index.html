@@ -46,17 +46,32 @@
         .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2); }
 
         .model-container {
-            flex: 1; height: 500px; min-width: 300px;
+            flex: 1; height: 400px; min-width: 300px;
             display: flex; justify-content: center; align-items: center; position: relative;
         }
         model-viewer { width: 100%; height: 100%; --poster-color: transparent; touch-action: pan-y; outline: none; }
 
         .model-glow {
-            position: absolute; width: 300px; height: 300px; background: var(--accent-cyan);
-            border-radius: 50%; filter: blur(120px); opacity: 0.2; z-index: -1;
+            position: absolute; width: 250px; height: 250px; background: var(--accent-blue);
+            border-radius: 50%; filter: blur(100px); opacity: 0.25; z-index: -1;
             animation: pulse 5s infinite alternate;
         }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.15; } 100% { transform: scale(1.15); opacity: 0.3; } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.35; } }
+
+        /* NAYA ROBOT CSS START */
+        .tech-showcase { padding: 40px 20px 80px; max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; }
+        .tech-model-wrapper { width: 100%; height: 500px; position: relative; display: flex; justify-content: center; align-items: center; }
+        
+        /* Robot ko Cyan theme se match karne ke liye glow aur shadow */
+        .robot-glow {
+            position: absolute; width: 300px; height: 300px; background: var(--accent-cyan);
+            border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1;
+            animation: pulse 4s infinite alternate;
+        }
+        .tech-model-wrapper model-viewer {
+            filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.3)); /* Cyan border glow */
+        }
+        /* NAYA ROBOT CSS END */
 
         .skills-section { padding: 50px 20px 100px; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 50px; text-align: center; }
@@ -68,8 +83,6 @@
         }
         .glass-card:hover { border-color: rgba(0, 243, 255, 0.3); transform: translateY(-7px); }
         .card-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--accent-cyan); }
-        
-        /* CSS BUG FIXED HERE */
         .glass-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff;}
         .glass-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
         .card-link { display: inline-block; margin-top: 15px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 1px;}
@@ -83,8 +96,10 @@
             .hero { padding: 120px 20px 60px; text-align: center; }
             .hero-content { text-align: center; max-width: 100%; margin-top: 30px;}
             .hero h1 { font-size: 2.8rem; }
-            .model-container { height: 350px; order: 1;} .hero-content { order: 2; }
-            .model-glow { width: 200px; height: 200px; filter: blur(80px); }
+            .model-container { height: 300px; order: 1;} .hero-content { order: 2; }
+            .model-glow { width: 150px; height: 150px; filter: blur(70px); }
+            .tech-model-wrapper { height: 350px; }
+            .robot-glow { width: 180px; height: 180px; filter: blur(80px); }
         }
     </style>
 </head>
@@ -104,17 +119,22 @@
         
         <div class="model-container gsap-reveal">
             <div class="model-glow"></div>
-            <model-viewer 
-                src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" 
-                alt="3D Robot" 
-                auto-rotate 
-                camera-controls 
-                shadow-intensity="1" 
-                exposure="1.2" 
-                animation-name="Wave" 
-                autoplay 
-                loading="eager" 
-                interaction-prompt="none">
+            <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" alt="3D Astronaut" auto-rotate camera-controls shadow-intensity="1" exposure="1" loading="eager" interaction-prompt="none"></model-viewer>
+        </div>
+    </section>
+
+    <section class="tech-showcase gsap-slide-up">
+        <div class="tech-model-wrapper">
+            <div class="robot-glow"></div> <model-viewer
+                src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
+                alt="3D Robot Model"
+                auto-rotate
+                camera-controls
+                shadow-intensity="1"
+                exposure="0.8" 
+                interaction-prompt="none"
+                animation-name="Dance"
+                autoplay>
             </model-viewer>
         </div>
     </section>
