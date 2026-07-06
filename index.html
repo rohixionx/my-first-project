@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohixionx | Solo Pro Developer</title>
+    <title>Rohixionx | Advanced Solo Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -12,7 +12,7 @@
     <style>
         :root {
             --bg-dark: #030305; --text-main: #ffffff; --text-muted: #8b949e;
-            --accent-cyan: #00f3ff; --accent-blue: #2563eb;
+            --accent-cyan: #00f3ff; --accent-blue: #2563eb; --accent-purple: #b026ff;
             --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
@@ -21,80 +21,78 @@
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border);
         }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; text-decoration: none; text-transform: uppercase; }
-        .logo span { color: var(--accent-cyan); }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;}
+        .logo span { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; position: relative; }
         .nav-links a:hover { color: var(--accent-cyan); }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent-cyan); transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
 
         .hero {
             min-height: 100vh; display: flex; align-items: center;
-            justify-content: space-around; padding: 100px 40px 40px; position: relative; flex-wrap: wrap-reverse;
+            justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse;
         }
-        .hero-content { flex: 1; max-width: 550px; text-align: left; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 15px; }
+        .hero-content { flex: 1; max-width: 600px; text-align: left; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 15px; }
         .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
-        .hero p { color: var(--text-muted); font-size: clamp(0.95rem, 1.5vw, 1.1rem); margin-bottom: 35px; line-height: 1.6; }
         
-        .cta-btn {
-            background: var(--text-main); color: var(--bg-dark); padding: 12px 35px;
-            border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(255,255,255,0.05); display: inline-block;
-        }
-        .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2); }
+        /* Typing Effect CSS */
+        .typing-wrapper { display: flex; align-items: center; min-height: 50px; margin-bottom: 25px; }
+        .typing-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: var(--accent-cyan); font-weight: 700; border-right: 3px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
 
-        .model-container {
-            flex: 1; height: 400px; min-width: 300px;
-            display: flex; justify-content: center; align-items: center; position: relative;
-        }
+        .hero p { color: var(--text-muted); font-size: clamp(1rem, 1.5vw, 1.15rem); margin-bottom: 40px; line-height: 1.7; }
+        
+        .cta-container { display: flex; gap: 20px; }
+        .cta-btn { background: var(--text-main); color: var(--bg-dark); padding: 14px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.4s; box-shadow: 0 5px 15px rgba(255,255,255,0.1); display: inline-block; }
+        .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 25px rgba(0, 243, 255, 0.4); transform: translateY(-3px); }
+        .secondary-btn { background: transparent; color: var(--text-main); border: 1px solid var(--glass-border); padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.4s; }
+        .secondary-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); box-shadow: 0 5px 20px rgba(176, 38, 255, 0.2); }
+
+        .model-container { flex: 1; height: 450px; min-width: 300px; display: flex; justify-content: center; align-items: center; position: relative; }
         model-viewer { width: 100%; height: 100%; --poster-color: transparent; touch-action: pan-y; outline: none; }
+        .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.2; z-index: -1; animation: pulse 6s infinite alternate; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.15; } 100% { transform: scale(1.2); opacity: 0.3; } }
 
-        .model-glow {
-            position: absolute; width: 250px; height: 250px; background: var(--accent-blue);
-            border-radius: 50%; filter: blur(100px); opacity: 0.25; z-index: -1;
-            animation: pulse 5s infinite alternate;
-        }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.35; } }
+        /* 1 ROBOT SECTION */
+        .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; }
+        .single-robot-container { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 450px; max-width: 500px; }
+        .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.4)); }
+        .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.25; z-index: -1; animation: pulse-glow 4s infinite alternate; }
+        @keyframes pulse-glow { 0% { opacity: 0.15; transform: scale(0.9); } 100% { opacity: 0.3; transform: scale(1.1); } }
 
-        /* 1 ROBOT SECTION CSS START */
-        .tech-showcase { padding: 0px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; }
-        .single-robot-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            height: 450px;
-            max-width: 500px; 
-        }
-        .single-robot-container model-viewer {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0px 0px 20px rgba(0, 243, 255, 0.3)); 
-        }
-        .robot-glow-bg {
-            position: absolute; width: 300px; height: 300px; background: var(--accent-cyan);
-            border-radius: 50%; filter: blur(120px); opacity: 0.2; z-index: -1;
-            animation: pulse-glow 4s infinite alternate;
-        }
-        @keyframes pulse-glow { 0% { opacity: 0.15; transform: scale(0.9); } 100% { opacity: 0.25; transform: scale(1.1); } }
-        /* 1 ROBOT SECTION CSS END */
-
+        /* SKILLS GRID */
         .skills-section { padding: 50px 20px 100px; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 50px; text-align: center; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .glass-card {
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            border-radius: 15px; padding: 35px 25px; transition: 0.4s ease;
-            backdrop-filter: blur(10px); text-align: left;
-        }
-        .glass-card:hover { border-color: rgba(0, 243, 255, 0.3); transform: translateY(-7px); }
-        .card-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--accent-cyan); }
-        .glass-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff;}
-        .glass-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
-        .card-link { display: inline-block; margin-top: 15px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 1px;}
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
+        .section-title span { color: var(--accent-cyan); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+        
+        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; transition: 0.4s ease; backdrop-filter: blur(10px); text-align: left; position: relative; overflow: hidden; }
+        .glass-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-cyan)); transition: 0.5s; }
+        .glass-card:hover::before { left: 100%; }
+        .glass-card:hover { border-color: rgba(0, 243, 255, 0.4); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background: rgba(255, 255, 255, 0.05); }
+        
+        .card-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
+        .icon-cpp { color: #58a6ff; text-shadow: 0 0 15px rgba(88, 166, 255, 0.4); }
+        .icon-python { color: #f1e05a; text-shadow: 0 0 15px rgba(241, 224, 90, 0.4); }
+        .icon-hardware { color: #00979d; text-shadow: 0 0 15px rgba(0, 151, 157, 0.4); }
+        .icon-ai { color: var(--accent-purple); text-shadow: 0 0 15px rgba(176, 38, 255, 0.5); }
+        
+        .glass-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; letter-spacing: 0.5px;}
+        .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;}
+        .card-link { display: inline-block; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
+        .card-link:hover { color: var(--accent-cyan); gap: 10px; }
+
+        /* AI CHAT WIDGET (FAB) */
+        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 25px rgba(0, 243, 255, 0.4); z-index: 1000; transition: 0.3s; animation: float 3s ease-in-out infinite; }
+        .ai-chat-widget i { font-size: 1.8rem; color: #030305; }
+        .ai-chat-widget:hover { transform: scale(1.1); box-shadow: 0 10px 35px rgba(0, 243, 255, 0.6); }
+        .ai-chat-widget::before { content: 'Chat with AI'; position: absolute; right: 75px; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); padding: 8px 15px; border-radius: 8px; color: #fff; font-size: 0.85rem; opacity: 0; pointer-events: none; transition: 0.3s; white-space: nowrap; }
+        .ai-chat-widget:hover::before { opacity: 1; right: 80px; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
@@ -102,15 +100,14 @@
 
         @media (max-width: 768px) {
             nav { padding: 15px 25px; } .nav-links { display: none; }
-            .hero { padding: 120px 20px 60px; text-align: center; }
-            .hero-content { text-align: center; max-width: 100%; margin-top: 30px;}
+            .hero { padding: 100px 20px 40px; text-align: center; }
+            .hero-content { text-align: center; max-width: 100%; margin-top: 20px;}
+            .typing-wrapper { justify-content: center; }
             .hero h1 { font-size: 2.8rem; }
-            .model-container { height: 300px; order: 1;} .hero-content { order: 2; }
-            .model-glow { width: 150px; height: 150px; filter: blur(70px); }
-            
-            /* Mobile adjustment */
+            .cta-container { justify-content: center; }
+            .model-container { height: 350px; order: 1;} .hero-content { order: 2; }
             .single-robot-container { height: 350px; }
-            .robot-glow-bg { width: 200px; height: 200px; filter: blur(80px); }
+            .ai-chat-widget { bottom: 20px; right: 20px; width: 50px; height: 50px; }
         }
     </style>
 </head>
@@ -118,14 +115,20 @@
 
     <nav>
         <a href="#" class="logo">ROHIXIONX<span>.</span></a>
-        <div class="nav-links"><a href="cpp.html">C++</a><a href="python.html">Python</a><a href="projects.html">Hardware</a></div>
+        <div class="nav-links"><a href="cpp.html">C++</a><a href="python.html">Python</a><a href="projects.html">Hardware</a><a href="#ai">AI Models</a></div>
     </nav>
 
     <section class="hero">
         <div class="hero-content gsap-reveal">
-            <h1>Solo <span class="outline">Developer.</span><br>Core Logic.</h1>
-            <p>I architect high-performance C++ engines, automate complex workflows with Python, and bridge software with Arduino hardware lab.</p>
-            <a href="projects.html" class="cta-btn">View Projects</a>
+            <h1>Solo <span class="outline">Developer.</span></h1>
+            <div class="typing-wrapper">
+                <span class="typing-text" id="typewriter"></span>
+            </div>
+            <p>I architect high-performance C++ engines, automate complex workflows with Python, and build next-gen AI integrations.</p>
+            <div class="cta-container">
+                <a href="projects.html" class="cta-btn">View Projects</a>
+                <a href="github.html" class="secondary-btn"><i class='bx bxl-github'></i> GitHub</a>
+            </div>
         </div>
         
         <div class="model-container gsap-reveal">
@@ -139,49 +142,93 @@
             <div class="robot-glow-bg"></div>
             <model-viewer 
                 src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" 
-                alt="Robot" 
-                auto-rotate 
-                camera-controls 
-                shadow-intensity="1" 
-                exposure="0.9" 
-                animation-name="Wave" 
-                autoplay 
-                interaction-prompt="none">
+                alt="Robot" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
             </model-viewer>
         </div>
     </section>
 
     <section id="expertise" class="skills-section">
-        <h2 class="section-title gsap-slide-up">Technical Arsenal</h2>
+        <h2 class="section-title gsap-slide-up">Technical <span>Arsenal</span></h2>
         <div class="grid-container">
+            <!-- Card 1 -->
             <div class="glass-card gsap-slide-up">
-                <i class='bx bx-code-alt card-icon' style="color: #58a6ff;"></i>
+                <i class='bx bx-code-alt card-icon icon-cpp'></i>
                 <h3>C++ Engine</h3>
                 <p>Developing memory-efficient, high-performance logic, competitive algorithms, and memory-safe Modern C++ execution.</p>
-                <a href="cpp.html" class="card-link">View Snippets &rarr;</a>
+                <a href="cpp.html" class="card-link">View Snippets <i class='bx bx-right-arrow-alt'></i></a>
             </div>
+            <!-- Card 2 -->
             <div class="glass-card gsap-slide-up">
-                <i class='bx bxl-python card-icon' style="color: #f1e05a;"></i>
+                <i class='bx bxl-python card-icon icon-python'></i>
                 <h3>Python Scripts</h3>
                 <p>Building specialized automation tools, data processing pipelines, and scalable backend services from the ground up.</p>
-                <a href="python.html" class="card-link">View Library &rarr;</a>
+                <a href="python.html" class="card-link">View Library <i class='bx bx-right-arrow-alt'></i></a>
             </div>
+            <!-- Card 3 -->
             <div class="glass-card gsap-slide-up">
-                <i class='bx bx-chip card-icon' style="color: #00979d;"></i>
+                <i class='bx bx-brain card-icon icon-ai'></i>
+                <h3>AI Architecture</h3>
+                <p>Integrating LLMs, building custom neural network models, and deploying intelligent AI logic into web applications.</p>
+                <a href="#ai" class="card-link">Explore Models <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+            <!-- Card 4 -->
+            <div class="glass-card gsap-slide-up">
+                <i class='bx bx-chip card-icon icon-hardware'></i>
                 <h3>Hardware Lab</h3>
                 <p>Bridging software and reality using Arduino + Python serial interfaces for IoT and physical computing projects.</p>
-                <a href="projects.html" class="card-link">View Projects &rarr;</a>
+                <a href="projects.html" class="card-link">View Projects <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </section>
 
+    <!-- AI Floating Chat Widget -->
+    <div class="ai-chat-widget">
+        <i class='bx bx-bot'></i>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
+        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
         gsap.from(".gsap-reveal", { y: 60, opacity: 0, duration: 1.2, stagger: 0.25, ease: "power4.out", delay: 0.3 });
         gsap.utils.toArray(".gsap-slide-up").forEach((element, i) => {
             gsap.from(element, { scrollTrigger: { trigger: element, start: "top 88%", toggleActions: "play none none reverse" }, y: 70, opacity: 0, duration: 1, ease: "power3.out", delay: i * 0.15 });
+        });
+
+        // Dynamic Typewriter Effect Script
+        const textArray = ["Architecting Core Logic.", "Building AI Models.", "Automating Workflows."];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typeSpeed = 100;
+        const eraseSpeed = 50;
+        const delayBetweenTexts = 2000;
+        const typeElement = document.getElementById("typewriter");
+
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typeElement.textContent += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typeSpeed);
+            } else {
+                setTimeout(erase, delayBetweenTexts);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typeElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, eraseSpeed);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(type, typeSpeed);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(type, 1000); // Start effect after 1 second
         });
     </script>
 </body>
