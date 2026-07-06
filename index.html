@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohixionx | Advanced Solo Developer</title>
+    <title>Rohixionx | Cyber Architecture Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Outfit:wght@300;500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <style>
         :root {
-            --bg-dark: #030305; --text-main: #ffffff; --text-muted: #8b949e;
-            --accent-cyan: #00f3ff; --accent-blue: #2563eb; --accent-purple: #b026ff;
-            --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-dark: #020204; --text-main: #ffffff; --text-muted: #8e9aa8;
+            --accent-cyan: #00f3ff; --accent-blue: #1e4ff2; --accent-purple: #9d00ff;
+            --glass-bg: rgba(255, 255, 255, 0.02); --glass-border: rgba(255, 255, 255, 0.06);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
 
+        /* Cyber Grid Background */
+        body::before {
+            content: ''; position: fixed; width: 100vw; height: 100vh; top: 0; left: 0;
+            background-image: radial-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 0), radial-gradient(rgba(157, 0, 250, 0.02) 1px, transparent 0);
+            background-size: 40px 40px; background-position: 0 0, 20px 20px; z-index: -2; pointer-events: none;
+        }
+
+        /* Nav */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
-            backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border);
+            padding: 15px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
         }
         .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;}
-        .logo span { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; position: relative; }
-        .nav-links a:hover { color: var(--accent-cyan); }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent-cyan); transition: 0.3s; }
-        .nav-links a:hover::after { width: 100%; }
-
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse;
-        }
-        .hero-content { flex: 1; max-width: 600px; text-align: left; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 15px; }
-        .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
+        .logo span { color: var(--accent-cyan); text-shadow: 0 0 10px rgba(0, 243, 255, 0.6); }
         
-        /* Typing Effect CSS */
-        .typing-wrapper { display: flex; align-items: center; min-height: 50px; margin-bottom: 25px; }
-        .typing-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: var(--accent-cyan); font-weight: 700; border-right: 3px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
+        .nav-monitor { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: #00ff66; background: rgba(0, 255, 102, 0.05); padding: 4px 10px; border-radius: 5px; border: 1px solid rgba(0, 255, 102, 0.15); display: flex; align-items: center; gap: 6px; }
+        .pulse-dot { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; animation: sysPulse 1.5s infinite alternate; }
+        @keyframes sysPulse { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-cyan); }
+
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse; }
+        .hero-content { flex: 1; max-width: 600px; text-align: left; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+        .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
+        
+        /* Terminal Typing Effect */
+        .typing-wrapper { display: flex; align-items: center; min-height: 45px; margin-bottom: 25px; font-family: 'Fira Code', monospace; }
+        .typing-text { font-size: 1.5rem; color: var(--accent-cyan); font-weight: 600; border-right: 2px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
 
         .hero p { color: var(--text-muted); font-size: clamp(1rem, 1.5vw, 1.15rem); margin-bottom: 40px; line-height: 1.7; }
@@ -49,57 +58,86 @@
         .cta-container { display: flex; gap: 20px; }
         .cta-btn { background: var(--text-main); color: var(--bg-dark); padding: 14px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.4s; box-shadow: 0 5px 15px rgba(255,255,255,0.1); display: inline-block; }
         .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 25px rgba(0, 243, 255, 0.4); transform: translateY(-3px); }
-        .secondary-btn { background: transparent; color: var(--text-main); border: 1px solid var(--glass-border); padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.4s; }
+        .secondary-btn { background: transparent; color: var(--text-main); border: 1px solid var(--glass-border); padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.4s; display: flex; align-items: center; gap: 8px; }
         .secondary-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); box-shadow: 0 5px 20px rgba(176, 38, 255, 0.2); }
 
         .model-container { flex: 1; height: 450px; min-width: 300px; display: flex; justify-content: center; align-items: center; position: relative; }
         model-viewer { width: 100%; height: 100%; --poster-color: transparent; touch-action: pan-y; outline: none; }
-        .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.2; z-index: -1; animation: pulse 6s infinite alternate; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.15; } 100% { transform: scale(1.2); opacity: 0.3; } }
+        .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1; animation: pulse 6s infinite alternate; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.1; } 100% { transform: scale(1.2); opacity: 0.25; } }
 
-        /* 1 ROBOT SECTION */
+        /* Middle Showcase Model Section */
         .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; }
         .single-robot-container { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 450px; max-width: 500px; }
-        .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.4)); }
-        .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.25; z-index: -1; animation: pulse-glow 4s infinite alternate; }
-        @keyframes pulse-glow { 0% { opacity: 0.15; transform: scale(0.9); } 100% { opacity: 0.3; transform: scale(1.1); } }
+        .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.3)); }
+        .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.15; z-index: -1; animation: pulse-glow 4s infinite alternate; }
+        @keyframes pulse-glow { 0% { opacity: 0.1; transform: scale(0.9); } 100% { opacity: 0.2; transform: scale(1.1); } }
 
-        /* SKILLS GRID */
-        .skills-section { padding: 50px 20px 100px; max-width: 1200px; margin: 0 auto; }
+        /* Skills Arsenal Section */
+        .skills-section { padding: 50px 20px 140px; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
         .section-title span { color: var(--accent-cyan); }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
         
-        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; transition: 0.4s ease; backdrop-filter: blur(10px); text-align: left; position: relative; overflow: hidden; }
+        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px); text-align: left; position: relative; overflow: hidden; }
         .glass-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-cyan)); transition: 0.5s; }
         .glass-card:hover::before { left: 100%; }
-        .glass-card:hover { border-color: rgba(0, 243, 255, 0.4); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background: rgba(255, 255, 255, 0.05); }
+        .glass-card:hover { border-color: rgba(0, 243, 255, 0.3); transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0, 243, 255, 0.05); background: rgba(255, 255, 255, 0.04); }
         
         .card-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
-        .icon-cpp { color: #58a6ff; text-shadow: 0 0 15px rgba(88, 166, 255, 0.4); }
-        .icon-python { color: #f1e05a; text-shadow: 0 0 15px rgba(241, 224, 90, 0.4); }
-        .icon-hardware { color: #00979d; text-shadow: 0 0 15px rgba(0, 151, 157, 0.4); }
-        .icon-ai { color: var(--accent-purple); text-shadow: 0 0 15px rgba(176, 38, 255, 0.5); }
+        .icon-cpp { color: #58a6ff; text-shadow: 0 0 15px rgba(88, 166, 255, 0.3); }
+        .icon-python { color: #f1e05a; text-shadow: 0 0 15px rgba(241, 224, 90, 0.3); }
+        .icon-hardware { color: #00979d; text-shadow: 0 0 15px rgba(0, 151, 157, 0.3); }
+        .icon-ai { color: var(--accent-purple); text-shadow: 0 0 15px rgba(176, 38, 255, 0.4); }
         
-        .glass-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; letter-spacing: 0.5px;}
+        .glass-card h3 { font-size: 1.4rem; margin-bottom: 12px; color: #fff; letter-spacing: 0.5px;}
         .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;}
         .card-link { display: inline-block; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
         .card-link:hover { color: var(--accent-cyan); gap: 10px; }
 
-        /* AI CHAT WIDGET (FAB) */
-        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 25px rgba(0, 243, 255, 0.4); z-index: 1000; transition: 0.3s; animation: float 3s ease-in-out infinite; }
-        .ai-chat-widget i { font-size: 1.8rem; color: #030305; }
-        .ai-chat-widget:hover { transform: scale(1.1); box-shadow: 0 10px 35px rgba(0, 243, 255, 0.6); }
-        .ai-chat-widget::before { content: 'Chat with AI'; position: absolute; right: 75px; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); padding: 8px 15px; border-radius: 8px; color: #fff; font-size: 0.85rem; opacity: 0; pointer-events: none; transition: 0.3s; white-space: nowrap; }
-        .ai-chat-widget:hover::before { opacity: 1; right: 80px; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        /* ULTRA AI CHAT MODAL INTERFACE */
+        .ai-chat-container {
+            position: fixed; bottom: 105px; right: 30px; width: 360px; height: 480px;
+            background: rgba(3, 3, 6, 0.85); border: 1px solid var(--glass-border);
+            border-radius: 20px; backdrop-filter: blur(25px); display: flex; flex-direction: column;
+            z-index: 999; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transform: translateY(30px) scale(0.95); opacity: 0; pointer-events: none;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); overflow: hidden;
+        }
+        .ai-chat-container.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; border-color: rgba(0, 243, 255, 0.3); box-shadow: 0 15px 35px rgba(0, 243, 255, 0.1); }
+        
+        .chat-header { background: rgba(255,255,255,0.02); padding: 15px 20px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
+        .chat-header h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; color: #fff; }
+        .chat-header h4 i { color: var(--accent-cyan); }
+        .chat-close { color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .chat-close:hover { color: #ff3366; }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 10px; }
+        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-size: 0.9rem; max-height: calc(100% - 120px); }
+        .msg { max-width: 80%; padding: 10px 15px; border-radius: 14px; line-height: 1.5; font-family: 'Outfit', sans-serif; }
+        .msg.bot { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: #fff; align-self: flex-start; border-top-left-radius: 2px; }
+        .msg.user { background: linear-gradient(135deg, var(--accent-blue), #102fa1); color: #fff; align-self: flex-end; border-top-right-radius: 2px; }
+
+        .chat-footer { padding: 12px 15px; background: rgba(0,0,0,0.2); border-top: 1px solid var(--glass-border); display: flex; gap: 10px; align-items: center; }
+        .chat-footer input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 10px 15px; border-radius: 25px; color: #fff; outline: none; font-size: 0.88rem; transition: 0.3s; }
+        .chat-footer input:focus { border-color: var(--accent-cyan); }
+        .chat-send { width: 38px; height: 38px; background: var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; border: none;}
+        .chat-send i { font-size: 1.1rem; color: #020204; }
+        .chat-send:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-cyan); }
+
+        /* Floating Trigger Action Button (FAB) */
+        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); z-index: 1000; transition: 0.3s; animation: float 3s ease-in-out infinite; }
+        .ai-chat-widget i { font-size: 1.9rem; color: #020204; transition: 0.3s; }
+        .ai-chat-widget:hover { transform: scale(1.08); box-shadow: 0 10px 35px rgba(0, 243, 255, 0.5); }
+        .ai-chat-widget.open i { transform: rotate(135deg); }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
         @media (max-width: 768px) {
-            nav { padding: 15px 25px; } .nav-links { display: none; }
+            nav { padding: 15px 20px; } .nav-links { display: none; }
             .hero { padding: 100px 20px 40px; text-align: center; }
             .hero-content { text-align: center; max-width: 100%; margin-top: 20px;}
             .typing-wrapper { justify-content: center; }
@@ -107,7 +145,7 @@
             .cta-container { justify-content: center; }
             .model-container { height: 350px; order: 1;} .hero-content { order: 2; }
             .single-robot-container { height: 350px; }
-            .ai-chat-widget { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .ai-chat-container { width: calc(100% - 40px); right: 20px; bottom: 95px; height: 420px; }
         }
     </style>
 </head>
@@ -115,7 +153,15 @@
 
     <nav>
         <a href="#" class="logo">ROHIXIONX<span>.</span></a>
-        <div class="nav-links"><a href="cpp.html">C++</a><a href="python.html">Python</a><a href="projects.html">Hardware</a><a href="#ai">AI Models</a></div>
+        <div class="nav-monitor">
+            <div class="pulse-dot"></div>
+            <span>SYS.LOC: OK // AI.CORE: ONLINE</span>
+        </div>
+        <div class="nav-links">
+            <a href="cpp.html">C++</a>
+            <a href="python.html">Python</a>
+            <a href="projects.html">Hardware</a>
+        </div>
     </nav>
 
     <section class="hero">
@@ -124,10 +170,10 @@
             <div class="typing-wrapper">
                 <span class="typing-text" id="typewriter"></span>
             </div>
-            <p>I architect high-performance C++ engines, automate complex workflows with Python, and build next-gen AI integrations.</p>
+            <p>I architect low-latency C++ execution engines, write adaptive automation pipelines using Python scripts, and integrate advanced generative AI frameworks into modern hardware architectures.</p>
             <div class="cta-container">
                 <a href="projects.html" class="cta-btn">View Projects</a>
-                <a href="github.html" class="secondary-btn"><i class='bx bxl-github'></i> GitHub</a>
+                <a href="github.html" class="secondary-btn"><i class='bx bxl-github'></i> GitHub Node</a>
             </div>
         </div>
         
@@ -142,94 +188,113 @@
             <div class="robot-glow-bg"></div>
             <model-viewer 
                 src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" 
-                alt="Robot" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
+                alt="Robot Node" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
             </model-viewer>
         </div>
     </section>
 
     <section id="expertise" class="skills-section">
-        <h2 class="section-title gsap-slide-up">Technical <span>Arsenal</span></h2>
+        <h2 class="section-title gsap-slide-up">Engineering <span>Arsenal</span></h2>
         <div class="grid-container">
-            <!-- Card 1 -->
             <div class="glass-card gsap-slide-up">
                 <i class='bx bx-code-alt card-icon icon-cpp'></i>
-                <h3>C++ Engine</h3>
-                <p>Developing memory-efficient, high-performance logic, competitive algorithms, and memory-safe Modern C++ execution.</p>
-                <a href="cpp.html" class="card-link">View Snippets <i class='bx bx-right-arrow-alt'></i></a>
+                <h3>C++ Micro-Engine</h3>
+                <p>Architecting memory-efficient multi-threaded algorithms, hardware-level abstractions, and ultra-high speed computation logic layers.</p>
+                <a href="cpp.html" class="card-link">Initialize Source <i class='bx bx-right-arrow-alt'></i></a>
             </div>
-            <!-- Card 2 -->
             <div class="glass-card gsap-slide-up">
                 <i class='bx bxl-python card-icon icon-python'></i>
-                <h3>Python Scripts</h3>
-                <p>Building specialized automation tools, data processing pipelines, and scalable backend services from the ground up.</p>
-                <a href="python.html" class="card-link">View Library <i class='bx bx-right-arrow-alt'></i></a>
+                <h3>Python Pipelines</h3>
+                <p>Structuring neural automation microservices, complex backend system data flow processing, and custom script tooling.</p>
+                <a href="python.html" class="card-link">Access Libraries <i class='bx bx-right-arrow-alt'></i></a>
             </div>
-            <!-- Card 3 -->
             <div class="glass-card gsap-slide-up">
                 <i class='bx bx-brain card-icon icon-ai'></i>
-                <h3>AI Architecture</h3>
-                <p>Integrating LLMs, building custom neural network models, and deploying intelligent AI logic into web applications.</p>
-                <a href="#ai" class="card-link">Explore Models <i class='bx bx-right-arrow-alt'></i></a>
+                <h3>AI Engineering</h3>
+                <p>Deploying advanced transformer model weights, embedding matrices pipelines, and automated intelligence layers via scalable hooks.</p>
+                <a href="#ai" class="card-link">Run Diagnostics <i class='bx bx-right-arrow-alt'></i></a>
             </div>
-            <!-- Card 4 -->
             <div class="glass-card gsap-slide-up">
                 <i class='bx bx-chip card-icon icon-hardware'></i>
                 <h3>Hardware Lab</h3>
-                <p>Bridging software and reality using Arduino + Python serial interfaces for IoT and physical computing projects.</p>
-                <a href="projects.html" class="card-link">View Projects <i class='bx bx-right-arrow-alt'></i></a>
+                <p>Interfacing firmware with asynchronous reality via raw Microcontroller architecture setups and direct logic streams.</p>
+                <a href="projects.html" class="card-link">Map Interfaces <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </section>
 
-    <!-- AI Floating Chat Widget -->
-    <div class="ai-chat-widget">
-        <i class='bx bx-bot'></i>
+    <div class="ai-chat-container" id="aiChatBox">
+        <div class="chat-header">
+            <h4><i class='bx bx-git-branch'></i> ROHIXIONX.AI v2.0</h4>
+            <div class="chat-close" id="closeChatBtn"><i class='bx bx-x'></i></div>
+        </div>
+        <div class="chat-body" id="chatContainer">
+            <div class="msg bot">System Initialized. Greetings. I am Rohixionx's automated pipeline interface. Query anything regarding C++, Python, or Hardware logs.</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Send system call pipeline instructions...">
+            <button class="chat-send" id="sendChatBtn"><i class='bx bx-send' ></i></button>
+        </div>
     </div>
 
-    <!-- Scripts -->
+    <div class="ai-chat-widget" id="chatToggleWidget">
+        <i class='bx bx-terminal'></i>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
         gsap.from(".gsap-reveal", { y: 60, opacity: 0, duration: 1.2, stagger: 0.25, ease: "power4.out", delay: 0.3 });
         gsap.utils.toArray(".gsap-slide-up").forEach((element, i) => {
             gsap.from(element, { scrollTrigger: { trigger: element, start: "top 88%", toggleActions: "play none none reverse" }, y: 70, opacity: 0, duration: 1, ease: "power3.out", delay: i * 0.15 });
         });
 
-        // Dynamic Typewriter Effect Script
-        const textArray = ["Architecting Core Logic.", "Building AI Models.", "Automating Workflows."];
-        let textIndex = 0;
-        let charIndex = 0;
-        const typeSpeed = 100;
-        const eraseSpeed = 50;
-        const delayBetweenTexts = 2000;
+        // Advanced Multiprocess Cyber Typewriter Array
+        const textArray = ["Compiling C++ Core Logic.", "Integrating Neural AI Nets.", "Initializing Hardware Hooks.", "Executing Automation Scripts."];
+        let textIndex = 0; let charIndex = 0; const typeSpeed = 80; const eraseSpeed = 40; const textHold = 2200;
         const typeElement = document.getElementById("typewriter");
 
         function type() {
             if (charIndex < textArray[textIndex].length) {
-                typeElement.textContent += textArray[textIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typeSpeed);
-            } else {
-                setTimeout(erase, delayBetweenTexts);
-            }
+                typeElement.textContent += textArray[textIndex].charAt(charIndex); charIndex++; setTimeout(type, typeSpeed);
+            } else { setTimeout(erase, textHold); }
         }
-
         function erase() {
             if (charIndex > 0) {
-                typeElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(erase, eraseSpeed);
-            } else {
-                textIndex = (textIndex + 1) % textArray.length;
-                setTimeout(type, typeSpeed);
-            }
+                typeElement.textContent = textArray[textIndex].substring(0, charIndex - 1); charIndex--; setTimeout(erase, eraseSpeed);
+            } else { textIndex = (textIndex + 1) % textArray.length; setTimeout(type, typeSpeed); }
+        }
+        document.addEventListener("DOMContentLoaded", () => { setTimeout(type, 800); });
+
+        // Simulated Advanced AI Response Core Execution Logic
+        const chatWidget = document.getElementById("chatToggleWidget");
+        const chatBox = document.getElementById("aiChatBox");
+        const closeBtn = document.getElementById("closeChatBtn");
+        const sendBtn = document.getElementById("sendChatBtn");
+        const chatInput = document.getElementById("chatInput");
+        const chatContainer = document.getElementById("chatContainer");
+
+        chatWidget.addEventListener("click", () => { chatBox.classList.toggle("active"); chatWidget.classList.toggle("open"); });
+        closeBtn.addEventListener("click", () => { chatBox.classList.remove("active"); chatWidget.classList.remove("open"); });
+
+        function processSystemQuery() {
+            const query = chatInput.value.trim(); if(!query) return;
+            
+            // Render User Input Log Bubble
+            const userBubble = document.createElement("div"); userBubble.className = "msg user"; userBubble.textContent = query;
+            chatContainer.appendChild(userBubble); chatInput.value = ""; chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Trigger AI Automated Latency Response
+            setTimeout(() => {
+                const botBubble = document.createElement("div"); botBubble.className = "msg bot";
+                botBubble.textContent = "Processing system matrices... [Data Route Authenticated]. Rohixionx's compiler is fully functional. Terminal log integrated successfully.";
+                chatContainer.appendChild(botBubble); chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 850);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(type, 1000); // Start effect after 1 second
-        });
+        sendBtn.addEventListener("click", processSystemQuery);
+        chatInput.addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
     </script>
 </body>
 </html>
