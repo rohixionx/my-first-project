@@ -18,17 +18,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
 
-        /* Interactive Canvas Overlay layer */
         #bgCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; }
 
-        /* Cyber Grid Background */
         body::before {
             content: ''; position: fixed; width: 100vw; height: 100vh; top: 0; left: 0;
             background-image: radial-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 0), radial-gradient(rgba(157, 0, 250, 0.02) 1px, transparent 0);
             background-size: 40px 40px; background-position: 0 0, 20px 20px; z-index: -3; pointer-events: none;
         }
 
-        /* Nav */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
@@ -45,17 +42,14 @@
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-cyan); }
         
-        /* Audio Control Badge Toggle */
         .audio-toggle { background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.75rem; cursor: pointer; transition: 0.3s; }
         .audio-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
 
-        /* Hero */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse; }
         .hero-content { flex: 1; max-width: 600px; text-align: left; }
         .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
         .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
         
-        /* Terminal Typing Effect */
         .typing-wrapper { display: flex; align-items: center; min-height: 45px; margin-bottom: 25px; font-family: 'Fira Code', monospace; }
         .typing-text { font-size: 1.5rem; color: var(--accent-cyan); font-weight: 600; border-right: 2px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
@@ -73,14 +67,12 @@
         .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1; animation: pulse 6s infinite alternate; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.1; } 100% { transform: scale(1.2); opacity: 0.25; } }
 
-        /* Middle Showcase Model Section */
         .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; }
         .single-robot-container { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 450px; max-width: 500px; }
         .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.3)); }
         .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.15; z-index: -1; animation: pulse-glow 4s infinite alternate; }
         @keyframes pulse-glow { 0% { opacity: 0.1; transform: scale(0.9); } 100% { opacity: 0.2; transform: scale(1.1); } }
 
-        /* Skills Arsenal Section */
         .skills-section { padding: 50px 20px 140px; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
         .section-title span { color: var(--accent-cyan); }
@@ -102,12 +94,11 @@
         .card-link { display: inline-block; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
         .card-link:hover { color: var(--accent-cyan); gap: 10px; }
 
-        /* ULTRA AI CHAT MODAL INTERFACE */
         .ai-chat-container {
             position: fixed; bottom: 105px; right: 30px; width: 360px; height: 480px;
-            background: rgba(3, 3, 6, 0.9); border: 1px solid var(--glass-border);
+            background: rgba(3, 3, 6, 0.95); border: 1px solid var(--glass-border);
             border-radius: 20px; backdrop-filter: blur(25px); display: flex; flex-direction: column;
-            z-index: 999; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             transform: translateY(30px) scale(0.95); opacity: 0; pointer-events: none;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); overflow: hidden;
         }
@@ -116,7 +107,7 @@
         .chat-header { background: rgba(255,255,255,0.02); padding: 15px 20px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
         .chat-header h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; color: #fff; }
         .chat-header h4 i { color: var(--accent-cyan); }
-        .chat-close { color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .chat-close { color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: 0.3s; padding: 5px; }
         .chat-close:hover { color: #ff3366; }
 
         .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-size: 0.9rem; max-height: calc(100% - 165px); }
@@ -124,7 +115,6 @@
         .msg.bot { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: #fff; align-self: flex-start; border-top-left-radius: 2px; }
         .msg.user { background: linear-gradient(135deg, var(--accent-blue), #102fa1); color: #fff; align-self: flex-end; border-top-right-radius: 2px; }
 
-        /* Prompt Injection Shortcuts Box */
         .chat-shortcuts { display: flex; gap: 8px; padding: 5px 15px; overflow-x: auto; background: rgba(0,0,0,0.1); border-top: 1px solid var(--glass-border); min-height: 45px; align-items: center; }
         .shortcut-btn { font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--accent-cyan); background: rgba(0, 243, 255, 0.04); border: 1px solid rgba(0, 243, 255, 0.2); padding: 4px 10px; border-radius: 6px; white-space: nowrap; cursor: pointer; transition: 0.2s; }
         .shortcut-btn:hover { background: rgba(0, 243, 255, 0.15); border-color: var(--accent-cyan); transform: scale(1.02); }
@@ -132,12 +122,11 @@
         .chat-footer { padding: 12px 15px; background: rgba(0,0,0,0.2); border-top: 1px solid var(--glass-border); display: flex; gap: 10px; align-items: center; }
         .chat-footer input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 10px 15px; border-radius: 25px; color: #fff; outline: none; font-size: 0.88rem; transition: 0.3s; }
         .chat-footer input:focus { border-color: var(--accent-cyan); }
-        .chat-send { width: 38px; height: 38px; background: var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; border: none;}
+        .chat-send { width: 38px; height: 38px; background: var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; border: none; z-index: 10;}
         .chat-send i { font-size: 1.1rem; color: #020204; }
         .chat-send:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-cyan); }
 
-        /* Floating Trigger Action Button (FAB) */
-        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); z-index: 1000; transition: 0.3s; animation: float 3s ease-in-out infinite; }
+        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); z-index: 99999; transition: 0.3s; animation: float 3s ease-in-out infinite; }
         .ai-chat-widget i { font-size: 1.9rem; color: #020204; transition: 0.3s; }
         .ai-chat-widget:hover { transform: scale(1.08); box-shadow: 0 10px 35px rgba(0, 243, 255, 0.5); }
         .ai-chat-widget.open i { transform: rotate(135deg); }
@@ -163,7 +152,6 @@
 </head>
 <body>
 
-    <!-- Cyber Canvas Matrix Background overlay -->
     <canvas id="bgCanvas"></canvas>
 
     <nav>
@@ -188,8 +176,8 @@
             </div>
             <p>I architect low-latency C++ execution engines, write adaptive automation pipelines using Python scripts, and integrate advanced generative AI frameworks into modern hardware architectures.</p>
             <div class="cta-container">
-                <a href="projects.html" class="cta-btn" onmouseenter="playSynthSound(440, 0.05)">View Projects</a>
-                <a href="github.html" class="secondary-btn" onmouseenter="playSynthSound(330, 0.05)"><i class='bx bxl-github'></i> GitHub Node</a>
+                <a href="projects.html" class="cta-btn" onmouseenter="playSynthSound(440, 0.05)" onclick="initAudioOnTouch()">View Projects</a>
+                <a href="github.html" class="secondary-btn" onmouseenter="playSynthSound(330, 0.05)" onclick="initAudioOnTouch()"><i class='bx bxl-github'></i> GitHub Node</a>
             </div>
         </div>
         
@@ -239,31 +227,29 @@
         </div>
     </section>
 
-    <!-- INTERACTIVE AGENT CHATBOX POPUP -->
     <div class="ai-chat-container" id="aiChatBox">
         <div class="chat-header">
             <h4><i class='bx bx-git-branch'></i> ROHIXIONX.AI v2.0</h4>
-            <div class="chat-close" id="closeChatBtn" onclick="playSynthSound(150, 0.15)"><i class='bx bx-x'></i></div>
+            <div class="chat-close" id="closeChatBtn"><i class='bx bx-x'></i></div>
         </div>
         <div class="chat-body" id="chatContainer">
             <div class="msg bot">System Initialized. Greetings. I am Rohixionx's automated pipeline interface. Query anything regarding C++, Python, or Hardware logs.</div>
         </div>
 
-        <!-- System Prompt Shortcuts Injection Modules -->
         <div class="chat-shortcuts">
-            <div class="shortcut-btn" onclick="injectQuickPrompt('RUN_CPP_DIAGNOSTICS')">[SYS_CPP]</div>
-            <div class="shortcut-btn" onclick="injectQuickPrompt('FETCH_PYTHON_LOGS')">[SYS_PY]</div>
-            <div class="shortcut-btn" onclick="injectQuickPrompt('CHECK_AI_INTEGRITY')">[SYS_AI]</div>
-            <div class="shortcut-btn" onclick="injectQuickPrompt('DIAGNOSE_HARDWARE')">[SYS_HW]</div>
+            <div class="shortcut-btn" id="btnPromptCpp">[SYS_CPP]</div>
+            <div class="shortcut-btn" id="btnPromptPy">[SYS_PY]</div>
+            <div class="shortcut-btn" id="btnPromptAi">[SYS_AI]</div>
+            <div class="shortcut-btn" id="btnPromptHw">[SYS_HW]</div>
         </div>
 
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Send system call pipeline instructions...">
-            <button class="chat-send" id="sendChatBtn" onclick="playSynthSound(600, 0.1)"><i class='bx bx-send' ></i></button>
+            <button class="chat-send" id="sendChatBtn"><i class='bx bx-send' ></i></button>
         </div>
     </div>
 
-    <div class="ai-chat-widget" id="chatToggleWidget" onclick="playSynthSound(500, 0.08)">
+    <div class="ai-chat-widget" id="chatToggleWidget">
         <i class='bx bx-terminal'></i>
     </div>
 
@@ -307,17 +293,28 @@
             card.addEventListener("mouseenter", () => playSynthSound(550, 0.02));
         });
 
-        // Ultra Web Audio Api Synth Architecture Generator
+        // Mobile-Safe Web Audio Context Engine
         let audioMuted = false;
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let audioCtx = null;
         
+        function initAudioOnTouch() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+        window.addEventListener('click', initAudioOnTouch, { once: true });
+        window.addEventListener('touchstart', initAudioOnTouch, { once: true });
+
         function toggleAudioState() {
             audioMuted = !audioMuted;
             document.getElementById("audioBtn").textContent = audioMuted ? "AUDIO: MUTED" : "AUDIO: ON";
         }
 
         function playSynthSound(frequency, duration) {
-            if (audioMuted) return;
+            if (audioMuted || !audioCtx) return;
             try {
                 let osc = audioCtx.createOscillator();
                 let gainNode = audioCtx.createGain();
@@ -348,10 +345,12 @@
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener("resize", resizeCanvas); resizeCanvas();
 
-        window.addEventListener("mousemove", (e) => {
-            if(Math.random() > 0.45) return; // Optimize performance
-            points.push({ x: e.clientX, y: e.clientY, alpha: 0.5, size: Math.random() * 2 + 1 });
-        });
+        const trackEvent = (clientX, clientY) => {
+            if(Math.random() > 0.45) return;
+            points.push({ x: clientX, y: clientY, alpha: 0.5, size: Math.random() * 2 + 1 });
+        };
+        window.addEventListener("mousemove", (e) => trackEvent(e.clientX, e.clientY));
+        window.addEventListener("touchmove", (e) => { if(e.touches[0]) trackEvent(e.touches[0].clientX, e.touches[0].clientY); });
 
         function renderParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -365,12 +364,12 @@
                 p.alpha -= 0.01;
                 if(p.alpha <= 0) { points.splice(i, 1); i--; }
             }
-            ctx.shadowBlur = 0; // reset
+            ctx.shadowBlur = 0;
             requestAnimationFrame(renderParticles);
         }
         renderParticles();
 
-        // Intelligent Automated AI Response Execution Hub Logic
+        // 100% Mobile Safe Event Listening Binding for AI Chatbox Popup
         const chatWidget = document.getElementById("chatToggleWidget");
         const chatBox = document.getElementById("aiChatBox");
         const closeBtn = document.getElementById("closeChatBtn");
@@ -378,8 +377,24 @@
         const chatInput = document.getElementById("chatInput");
         const chatContainer = document.getElementById("chatContainer");
 
-        chatWidget.addEventListener("click", () => { chatBox.classList.toggle("active"); chatWidget.classList.toggle("open"); });
-        closeBtn.addEventListener("click", () => { chatBox.classList.remove("active"); chatWidget.classList.remove("open"); });
+        const toggleChatAction = (e) => {
+            e.preventDefault(); e.stopPropagation();
+            initAudioOnTouch();
+            chatBox.classList.toggle("active"); 
+            chatWidget.classList.toggle("open");
+            playSynthSound(500, 0.08);
+        };
+        chatWidget.addEventListener("click", toggleChatAction);
+        chatWidget.addEventListener("touchstart", toggleChatAction, {passive: false});
+
+        const closeChatAction = (e) => {
+            e.preventDefault(); e.stopPropagation();
+            chatBox.classList.remove("active"); 
+            chatWidget.classList.remove("open");
+            playSynthSound(150, 0.15);
+        };
+        closeBtn.addEventListener("click", closeChatAction);
+        closeBtn.addEventListener("touchstart", closeChatAction, {passive: false});
 
         function processSystemQuery(forcedText = "") {
             const query = forcedText ? forcedText.trim() : chatInput.value.trim(); if(!query) return;
@@ -388,7 +403,6 @@
             chatContainer.appendChild(userBubble); if(!forcedText) chatInput.value = "";
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
-            // Neural Response Matrix Engine
             setTimeout(() => {
                 const botBubble = document.createElement("div"); botBubble.className = "msg bot";
                 const lowerQuery = query.toLowerCase();
@@ -412,16 +426,24 @@
             }, 600);
         }
 
-        function injectQuickPrompt(commandType) {
+        const runSubmitAction = (e) => { e.preventDefault(); processSystemQuery(); };
+        sendBtn.addEventListener("click", runSubmitAction);
+        sendBtn.addEventListener("touchstart", runSubmitAction);
+        chatInput.addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
+
+        const injectQuickPrompt = (commandType) => {
             playSynthSound(700, 0.04);
             if(commandType === 'RUN_CPP_DIAGNOSTICS') processSystemQuery("Execute Core C++ Diagnostics Command.");
             if(commandType === 'FETCH_PYTHON_LOGS') processSystemQuery("Fetch Active Python Async Scripts Log.");
             if(commandType === 'CHECK_AI_INTEGRITY') processSystemQuery("Check Local Neural AI Integration Layers.");
             if(commandType === 'DIAGNOSE_HARDWARE') processSystemQuery("Diagnose Active Arduino Hardware lab interfaces.");
-        }
+        };
 
-        sendBtn.addEventListener("click", () => processSystemQuery());
-        chatInput.addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
+        // Mobile Click Binding fixes for Shortcut triggers
+        document.getElementById("btnPromptCpp").addEventListener("click", () => injectQuickPrompt('RUN_CPP_DIAGNOSTICS'));
+        document.getElementById("btnPromptPy").addEventListener("click", () => injectQuickPrompt('FETCH_PYTHON_LOGS'));
+        document.getElementById("btnPromptAi").addEventListener("click", () => injectQuickPrompt('CHECK_AI_INTEGRITY'));
+        document.getElementById("btnPromptHw").addEventListener("click", () => injectQuickPrompt('DIAGNOSE_HARDWARE'));
     </script>
 </body>
 </html>
