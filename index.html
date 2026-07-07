@@ -18,20 +18,20 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
 
-        /* FIXED: Prevent background canvas from blocking mobile clicks */
+        /* Background Interactive Canvas Layer */
         #bgCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none !important; }
 
-        /* Cyber Grid Background */
+        /* Cyber Grid Mesh Matrix */
         body::before {
             content: ''; position: fixed; width: 100vw; height: 100vh; top: 0; left: 0;
             background-image: radial-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 0), radial-gradient(rgba(157, 0, 250, 0.02) 1px, transparent 0);
             background-size: 40px 40px; background-position: 0 0, 20px 20px; z-index: -3; pointer-events: none;
         }
 
-        /* Nav */
+        /* Navigation Architecture */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
+            padding: 15px 40px; position: fixed; width: 100%; top: 0; z-index: 1000;
             backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
         }
         .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;}
@@ -45,16 +45,15 @@
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-cyan); }
         
-        .audio-toggle { background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.75rem; cursor: pointer; transition: 0.3s; }
+        .audio-toggle { background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.75rem; cursor: pointer; transition: 0.3s; z-index: 1010; }
         .audio-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
 
-        /* Hero */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse; }
+        /* Hero Core Layout */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse; z-index: 10; }
         .hero-content { flex: 1; max-width: 600px; text-align: left; }
         .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
         .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
         
-        /* Terminal Typing Effect */
         .typing-wrapper { display: flex; align-items: center; min-height: 45px; margin-bottom: 25px; font-family: 'Fira Code', monospace; }
         .typing-text { font-size: 1.5rem; color: var(--accent-cyan); font-weight: 600; border-right: 2px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
@@ -72,15 +71,15 @@
         .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1; animation: pulse 6s infinite alternate; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.1; } 100% { transform: scale(1.2); opacity: 0.25; } }
 
-        /* Middle Showcase Model Section */
-        .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; }
+        /* Middle Showcase Component Frame */
+        .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; position: relative; z-index: 10; }
         .single-robot-container { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 450px; max-width: 500px; }
         .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.3)); }
         .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.15; z-index: -1; animation: pulse-glow 4s infinite alternate; }
         @keyframes pulse-glow { 0% { opacity: 0.1; transform: scale(0.9); } 100% { opacity: 0.2; transform: scale(1.1); } }
 
-        /* Skills Arsenal Section */
-        .skills-section { padding: 50px 20px 140px; max-width: 1200px; margin: 0 auto; }
+        /* Technical Skills Dashboard Grid */
+        .skills-section { padding: 50px 20px 140px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
         .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
         .section-title span { color: var(--accent-cyan); }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
@@ -101,12 +100,12 @@
         .card-link { display: inline-block; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
         .card-link:hover { color: var(--accent-cyan); gap: 10px; }
 
-        /* ULTRA AI CHAT MODAL INTERFACE */
+        /* ULTRA AI TERMINAL CONSOLE HUD */
         .ai-chat-container {
             position: fixed; bottom: 105px; right: 30px; width: 360px; height: 480px;
-            background: rgba(3, 3, 6, 0.95); border: 1px solid var(--glass-border);
+            background: rgba(3, 3, 6, 0.98); border: 1px solid var(--glass-border);
             border-radius: 20px; backdrop-filter: blur(25px); display: flex; flex-direction: column;
-            z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            z-index: 999999; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             transform: translateY(30px) scale(0.95); opacity: 0; pointer-events: none;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); overflow: hidden;
         }
@@ -123,27 +122,24 @@
         .msg.bot { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: #fff; align-self: flex-start; border-top-left-radius: 2px; }
         .msg.user { background: linear-gradient(135deg, var(--accent-blue), #102fa1); color: #fff; align-self: flex-end; border-top-right-radius: 2px; }
 
-        .chat-shortcuts { display: flex; gap: 8px; padding: 5px 15px; overflow-x: auto; background: rgba(0,0,0,0.1); border-top: 1px solid var(--glass-border); min-height: 45px; align-items: center; }
+        .chat-shortcuts { display: flex; gap: 8px; padding: 5px 15px; overflow-x: auto; background: rgba(0,0,0,0.2); border-top: 1px solid var(--glass-border); min-height: 45px; align-items: center; }
         .shortcut-btn { font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--accent-cyan); background: rgba(0, 243, 255, 0.04); border: 1px solid rgba(0, 243, 255, 0.2); padding: 4px 10px; border-radius: 6px; white-space: nowrap; cursor: pointer; transition: 0.2s; }
         .shortcut-btn:hover { background: rgba(0, 243, 255, 0.15); border-color: var(--accent-cyan); transform: scale(1.02); }
 
-        .chat-footer { padding: 12px 15px; background: rgba(0,0,0,0.2); border-top: 1px solid var(--glass-border); display: flex; gap: 10px; align-items: center; }
+        .chat-footer { padding: 12px 15px; background: rgba(0,0,0,0.3); border-top: 1px solid var(--glass-border); display: flex; gap: 10px; align-items: center; }
         .chat-footer input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 10px 15px; border-radius: 25px; color: #fff; outline: none; font-size: 0.88rem; transition: 0.3s; }
         .chat-footer input:focus { border-color: var(--accent-cyan); }
-        .chat-send { width: 38px; height: 38px; background: var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; border: none; z-index: 10;}
+        
+        .chat-send { width: 38px; height: 38px; background: var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; border: none; }
         .chat-send i { font-size: 1.1rem; color: #020204; }
         .chat-send:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-cyan); }
 
-        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); z-index: 99999; transition: 0.3s; animation: float 3s ease-in-out infinite; }
+        /* Floating Interactive Action Widget */
+        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); z-index: 9999999; transition: 0.3s; animation: float 3s ease-in-out infinite; }
         .ai-chat-widget i { font-size: 1.9rem; color: #020204; transition: 0.3s; }
         .ai-chat-widget:hover { transform: scale(1.08); box-shadow: 0 10px 35px rgba(0, 243, 255, 0.5); }
         .ai-chat-widget.open i { transform: rotate(135deg); }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
         @media (max-width: 768px) {
             nav { padding: 15px 20px; } .nav-links { display: none; } .nav-monitor { min-width: auto; font-size: 0.65rem; }
@@ -166,13 +162,13 @@
         <a href="#" class="logo">ROHIXIONX<span>.</span></a>
         <div class="nav-monitor">
             <div class="pulse-dot"></div>
-            <span id="systemTicker">SYS.LOC: OK // AI.CORE: SYNCING...</span>
+            <span id="systemTicker">SYS.LOC: OK // AI.CORE: OPERATIONAL</span>
         </div>
         <div class="nav-links">
             <a href="cpp.html">C++</a>
             <a href="python.html">Python</a>
             <a href="projects.html">Hardware</a>
-            <button class="audio-toggle" id="audioBtn" onclick="toggleAudioState()">AUDIO: ON</button>
+            <button class="audio-toggle" id="audioBtn">AUDIO: ON</button>
         </div>
     </nav>
 
@@ -184,8 +180,8 @@
             </div>
             <p>I architect low-latency C++ execution engines, write adaptive automation pipelines using Python scripts, and integrate advanced generative AI frameworks into modern hardware architectures.</p>
             <div class="cta-container">
-                <a href="projects.html" class="cta-btn" onmouseenter="playSynthSound(440, 0.05)" onclick="initAudioOnTouch()">View Projects</a>
-                <a href="github.html" class="secondary-btn" onmouseenter="playSynthSound(330, 0.05)" onclick="initAudioOnTouch()"><i class='bx bxl-github'></i> GitHub Node</a>
+                <a href="projects.html" class="cta-btn">View Projects</a>
+                <a href="github.html" class="secondary-btn"><i class='bx bxl-github'></i> GitHub Node</a>
             </div>
         </div>
         
@@ -199,7 +195,7 @@
         <div class="single-robot-container">
             <div class="robot-glow-bg"></div>
             <model-viewer 
-                src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/RobotExpressive/glTF-Binary/RobotExpressive.glb" 
+                src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" 
                 alt="Robot Node" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
             </model-viewer>
         </div>
@@ -238,26 +234,26 @@
     <div class="ai-chat-container" id="aiChatBox">
         <div class="chat-header">
             <h4><i class='bx bx-git-branch'></i> ROHIXIONX.AI v2.0</h4>
-            <div class="chat-close" id="closeChatBtn" onclick="toggleChatWindow(event)"><i class='bx bx-x'></i></div>
+            <div class="chat-close" id="closeChatBtn"><i class='bx bx-x'></i></div>
         </div>
         <div class="chat-body" id="chatContainer">
             <div class="msg bot">System Initialized. Greetings. I am Rohixionx's automated pipeline interface. Query anything regarding C++, Python, or Hardware logs.</div>
         </div>
 
         <div class="chat-shortcuts">
-            <div class="shortcut-btn" onclick="injectQuickPrompt('RUN_CPP_DIAGNOSTICS', event)">[SYS_CPP]</div>
-            <div class="shortcut-btn" onclick="injectQuickPrompt('FETCH_PYTHON_LOGS', event)">[SYS_PY]</div>
-            <div class="shortcut-btn" onclick="injectQuickPrompt('CHECK_AI_INTEGRITY', event)">[SYS_AI]</div>
-            <div class="shortcut-btn" onclick="injectQuickPrompt('DIAGNOSE_HARDWARE', event)">[SYS_HW]</div>
+            <div class="shortcut-btn" id="shortcutCpp">[SYS_CPP]</div>
+            <div class="shortcut-btn" id="shortcutPy">[SYS_PY]</div>
+            <div class="shortcut-btn" id="shortcutAi">[SYS_AI]</div>
+            <div class="shortcut-btn" id="shortcutHw">[SYS_HW]</div>
         </div>
 
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Send system call pipeline instructions...">
-            <button class="chat-send" id="sendChatBtn" onclick="processSystemQuery()"><i class='bx bx-send' ></i></button>
+            <button class="chat-send" id="sendChatBtn"><i class='bx bx-send' ></i></button>
         </div>
     </div>
 
-    <div class="ai-chat-widget" id="chatToggleWidget" onclick="toggleChatWindow(event)">
+    <div class="ai-chat-widget" id="chatToggleWidget">
         <i class='bx bx-terminal'></i>
     </div>
 
@@ -270,7 +266,7 @@
             gsap.from(element, { scrollTrigger: { trigger: element, start: "top 88%", toggleActions: "play none none reverse" }, y: 70, opacity: 0, duration: 1, ease: "power3.out", delay: i * 0.15 });
         });
 
-        // Advanced Multiprocess Cyber Typewriter Array
+        // Advanced Multiprocess Cyber Typewriter Array Logic
         const textArray = ["Compiling C++ Core Logic.", "Integrating Neural AI Nets.", "Initializing Hardware Hooks.", "Executing Automation Scripts."];
         let textIndex = 0; let charIndex = 0; const typeSpeed = 80; const eraseSpeed = 40; const textHold = 2200;
         const typeElement = document.getElementById("typewriter");
@@ -287,7 +283,7 @@
         }
         document.addEventListener("DOMContentLoaded", () => { setTimeout(type, 800); });
 
-        // 3D Skill Cards Interactive Tilt Matrix Calculation
+        // 3D Skill Cards Interactive Gyro Matrix Calculation
         document.querySelectorAll(".glass-card").forEach(card => {
             card.addEventListener("mousemove", (e) => {
                 const rect = card.getBoundingClientRect();
@@ -301,11 +297,11 @@
             card.addEventListener("mouseenter", () => playSynthSound(550, 0.02));
         });
 
-        // Mobile-Safe Web Audio Context Engine
+        // Safe Non-Blocking Asynchronous Web Audio Architecture 
         let audioMuted = false;
         let audioCtx = null;
         
-        function initAudioOnTouch() {
+        function initAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
@@ -313,13 +309,12 @@
                 audioCtx.resume();
             }
         }
-        window.addEventListener('click', initAudioOnTouch, { once: true });
-        window.addEventListener('touchstart', initAudioOnTouch, { once: true });
 
-        function toggleAudioState() {
+        document.getElementById("audioBtn").addEventListener("click", (e) => {
+            initAudioContext();
             audioMuted = !audioMuted;
-            document.getElementById("audioBtn").textContent = audioMuted ? "AUDIO: MUTED" : "AUDIO: ON";
-        }
+            e.target.textContent = audioMuted ? "AUDIO: MUTED" : "AUDIO: ON";
+        });
 
         function playSynthSound(frequency, duration) {
             if (audioMuted || !audioCtx) return;
@@ -345,7 +340,7 @@
             sysLabel.textContent = `SYS.LOC: OK // PING: ${mockPing}ms // CORE_MEM: ${mockMem}GB // AI: ONLINE`;
         }, 2000);
 
-        // Interactive Mouse-Track Canvas Particles Pipeline
+        // Light Matrix Canvas Interactive Thread Map Engine
         const canvas = document.getElementById("bgCanvas");
         const ctx = canvas.getContext("2d");
         let points = [];
@@ -353,12 +348,14 @@
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener("resize", resizeCanvas); resizeCanvas();
 
-        const trackEvent = (clientX, clientY) => {
-            if(Math.random() > 0.45) return;
-            points.push({ x: clientX, y: clientY, alpha: 0.5, size: Math.random() * 2 + 1 });
+        const appendParticleNode = (clientX, clientY) => {
+            if(points.length > 40) return; // Prevent performance dips on low-end devices
+            points.push({ x: clientX, y: clientY, alpha: 0.4, size: Math.random() * 2 + 1 });
         };
-        window.addEventListener("mousemove", (e) => trackEvent(e.clientX, e.clientY));
-        window.addEventListener("touchmove", (e) => { if(e.touches[0]) trackEvent(e.touches[0].clientX, e.touches[0].clientY); });
+        window.addEventListener("mousemove", (e) => appendParticleNode(e.clientX, e.clientY));
+        window.addEventListener("touchmove", (e) => {
+            if(e.touches[0]) appendParticleNode(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
 
         function renderParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -367,30 +364,37 @@
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(0, 243, 255, ${p.alpha})`;
-                ctx.shadowBlur = 10; ctx.shadowColor = "var(--accent-cyan)";
                 ctx.fill();
                 p.alpha -= 0.01;
                 if(p.alpha <= 0) { points.splice(i, 1); i--; }
             }
-            ctx.shadowBlur = 0;
             requestAnimationFrame(renderParticles);
         }
         renderParticles();
 
-        // Native Mobile Event Clicks Binding Layer for UI Elements
-        function toggleChatWindow(e) {
-            if(e) { e.preventDefault(); e.stopPropagation(); }
-            initAudioOnTouch();
-            const chatBox = document.getElementById("aiChatBox");
-            const chatWidget = document.getElementById("chatToggleWidget");
-            chatBox.classList.toggle("active"); 
+        // Safe Declarative Cross-Platform Mobile Clicks Handler Injection Pipeline
+        const chatWidget = document.getElementById("chatToggleWidget");
+        const chatBox = document.getElementById("aiChatBox");
+        const closeBtn = document.getElementById("closeChatBtn");
+        const sendBtn = document.getElementById("sendChatBtn");
+        const chatInput = document.getElementById("chatInput");
+        const chatContainer = document.getElementById("chatContainer");
+
+        function toggleInterfaceHUD() {
+            initAudioContext();
+            chatBox.classList.toggle("active");
             chatWidget.classList.toggle("open");
             playSynthSound(500, 0.08);
         }
+        chatWidget.addEventListener("click", toggleInterfaceHUD);
+
+        closeBtn.addEventListener("click", () => {
+            chatBox.classList.remove("active");
+            chatWidget.classList.remove("open");
+            playSynthSound(150, 0.15);
+        });
 
         function processSystemQuery(forcedText = "") {
-            const chatInput = document.getElementById("chatInput");
-            const chatContainer = document.getElementById("chatContainer");
             const query = forcedText ? forcedText.trim() : chatInput.value.trim(); if(!query) return;
             
             const userBubble = document.createElement("div"); userBubble.className = "msg user"; userBubble.textContent = query;
@@ -400,36 +404,43 @@
             setTimeout(() => {
                 const botBubble = document.createElement("div"); botBubble.className = "msg bot";
                 const lowerQuery = query.toLowerCase();
-                let replyText = "Query indexed. Rohixionx's mainframe node processing instruction matrices stream successfully...";
+                let replyText = "Query processed. Core analytics pipeline working standard. Data packets successfully verified.";
 
-                if(lowerQuery.includes("c++") || lowerQuery.includes("cpp") || lowerQuery.includes("diagnostics")) {
-                    replyText = "Executing C++ Micro-Engine Analytics... Multi-threaded execution pipelines safe. Core assembly maps are executing on low latency vectors.";
-                } else if(lowerQuery.includes("python") || lowerQuery.includes("script") || lowerQuery.includes("logs")) {
-                    replyText = "Verifying Python automation scripts hooks... Daemons status: active. Data pipelines and microservice nodes running stable.";
-                } else if(lowerQuery.includes("ai") || lowerQuery.includes("neural") || lowerQuery.includes("integrity")) {
-                    replyText = "Neural core synchronized. Transformer optimization logic layers active. AI engineering model weights verified securely across clusters.";
-                } else if(lowerQuery.includes("hardware") || lowerQuery.includes("arduino") || lowerQuery.includes("interfaces")) {
-                    replyText = "Scanning Hardware Lab logs... Serial ports buffer clear. Microcontroller abstraction matrices running steady data logs flow.";
+                if(lowerQuery.includes("c++") || lowerQuery.includes("cpp")) {
+                    replyText = "Executing C++ Micro-Engine Diagnostics... Async execution arrays stable. High-performance calculation logic layers verified.";
+                } else if(lowerQuery.includes("python") || lowerQuery.includes("script")) {
+                    replyText = "Interfacing Python automation pipelines... Daemon hooks status: safe. Asynchronous microservice data clusters operational.";
+                } else if(lowerQuery.includes("ai") || lowerQuery.includes("neural")) {
+                    replyText = "Neural vector array initialized. Generative AI integration frameworks confirmed across local model nodes.";
+                } else if(lowerQuery.includes("hardware") || lowerQuery.includes("chip")) {
+                    replyText = "Accessing Hardware Lab firmware logs... Microcontroller direct communication interfaces running steady metrics streams.";
                 } else if(lowerQuery.includes("project") || lowerQuery.includes("work")) {
-                    replyText = "Repository system branches indexed. Logic blocks and active architecture deployment blueprints found. Select 'View Projects' to review nodes.";
+                    replyText = "Indexing active system repo trees... Multi-threaded systems and architectural modules found. Trigger 'View Projects' to pull data.";
                 }
 
                 botBubble.textContent = replyText;
                 chatContainer.appendChild(botBubble); chatContainer.scrollTop = chatContainer.scrollHeight;
                 playSynthSound(480, 0.08);
-            }, 600);
+            }, 550);
         }
 
-        function injectQuickPrompt(commandType, e) {
-            if(e) { e.preventDefault(); e.stopPropagation(); }
+        sendBtn.addEventListener("click", () => processSystemQuery());
+        chatInput.addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
+
+        function runQuickShortcut(typeString) {
+            initAudioContext();
             playSynthSound(700, 0.04);
-            if(commandType === 'RUN_CPP_DIAGNOSTICS') processSystemQuery("Execute Core C++ Diagnostics Command.");
-            if(commandType === 'FETCH_PYTHON_LOGS') processSystemQuery("Fetch Active Python Async Scripts Log.");
-            if(commandType === 'CHECK_AI_INTEGRITY') processSystemQuery("Check Local Neural AI Integration Layers.");
-            if(commandType === 'DIAGNOSE_HARDWARE') processSystemQuery("Diagnose Active Arduino Hardware lab interfaces.");
+            processSystemQuery(typeString);
         }
 
-        document.getElementById("chatInput").addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
+        document.getElementById("shortcutCpp").addEventListener("click", () => runQuickShortcut("Execute C++ Diagnostics Log Framework."));
+        document.getElementById("shortcutPy").addEventListener("click", () => runQuickShortcut("Fetch Active Python Pipelines Log."));
+        document.getElementById("shortcutAi").addEventListener("click", () => runQuickShortcut("Check Neural AI Integration Layers."));
+        document.getElementById("shortcutHw").addEventListener("click", () => runQuickShortcut("Diagnose Active Hardware Lab Interfaces."));
+        
+        // Audio Initialization Hooks on First Touch/Taps for Cross-Platform safety
+        window.addEventListener('touchstart', initAudioContext, { once: true });
+        window.addEventListener('click', initAudioContext, { once: true });
     </script>
 </body>
 </html>
