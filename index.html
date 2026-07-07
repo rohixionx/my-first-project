@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
 
-        /* FIXED: Canvas touch tracking layer now allowing clicks through */
+        /* FIXED: Prevent background canvas from blocking mobile clicks */
         #bgCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none !important; }
 
         /* Cyber Grid Background */
@@ -199,7 +199,7 @@
         <div class="single-robot-container">
             <div class="robot-glow-bg"></div>
             <model-viewer 
-                src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/RobotExpressive/glTF-Binary/RobotExpressive.glb" 
+                src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/RobotExpressive/glTF-Binary/RobotExpressive.glb" 
                 alt="Robot Node" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
             </model-viewer>
         </div>
@@ -238,26 +238,26 @@
     <div class="ai-chat-container" id="aiChatBox">
         <div class="chat-header">
             <h4><i class='bx bx-git-branch'></i> ROHIXIONX.AI v2.0</h4>
-            <div class="chat-close" id="closeChatBtn"><i class='bx bx-x'></i></div>
+            <div class="chat-close" id="closeChatBtn" onclick="toggleChatWindow(event)"><i class='bx bx-x'></i></div>
         </div>
         <div class="chat-body" id="chatContainer">
             <div class="msg bot">System Initialized. Greetings. I am Rohixionx's automated pipeline interface. Query anything regarding C++, Python, or Hardware logs.</div>
         </div>
 
         <div class="chat-shortcuts">
-            <div class="shortcut-btn" id="btnPromptCpp">[SYS_CPP]</div>
-            <div class="shortcut-btn" id="btnPromptPy">[SYS_PY]</div>
-            <div class="shortcut-btn" id="btnPromptAi">[SYS_AI]</div>
-            <div class="shortcut-btn" id="btnPromptHw">[SYS_HW]</div>
+            <div class="shortcut-btn" onclick="injectQuickPrompt('RUN_CPP_DIAGNOSTICS', event)">[SYS_CPP]</div>
+            <div class="shortcut-btn" onclick="injectQuickPrompt('FETCH_PYTHON_LOGS', event)">[SYS_PY]</div>
+            <div class="shortcut-btn" onclick="injectQuickPrompt('CHECK_AI_INTEGRITY', event)">[SYS_AI]</div>
+            <div class="shortcut-btn" onclick="injectQuickPrompt('DIAGNOSE_HARDWARE', event)">[SYS_HW]</div>
         </div>
 
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Send system call pipeline instructions...">
-            <button class="chat-send" id="sendChatBtn"><i class='bx bx-send' ></i></button>
+            <button class="chat-send" id="sendChatBtn" onclick="processSystemQuery()"><i class='bx bx-send' ></i></button>
         </div>
     </div>
 
-    <div class="ai-chat-widget" id="chatToggleWidget">
+    <div class="ai-chat-widget" id="chatToggleWidget" onclick="toggleChatWindow(event)">
         <i class='bx bx-terminal'></i>
     </div>
 
@@ -377,34 +377,20 @@
         }
         renderParticles();
 
-        // Mobile Safe Trigger Setup for UI Clicks
-        const chatWidget = document.getElementById("chatToggleWidget");
-        const chatBox = document.getElementById("aiChatBox");
-        const closeBtn = document.getElementById("closeChatBtn");
-        const sendBtn = document.getElementById("sendChatBtn");
-        const chatInput = document.getElementById("chatInput");
-        const chatContainer = document.getElementById("chatContainer");
-
-        const toggleChatAction = (e) => {
-            e.preventDefault(); e.stopPropagation();
+        // Native Mobile Event Clicks Binding Layer for UI Elements
+        function toggleChatWindow(e) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
             initAudioOnTouch();
+            const chatBox = document.getElementById("aiChatBox");
+            const chatWidget = document.getElementById("chatToggleWidget");
             chatBox.classList.toggle("active"); 
             chatWidget.classList.toggle("open");
             playSynthSound(500, 0.08);
-        };
-        chatWidget.addEventListener("click", toggleChatAction);
-        chatWidget.addEventListener("touchstart", toggleChatAction, {passive: false});
-
-        const closeChatAction = (e) => {
-            e.preventDefault(); e.stopPropagation();
-            chatBox.classList.remove("active"); 
-            chatWidget.classList.remove("open");
-            playSynthSound(150, 0.15);
-        };
-        closeBtn.addEventListener("click", closeChatAction);
-        closeBtn.addEventListener("touchstart", closeChatAction, {passive: false});
+        }
 
         function processSystemQuery(forcedText = "") {
+            const chatInput = document.getElementById("chatInput");
+            const chatContainer = document.getElementById("chatContainer");
             const query = forcedText ? forcedText.trim() : chatInput.value.trim(); if(!query) return;
             
             const userBubble = document.createElement("div"); userBubble.className = "msg user"; userBubble.textContent = query;
@@ -416,13 +402,13 @@
                 const lowerQuery = query.toLowerCase();
                 let replyText = "Query indexed. Rohixionx's mainframe node processing instruction matrices stream successfully...";
 
-                if(lowerQuery.includes("c++") || lowerQuery.includes("cpp")) {
+                if(lowerQuery.includes("c++") || lowerQuery.includes("cpp") || lowerQuery.includes("diagnostics")) {
                     replyText = "Executing C++ Micro-Engine Analytics... Multi-threaded execution pipelines safe. Core assembly maps are executing on low latency vectors.";
-                } else if(lowerQuery.includes("python") || lowerQuery.includes("script")) {
+                } else if(lowerQuery.includes("python") || lowerQuery.includes("script") || lowerQuery.includes("logs")) {
                     replyText = "Verifying Python automation scripts hooks... Daemons status: active. Data pipelines and microservice nodes running stable.";
-                } else if(lowerQuery.includes("ai") || lowerQuery.includes("neural") || lowerQuery.includes("bot")) {
+                } else if(lowerQuery.includes("ai") || lowerQuery.includes("neural") || lowerQuery.includes("integrity")) {
                     replyText = "Neural core synchronized. Transformer optimization logic layers active. AI engineering model weights verified securely across clusters.";
-                } else if(lowerQuery.includes("hardware") || lowerQuery.includes("arduino") || lowerQuery.includes("chip")) {
+                } else if(lowerQuery.includes("hardware") || lowerQuery.includes("arduino") || lowerQuery.includes("interfaces")) {
                     replyText = "Scanning Hardware Lab logs... Serial ports buffer clear. Microcontroller abstraction matrices running steady data logs flow.";
                 } else if(lowerQuery.includes("project") || lowerQuery.includes("work")) {
                     replyText = "Repository system branches indexed. Logic blocks and active architecture deployment blueprints found. Select 'View Projects' to review nodes.";
@@ -434,24 +420,16 @@
             }, 600);
         }
 
-        const runSubmitAction = (e) => { e.preventDefault(); processSystemQuery(); };
-        sendBtn.addEventListener("click", runSubmitAction);
-        sendBtn.addEventListener("touchstart", runSubmitAction);
-        chatInput.addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
-
-        const injectQuickPrompt = (commandType) => {
+        function injectQuickPrompt(commandType, e) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
             playSynthSound(700, 0.04);
             if(commandType === 'RUN_CPP_DIAGNOSTICS') processSystemQuery("Execute Core C++ Diagnostics Command.");
             if(commandType === 'FETCH_PYTHON_LOGS') processSystemQuery("Fetch Active Python Async Scripts Log.");
             if(commandType === 'CHECK_AI_INTEGRITY') processSystemQuery("Check Local Neural AI Integration Layers.");
             if(commandType === 'DIAGNOSE_HARDWARE') processSystemQuery("Diagnose Active Arduino Hardware lab interfaces.");
-        };
+        }
 
-        // Click Binding fixes for Quick Prompts
-        document.getElementById("btnPromptCpp").addEventListener("click", () => injectQuickPrompt('RUN_CPP_DIAGNOSTICS'));
-        document.getElementById("btnPromptPy").addEventListener("click", () => injectQuickPrompt('FETCH_PYTHON_LOGS'));
-        document.getElementById("btnPromptAi").addEventListener("click", () => injectQuickPrompt('CHECK_AI_INTEGRITY'));
-        document.getElementById("btnPromptHw").addEventListener("click", () => injectQuickPrompt('DIAGNOSE_HARDWARE'));
+        document.getElementById("chatInput").addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
     </script>
 </body>
 </html>
