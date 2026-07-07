@@ -18,14 +18,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
 
-        #bgCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; }
+        /* FIXED: Canvas touch tracking layer now allowing clicks through */
+        #bgCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none !important; }
 
+        /* Cyber Grid Background */
         body::before {
             content: ''; position: fixed; width: 100vw; height: 100vh; top: 0; left: 0;
             background-image: radial-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 0), radial-gradient(rgba(157, 0, 250, 0.02) 1px, transparent 0);
             background-size: 40px 40px; background-position: 0 0, 20px 20px; z-index: -3; pointer-events: none;
         }
 
+        /* Nav */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
@@ -45,11 +48,13 @@
         .audio-toggle { background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.75rem; cursor: pointer; transition: 0.3s; }
         .audio-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
 
+        /* Hero */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse; }
         .hero-content { flex: 1; max-width: 600px; text-align: left; }
         .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
         .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
         
+        /* Terminal Typing Effect */
         .typing-wrapper { display: flex; align-items: center; min-height: 45px; margin-bottom: 25px; font-family: 'Fira Code', monospace; }
         .typing-text { font-size: 1.5rem; color: var(--accent-cyan); font-weight: 600; border-right: 2px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
@@ -67,12 +72,14 @@
         .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1; animation: pulse 6s infinite alternate; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.1; } 100% { transform: scale(1.2); opacity: 0.25; } }
 
+        /* Middle Showcase Model Section */
         .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; }
         .single-robot-container { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 450px; max-width: 500px; }
         .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.3)); }
         .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.15; z-index: -1; animation: pulse-glow 4s infinite alternate; }
         @keyframes pulse-glow { 0% { opacity: 0.1; transform: scale(0.9); } 100% { opacity: 0.2; transform: scale(1.1); } }
 
+        /* Skills Arsenal Section */
         .skills-section { padding: 50px 20px 140px; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
         .section-title span { color: var(--accent-cyan); }
@@ -94,6 +101,7 @@
         .card-link { display: inline-block; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
         .card-link:hover { color: var(--accent-cyan); gap: 10px; }
 
+        /* ULTRA AI CHAT MODAL INTERFACE */
         .ai-chat-container {
             position: fixed; bottom: 105px; right: 30px; width: 360px; height: 480px;
             background: rgba(3, 3, 6, 0.95); border: 1px solid var(--glass-border);
@@ -191,7 +199,7 @@
         <div class="single-robot-container">
             <div class="robot-glow-bg"></div>
             <model-viewer 
-                src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" 
+                src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/RobotExpressive/glTF-Binary/RobotExpressive.glb" 
                 alt="Robot Node" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
             </model-viewer>
         </div>
@@ -369,7 +377,7 @@
         }
         renderParticles();
 
-        // 100% Mobile Safe Event Listening Binding for AI Chatbox Popup
+        // Mobile Safe Trigger Setup for UI Clicks
         const chatWidget = document.getElementById("chatToggleWidget");
         const chatBox = document.getElementById("aiChatBox");
         const closeBtn = document.getElementById("closeChatBtn");
@@ -439,7 +447,7 @@
             if(commandType === 'DIAGNOSE_HARDWARE') processSystemQuery("Diagnose Active Arduino Hardware lab interfaces.");
         };
 
-        // Mobile Click Binding fixes for Shortcut triggers
+        // Click Binding fixes for Quick Prompts
         document.getElementById("btnPromptCpp").addEventListener("click", () => injectQuickPrompt('RUN_CPP_DIAGNOSTICS'));
         document.getElementById("btnPromptPy").addEventListener("click", () => injectQuickPrompt('FETCH_PYTHON_LOGS'));
         document.getElementById("btnPromptAi").addEventListener("click", () => injectQuickPrompt('CHECK_AI_INTEGRITY'));
