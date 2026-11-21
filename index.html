@@ -3,444 +3,1172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohixionx | Cyber Architecture Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Outfit:wght@300;500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <title>Rohixionx | Techno-Commercial Systems Architect</title>
+    <meta name="description" content="Rohixionx — Commerce-backed C++, Python, Hardware & FinTech Automation Architect. Featuring NeuroLedger AI, GST 2.0 Engine & Live 3D Systems.">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Core Libraries (Model Viewer 4.4.0, Chart.js 4.6.1, GSAP 3.15.1) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js"></script>
 
     <style>
         :root {
-            --bg-dark: #020204; --text-main: #ffffff; --text-muted: #8e9aa8;
-            --accent-cyan: #00f3ff; --accent-blue: #1e4ff2; --accent-purple: #9d00ff;
-            --glass-bg: rgba(255, 255, 255, 0.02); --glass-border: rgba(255, 255, 255, 0.06);
+            --bg-dark: #030407;
+            --bg-elevated: #090c14;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #00f3ff;
+            --accent-secondary: #2563eb;
+            --accent-glow: rgba(0, 243, 255, 0.25);
+            --gold: #f59e0b;
+            --emerald: #10b981;
+            --glass-bg: rgba(255, 255, 255, 0.025);
+            --glass-hover: rgba(255, 255, 255, 0.055);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius: 20px;
         }
+
+        [data-theme="emerald"] {
+            --accent: #10b981;
+            --accent-secondary: #059669;
+            --accent-glow: rgba(16, 185, 129, 0.25);
+        }
+
+        [data-theme="purple"] {
+            --accent: #c084fc;
+            --accent-secondary: #7c3aed;
+            --accent-glow: rgba(192, 132, 252, 0.25);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; line-height: 1.6; }
 
-        /* Background Interactive Canvas Layer */
-        #bgCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none !important; }
-
-        /* Cyber Grid Mesh Matrix */
-        body::before {
-            content: ''; position: fixed; width: 100vw; height: 100vh; top: 0; left: 0;
-            background-image: radial-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 0), radial-gradient(rgba(157, 0, 250, 0.02) 1px, transparent 0);
-            background-size: 40px 40px; background-position: 0 0, 20px 20px; z-index: -3; pointer-events: none;
+        /* Accessible Focus & Reduced Motion */
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
         }
 
-        /* Navigation Architecture */
+        /* Background Grid & On-Demand Canvas */
+        #bgCanvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none !important; }
+        .ambient-grid {
+            position: fixed; inset: 0; z-index: -2; pointer-events: none;
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(circle at 50% 25%, black 30%, transparent 85%);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent-secondary), var(--accent)); z-index: 1100; transition: width 0.1s linear; }
+
+        /* Navbar */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 40px; position: fixed; width: 100%; top: 0; z-index: 1000;
-            backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center; gap: 16px;
+            padding: 14px 36px; position: fixed; width: 100%; top: 0; z-index: 900;
+            background: rgba(3, 4, 7, 0.78); backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--glass-border);
         }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;}
-        .logo span { color: var(--accent-cyan); text-shadow: 0 0 10px rgba(0, 243, 255, 0.6); }
-        
-        .nav-monitor { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: #00ff66; background: rgba(0, 255, 102, 0.05); padding: 4px 10px; border-radius: 5px; border: 1px solid rgba(0, 255, 102, 0.15); display: flex; align-items: center; gap: 6px; min-width: 290px; }
-        .pulse-dot { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; animation: sysPulse 1.5s infinite alternate; }
-        @keyframes sysPulse { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; }
+        .logo span { color: var(--accent); text-shadow: 0 0 12px var(--accent-glow); }
 
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-cyan); }
-        
-        .audio-toggle { background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.75rem; cursor: pointer; transition: 0.3s; z-index: 1010; }
-        .audio-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
-
-        /* Hero Core Layout */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-around; padding: 120px 40px 40px; position: relative; flex-wrap: wrap-reverse; z-index: 10; }
-        .hero-content { flex: 1; max-width: 600px; text-align: left; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
-        .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
-        
-        .typing-wrapper { display: flex; align-items: center; min-height: 45px; margin-bottom: 25px; font-family: 'Fira Code', monospace; }
-        .typing-text { font-size: 1.5rem; color: var(--accent-cyan); font-weight: 600; border-right: 2px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        .hero p { color: var(--text-muted); font-size: clamp(1rem, 1.5vw, 1.15rem); margin-bottom: 40px; line-height: 1.7; }
-        
-        .cta-container { display: flex; gap: 20px; }
-        .cta-btn { background: var(--text-main); color: var(--bg-dark); padding: 14px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.4s; box-shadow: 0 5px 15px rgba(255,255,255,0.1); display: inline-block; }
-        .cta-btn:hover { background: var(--accent-cyan); box-shadow: 0 5px 25px rgba(0, 243, 255, 0.4); transform: translateY(-3px); }
-        .secondary-btn { background: transparent; color: var(--text-main); border: 1px solid var(--glass-border); padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.4s; display: flex; align-items: center; gap: 8px; }
-        .secondary-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); box-shadow: 0 5px 20px rgba(176, 38, 255, 0.2); }
-
-        .model-container { flex: 1; height: 450px; min-width: 300px; display: flex; justify-content: center; align-items: center; position: relative; }
-        model-viewer { width: 100%; height: 100%; --poster-color: transparent; touch-action: pan-y; outline: none; }
-        .model-glow { position: absolute; width: 300px; height: 300px; background: var(--accent-purple); border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1; animation: pulse 6s infinite alternate; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.1; } 100% { transform: scale(1.2); opacity: 0.25; } }
-
-        /* Middle Showcase Component Frame */
-        .tech-showcase { padding: 40px 20px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; position: relative; z-index: 10; }
-        .single-robot-container { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 450px; max-width: 500px; }
-        .single-robot-container model-viewer { width: 100%; height: 100%; filter: drop-shadow(0px 0px 25px rgba(0, 243, 255, 0.3)); }
-        .robot-glow-bg { position: absolute; width: 350px; height: 350px; background: var(--accent-cyan); border-radius: 50%; filter: blur(130px); opacity: 0.15; z-index: -1; animation: pulse-glow 4s infinite alternate; }
-        @keyframes pulse-glow { 0% { opacity: 0.1; transform: scale(0.9); } 100% { opacity: 0.2; transform: scale(1.1); } }
-
-        /* Technical Skills Dashboard Grid */
-        .skills-section { padding: 50px 20px 140px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
-        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
-        .section-title span { color: var(--accent-cyan); }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-        
-        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.1s ease; backdrop-filter: blur(10px); text-align: left; position: relative; overflow: hidden; transform-style: preserve-3d; }
-        .glass-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-cyan)); transition: 0.5s; }
-        .glass-card:hover::before { left: 100%; }
-        .glass-card:hover { border-color: rgba(0, 243, 255, 0.3); transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0, 243, 255, 0.05); background: rgba(255, 255, 255, 0.04); }
-        
-        .card-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
-        .icon-cpp { color: #58a6ff; text-shadow: 0 0 15px rgba(88, 166, 255, 0.3); }
-        .icon-python { color: #f1e05a; text-shadow: 0 0 15px rgba(241, 224, 90, 0.3); }
-        .icon-hardware { color: #00979d; text-shadow: 0 0 15px rgba(0, 151, 157, 0.3); }
-        .icon-ai { color: var(--accent-purple); text-shadow: 0 0 15px rgba(176, 38, 255, 0.4); }
-        
-        .glass-card h3 { font-size: 1.4rem; margin-bottom: 12px; color: #fff; letter-spacing: 0.5px;}
-        .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;}
-        .card-link { display: inline-block; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
-        .card-link:hover { color: var(--accent-cyan); gap: 10px; }
-
-        /* ULTRA AI TERMINAL CONSOLE HUD */
-        .ai-chat-container {
-            position: fixed; bottom: 105px; right: 30px; width: 360px; height: 480px;
-            background: rgba(3, 3, 6, 0.98); border: 1px solid var(--glass-border);
-            border-radius: 20px; backdrop-filter: blur(25px); display: flex; flex-direction: column;
-            z-index: 999999; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            transform: translateY(30px) scale(0.95); opacity: 0; pointer-events: none;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); overflow: hidden;
+        .nav-monitor {
+            font-family: 'Fira Code', monospace; font-size: 0.72rem; color: #34d399;
+            background: rgba(16, 185, 129, 0.07); padding: 5px 12px; border-radius: 99px;
+            border: 1px solid rgba(16, 185, 129, 0.22); display: flex; align-items: center; gap: 8px;
         }
-        .ai-chat-container.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; border-color: rgba(0, 243, 255, 0.3); box-shadow: 0 15px 35px rgba(0, 243, 255, 0.1); }
-        
-        .chat-header { background: rgba(255,255,255,0.02); padding: 15px 20px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
-        .chat-header h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; color: #fff; }
-        .chat-header h4 i { color: var(--accent-cyan); }
-        .chat-close { color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: 0.3s; padding: 5px; }
-        .chat-close:hover { color: #ff3366; }
+        .pulse-dot { width: 7px; height: 7px; background: #34d399; border-radius: 50%; box-shadow: 0 0 8px #34d399; animation: pulseDot 1.6s infinite alternate; }
+        @keyframes pulseDot { 0% { opacity: 0.35; } 100% { opacity: 1; } }
 
-        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-size: 0.9rem; max-height: calc(100% - 165px); }
-        .msg { max-width: 80%; padding: 10px 15px; border-radius: 14px; line-height: 1.5; font-family: 'Outfit', sans-serif; }
-        .msg.bot { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: #fff; align-self: flex-start; border-top-left-radius: 2px; }
-        .msg.user { background: linear-gradient(135deg, var(--accent-blue), #102fa1); color: #fff; align-self: flex-end; border-top-right-radius: 2px; }
+        .nav-links { display: flex; gap: 22px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.25s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        .chat-shortcuts { display: flex; gap: 8px; padding: 5px 15px; overflow-x: auto; background: rgba(0,0,0,0.2); border-top: 1px solid var(--glass-border); min-height: 45px; align-items: center; }
-        .shortcut-btn { font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--accent-cyan); background: rgba(0, 243, 255, 0.04); border: 1px solid rgba(0, 243, 255, 0.2); padding: 4px 10px; border-radius: 6px; white-space: nowrap; cursor: pointer; transition: 0.2s; }
-        .shortcut-btn:hover { background: rgba(0, 243, 255, 0.15); border-color: var(--accent-cyan); transform: scale(1.02); }
+        .nav-actions { display: flex; gap: 8px; align-items: center; }
+        .icon-pill {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-main);
+            padding: 6px 12px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.74rem;
+            cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.25s;
+        }
+        .icon-pill:hover { border-color: var(--accent); color: var(--accent); }
+        .theme-dots { display: flex; gap: 6px; align-items: center; margin-left: 4px; }
+        .t-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); cursor: pointer; transition: transform 0.2s; }
+        .t-dot:hover { transform: scale(1.2); }
 
-        .chat-footer { padding: 12px 15px; background: rgba(0,0,0,0.3); border-top: 1px solid var(--glass-border); display: flex; gap: 10px; align-items: center; }
-        .chat-footer input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 10px 15px; border-radius: 25px; color: #fff; outline: none; font-size: 0.88rem; transition: 0.3s; }
-        .chat-footer input:focus { border-color: var(--accent-cyan); }
-        
-        .chat-send { width: 38px; height: 38px; background: var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; border: none; }
-        .chat-send i { font-size: 1.1rem; color: #020204; }
-        .chat-send:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-cyan); }
+        /* Container & Section Headers */
+        .container { max-width: 1220px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; position: relative; }
+        .section-head { text-align: center; max-width: 680px; margin: 0 auto 48px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px; font-family: 'Fira Code', monospace;
+            font-size: 0.76rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
+            padding: 5px 14px; border-radius: 99px; margin-bottom: 14px;
+        }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 700; line-height: 1.15; margin-bottom: 12px; }
+        .section-title span { color: var(--accent); }
+        .section-sub { color: var(--text-muted); font-size: 0.98rem; }
 
-        /* Floating Interactive Action Widget */
-        .ai-chat-widget { position: fixed; bottom: 30px; right: 30px; width: 62px; height: 62px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); z-index: 9999999; transition: 0.3s; animation: float 3s ease-in-out infinite; }
-        .ai-chat-widget i { font-size: 1.9rem; color: #020204; transition: 0.3s; }
-        .ai-chat-widget:hover { transform: scale(1.08); box-shadow: 0 10px 35px rgba(0, 243, 255, 0.5); }
-        .ai-chat-widget.open i { transform: rotate(135deg); }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+        /* Hero */
+        .hero { min-height: 96vh; display: flex; align-items: center; padding-top: 100px; }
+        .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: center; width: 100%; }
+        .badge-dual {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 99px;
+            background: linear-gradient(90deg, rgba(0,243,255,0.08), rgba(245,158,11,0.08));
+            border: 1px solid var(--glass-border); font-size: 0.82rem; color: var(--text-main); margin-bottom: 18px;
+        }
+        .badge-dual i { color: var(--gold); }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.4rem, 5.2vw, 4.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 14px; }
+        .hero h1 .outline { color: transparent; -webkit-text-stroke: 1.2px rgba(255,255,255,0.35); }
+        .typing-wrap { font-family: 'Fira Code', monospace; font-size: clamp(1.05rem, 2vw, 1.35rem); color: var(--accent); min-height: 36px; margin-bottom: 20px; display: flex; align-items: center; }
+        .typing-cursor { display: inline-block; width: 2px; height: 1.2em; background: var(--accent); margin-left: 4px; animation: blink 0.8s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .hero p { color: var(--text-muted); font-size: 1.04rem; max-width: 560px; margin-bottom: 28px; }
 
-        @media (max-width: 768px) {
-            nav { padding: 15px 20px; } .nav-links { display: none; } .nav-monitor { min-width: auto; font-size: 0.65rem; }
-            .hero { padding: 100px 20px 40px; text-align: center; }
-            .hero-content { text-align: center; max-width: 100%; margin-top: 20px;}
-            .typing-wrapper { justify-content: center; }
-            .hero h1 { font-size: 2.8rem; }
-            .cta-container { justify-content: center; }
-            .model-container { height: 350px; order: 1;} .hero-content { order: 2; }
-            .single-robot-container { height: 350px; }
-            .ai-chat-container { width: calc(100% - 40px); right: 20px; bottom: 95px; height: 420px; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 32px; }
+        .btn-primary {
+            background: var(--accent); color: #020305; padding: 13px 28px; border-radius: 99px; border: none;
+            font-weight: 700; font-size: 0.94rem; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+            transition: 0.3s; box-shadow: 0 8px 25px var(--accent-glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); }
+        .btn-ghost {
+            background: var(--glass-bg); color: var(--text-main); border: 1px solid var(--glass-border);
+            padding: 13px 24px; border-radius: 99px; font-weight: 500; font-size: 0.94rem; text-decoration: none;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hero-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 520px; }
+        .metric-pill { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 12px 14px; }
+        .metric-pill strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; color: #fff; }
+        .metric-pill span { font-size: 0.76rem; color: var(--text-muted); }
+
+        /* 3D Viewer Stage */
+        .model-stage {
+            position: relative; height: 430px; min-height: 320px; width: 100%;
+            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 65%);
+            border: 1px solid var(--glass-border); border-radius: 26px; overflow: hidden;
+        }
+        model-viewer { width: 100%; height: 100%; --poster-color: transparent; outline: none; }
+        .model-badge {
+            position: absolute; bottom: 14px; left: 14px; font-family: 'Fira Code', monospace; font-size: 0.72rem;
+            background: rgba(3,4,7,0.8); border: 1px solid var(--glass-border); padding: 5px 10px; border-radius: 8px; color: var(--text-muted); pointer-events: none;
+        }
+        .model-fallback {
+            display: none; position: absolute; inset: 0; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 24px; background: var(--bg-elevated);
+        }
+        .model-fallback i { font-size: 3rem; color: var(--accent); margin-bottom: 10px; }
+
+        /* Interactive Robot Showcase Bar */
+        .robot-section { padding: 30px 0 60px; }
+        .robot-deck {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 28px;
+        }
+        .robot-stage { position: relative; height: 360px; width: 100%; border-radius: 18px; overflow: hidden; background: radial-gradient(circle, var(--accent-glow), transparent 70%); }
+        .anim-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .anim-btn {
+            background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); color: var(--text-main);
+            padding: 8px 14px; border-radius: 10px; font-family: 'Fira Code', monospace; font-size: 0.78rem; cursor: pointer; transition: 0.25s;
+        }
+        .anim-btn.active, .anim-btn:hover { border-color: var(--accent); background: rgba(0,243,255,0.1); color: var(--accent); }
+
+        /* Bento Grid & Filterable New Project Showcase */
+        .filter-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+        .filter-btn {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-muted);
+            padding: 8px 18px; border-radius: 99px; font-size: 0.86rem; font-weight: 500; cursor: pointer; transition: 0.25s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent); color: #020305; border-color: var(--accent); font-weight: 700; }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+        .bento-card {
+            grid-column: span 4; background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); padding: 28px; backdrop-filter: blur(12px);
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            position: relative; overflow: hidden; cursor: pointer;
+        }
+        .bento-card.featured {
+            grid-column: span 8;
+            background: linear-gradient(135deg, rgba(0,243,255,0.06), rgba(37,99,235,0.04) 55%, rgba(245,158,11,0.05));
+            border-color: rgba(0, 243, 255, 0.28);
+        }
+        .bento-card:hover { transform: translateY(-6px); border-color: var(--accent); background: var(--glass-hover); }
+        .bento-card.hidden { display: none; }
+
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+        .card-icon-box {
+            width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); font-size: 1.6rem; color: var(--accent);
+        }
+        .tag-new {
+            font-family: 'Fira Code', monospace; font-size: 0.72rem; font-weight: 600; color: #020305;
+            background: linear-gradient(90deg, var(--accent), #34d399); padding: 4px 10px; border-radius: 99px;
+        }
+        .tag-cat { font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--text-muted); border: 1px solid var(--glass-border); padding: 3px 9px; border-radius: 99px; }
+        .bento-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.32rem; margin-bottom: 10px; color: #fff; }
+        .bento-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px; }
+        .tech-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+        .tech-chips span { font-family: 'Fira Code', monospace; font-size: 0.72rem; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); color: #cbd5e1; }
+        .card-cta { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: 0.88rem; }
+
+        /* Commerce + FinTech Live Lab */
+        .lab-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; align-items: stretch; }
+        .panel { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 28px; backdrop-filter: blur(12px); }
+        .panel h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .panel h3 i { color: var(--gold); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+        .field label { display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'Fira Code', monospace; }
+        .field input, .field select, .field textarea {
+            width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border);
+            color: #fff; padding: 10px 12px; border-radius: 10px; font-size: 0.92rem;
+        }
+        .field select option { background: #090c14; color: #fff; }
+        .calc-results { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+        .res-box { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 12px; padding: 12px; }
+        .res-box small { display: block; font-size: 0.74rem; color: var(--text-muted); }
+        .res-box strong { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--accent); }
+        .res-box.gold strong { color: var(--gold); }
+
+        .chart-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+        .chart-box { position: relative; height: 270px; width: 100%; }
+
+        /* Commerce Credentials & Consulting */
+        .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .cred-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 26px; }
+        .cred-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .cred-card h4 i { color: var(--accent); }
+        .cred-list { list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--text-muted); }
+        .cred-list li strong { color: #fff; font-weight: 600; }
+
+        /* GitHub Live Stats & Contact */
+        .connect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .repo-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+        .repo-item {
+            display: flex; justify-content: space-between; align-items: center; padding: 12px 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 12px;
+            text-decoration: none; color: #fff; transition: 0.25s;
+        }
+        .repo-item:hover { border-color: var(--accent); transform: translateX(4px); }
+        .repo-meta { font-family: 'Fira Code', monospace; font-size: 0.74rem; color: var(--text-muted); }
+
+        /* Modals */
+        .modal-backdrop {
+            position: fixed; inset: 0; background: rgba(2, 3, 7, 0.82); backdrop-filter: blur(12px);
+            z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-backdrop.open { display: flex; }
+        .modal-box {
+            width: 100%; max-width: 660px; max-height: 88vh; overflow-y: auto;
+            background: #0b0f19; border: 1px solid var(--glass-border); border-radius: 22px;
+            padding: 28px; box-shadow: 0 25px 60px rgba(0,0,0,0.75); position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.06);
+            border: 1px solid var(--glass-border); color: #fff; width: 34px; height: 34px;
+            border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { border-color: #fb7185; color: #fb7185; }
+        .code-preview {
+            background: #04060c; border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 14px; font-family: 'Fira Code', monospace; font-size: 0.78rem; color: #38bdf8;
+            overflow-x: auto; margin: 14px 0; white-space: pre-wrap;
+        }
+
+        /* Command Palette */
+        .cmd-box { max-width: 540px; padding: 0; overflow: hidden; }
+        .cmd-input-wrap { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--glass-border); }
+        .cmd-input-wrap input { flex: 1; background: transparent; border: none; color: #fff; font-size: 1rem; outline: none; }
+        .cmd-list { padding: 10px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+        .cmd-item {
+            display: flex; justify-content: space-between; align-items: center; padding: 11px 14px;
+            border-radius: 10px; cursor: pointer; color: var(--text-main); font-size: 0.92rem; background: transparent; border: none; width: 100%; text-align: left;
+        }
+        .cmd-item:hover { background: rgba(0,243,255,0.1); color: var(--accent); }
+        .cmd-kbd { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--text-muted); border: 1px solid var(--glass-border); padding: 2px 6px; border-radius: 5px; }
+
+        /* Dual-Mode AI Chat Widget */
+        .ai-fab {
+            position: fixed; bottom: 26px; right: 26px; width: 60px; height: 60px; border-radius: 50%; border: none;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); color: #020305;
+            font-size: 1.65rem; display: flex; align-items: center; justify-content: center; cursor: pointer;
+            box-shadow: 0 10px 30px var(--accent-glow); z-index: 1500; transition: 0.3s;
+        }
+        .ai-fab:hover { transform: scale(1.08); }
+        .ai-hud {
+            position: fixed; bottom: 98px; right: 26px; width: 375px; height: 510px;
+            background: rgba(9, 12, 20, 0.96); backdrop-filter: blur(22px);
+            border: 1px solid var(--glass-border); border-radius: 22px; display: flex; flex-direction: column;
+            z-index: 1500; box-shadow: 0 24px 60px rgba(0,0,0,0.75); overflow: hidden;
+            opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.96); transition: 0.3s ease;
+        }
+        .ai-hud.open { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); border-color: var(--accent); }
+        .ai-head { padding: 14px 16px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
+        .ai-modes { display: flex; gap: 6px; padding: 8px 14px; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); }
+        .mode-pill {
+            flex: 1; text-align: center; padding: 5px 8px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.72rem;
+            background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); cursor: pointer;
+        }
+        .mode-pill.active { background: rgba(0,243,255,0.12); color: var(--accent); border-color: var(--accent); }
+        .ai-body { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; }
+        .msg { max-width: 85%; padding: 10px 13px; border-radius: 14px; }
+        .msg.bot { background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); align-self: flex-start; border-top-left-radius: 3px; }
+        .msg.user { background: linear-gradient(135deg, var(--accent-secondary), #1d4ed8); align-self: flex-end; border-top-right-radius: 3px; }
+        .ai-chips { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; border-top: 1px solid var(--glass-border); }
+        .chip { font-family: 'Fira Code', monospace; font-size: 0.68rem; white-space: nowrap; padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); color: var(--accent); cursor: pointer; }
+        .ai-foot { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--glass-border); align-items: center; }
+        .ai-foot input { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: 99px; padding: 9px 14px; color: #fff; font-size: 0.85rem; outline: none; }
+        .circle-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .circle-btn.send { background: var(--accent); color: #020305; border-color: var(--accent); }
+        .circle-btn.listening { background: #ef4444; border-color: #ef4444; animation: pulseDot 0.7s infinite alternate; }
+
+        footer { border-top: 1px solid var(--glass-border); padding: 32px 24px; text-align: center; color: var(--text-muted); font-size: 0.86rem; }
+
+        /* Print Stylesheet for Resume Modal */
+        @media print {
+            body * { visibility: hidden; }
+            #resumeModal, #resumeModal * { visibility: visible; }
+            #resumeModal { position: static; background: #fff !important; color: #000 !important; padding: 0; }
+            #resumeModal .modal-box { box-shadow: none; border: none; background: #fff !important; color: #000 !important; max-height: none; }
+            #resumeModal .modal-close, #resumeModal .no-print { display: none !important; }
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .hero-grid, .robot-deck, .lab-grid, .cred-grid, .connect-grid { grid-template-columns: 1fr; }
+            .bento-card, .bento-card.featured { grid-column: span 12; }
+            .nav-links, .nav-monitor { display: none; }
+        }
+        @media (max-width: 600px) {
+            nav { padding: 12px 18px; }
+            .model-stage { height: 330px; }
+            .form-grid, .hero-metrics { grid-template-columns: 1fr; }
+            .ai-hud { width: calc(100% - 24px); right: 12px; bottom: 92px; height: 460px; }
         }
     </style>
 </head>
 <body>
-
+    <div class="scroll-bar" id="scrollBar"></div>
     <canvas id="bgCanvas"></canvas>
+    <div class="ambient-grid"></div>
 
     <nav>
         <a href="#" class="logo">ROHIXIONX<span>.</span></a>
-        <div class="nav-monitor">
-            <div class="pulse-dot"></div>
-            <span id="systemTicker">SYS.LOC: OK // AI.CORE: OPERATIONAL</span>
+        <div class="nav-monitor" aria-live="polite">
+            <span class="pulse-dot"></span>
+            <span id="sysTicker">SYS.OK // GST_2.0: READY // AI: ONLINE</span>
         </div>
         <div class="nav-links">
-            <a href="cpp.html">C++</a>
-            <a href="python.html">Python</a>
-            <a href="projects.html">Hardware</a>
-            <button class="audio-toggle" id="audioBtn">AUDIO: ON</button>
+            <a href="#projects">Projects</a>
+            <a href="#commerce-lab">Commerce Lab</a>
+            <a href="#credentials">Credentials</a>
+            <a href="#connect">Connect</a>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-pill" id="cmdBtn" aria-label="Open Command Palette"><i class='bx bx-command'></i> Ctrl+K</button>
+            <button class="icon-pill" id="audioBtn" aria-label="Toggle Sound Effects"><i class='bx bx-volume-full'></i></button>
+            <div class="theme-dots" aria-label="Theme Accent Switcher">
+                <button class="t-dot" style="background:#00f3ff" onclick="setTheme('default')" aria-label="Cyan Theme"></button>
+                <button class="t-dot" style="background:#10b981" onclick="setTheme('emerald')" aria-label="Emerald Commerce Theme"></button>
+                <button class="t-dot" style="background:#c084fc" onclick="setTheme('purple')" aria-label="Purple AI Theme"></button>
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content gsap-reveal">
-            <h1>Solo <span class="outline">Developer.</span></h1>
-            <div class="typing-wrapper">
-                <span class="typing-text" id="typewriter"></span>
-            </div>
-            <p>I architect low-latency C++ execution engines, write adaptive automation pipelines using Python scripts, and integrate advanced generative AI frameworks into modern hardware architectures.</p>
-            <div class="cta-container">
-                <a href="projects.html" class="cta-btn">View Projects</a>
-                <a href="github.html" class="secondary-btn"><i class='bx bxl-github'></i> GitHub Node</a>
-            </div>
-        </div>
-        
-        <div class="model-container gsap-reveal">
-            <div class="model-glow"></div>
-            <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" alt="3D Astronaut" auto-rotate camera-controls shadow-intensity="1" exposure="1" loading="eager" interaction-prompt="none"></model-viewer>
-        </div>
-    </section>
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero container">
+            <div class="hero-grid">
+                <div class="gsap-hero">
+                    <div class="badge-dual">
+                        <i class='bx bxs-award'></i>
+                        <span>Commerce Background + Systems & AI Developer</span>
+                    </div>
+                    <h1>Logic Meets <span class="outline">Ledger.</span><br>Built for Scale.</h1>
+                    <div class="typing-wrap"><span id="typewriter"></span><span class="typing-cursor"></span></div>
+                    <p>Main C++ low-latency engines, Python automation pipelines, aur Arduino hardware ko Indian Commerce aur FinTech domain (GST 2.0 compliance, TallyPrime XML automation, aur financial modeling) ke sath bridge karta hoon.</p>
+                    <div class="cta-row">
+                        <a href="#projects" class="btn-primary"><i class='bx bx-rocket'></i> Explore New Project</a>
+                        <button class="btn-ghost" id="openResumeBtn"><i class='bx bx-file'></i> Dual-Profile CV</button>
+                        <a href="#commerce-lab" class="btn-ghost"><i class='bx bx-calculator'></i> GST 2.0 Lab</a>
+                    </div>
+                    <div class="hero-metrics">
+                        <div class="metric-pill"><strong>C++ / Python</strong><span>Core Systems Stack</span></div>
+                        <div class="metric-pill"><strong>GST 2.0 & Tally</strong><span>Commerce Domain</span></div>
+                        <div class="metric-pill"><strong>3D + WebGL</strong><span>Interactive Front-End</span></div>
+                    </div>
+                </div>
 
-    <section class="tech-showcase gsap-slide-up">
-        <div class="single-robot-container">
-            <div class="robot-glow-bg"></div>
-            <model-viewer 
-                src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" 
-                alt="Robot Node" auto-rotate camera-controls shadow-intensity="1" exposure="0.9" animation-name="Wave" autoplay interaction-prompt="none">
-            </model-viewer>
-        </div>
-    </section>
-
-    <section id="expertise" class="skills-section">
-        <h2 class="section-title gsap-slide-up">Engineering <span>Arsenal</span></h2>
-        <div class="grid-container">
-            <div class="glass-card gsap-slide-up">
-                <i class='bx bx-code-alt card-icon icon-cpp'></i>
-                <h3>C++ Micro-Engine</h3>
-                <p>Architecting memory-efficient multi-threaded algorithms, hardware-level abstractions, and ultra-high speed computation logic layers.</p>
-                <a href="cpp.html" class="card-link">Initialize Source <i class='bx bx-right-arrow-alt'></i></a>
+                <div class="model-stage gsap-hero">
+                    <model-viewer id="heroModel"
+                        src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                        alt="3D Astronaut Explorer"
+                        auto-rotate camera-controls disable-zoom touch-action="pan-y"
+                        shadow-intensity="1" exposure="1" loading="eager" interaction-prompt="none">
+                    </model-viewer>
+                    <div class="model-badge">3D Interactive • Drag to Orbit</div>
+                    <div class="model-fallback" id="heroFallback">
+                        <i class='bx bx-planet'></i>
+                        <h4>WebGL Preview Unavailable</h4>
+                        <p class="section-sub">Interactive 3D Astronaut fallback mode active.</p>
+                    </div>
+                </div>
             </div>
-            <div class="glass-card gsap-slide-up">
-                <i class='bx bxl-python card-icon icon-python'></i>
-                <h3>Python Pipelines</h3>
-                <p>Structuring neural automation microservices, complex backend system data flow processing, and custom script tooling.</p>
-                <a href="python.html" class="card-link">Access Libraries <i class='bx bx-right-arrow-alt'></i></a>
-            </div>
-            <div class="glass-card gsap-slide-up">
-                <i class='bx bx-brain card-icon icon-ai'></i>
-                <h3>AI Engineering</h3>
-                <p>Deploying advanced transformer model weights, embedding matrices pipelines, and automated intelligence layers via scalable hooks.</p>
-                <a href="#ai" class="card-link">Run Diagnostics <i class='bx bx-right-arrow-alt'></i></a>
-            </div>
-            <div class="glass-card gsap-slide-up">
-                <i class='bx bx-chip card-icon icon-hardware'></i>
-                <h3>Hardware Lab</h3>
-                <p>Interfacing firmware with asynchronous reality via raw Microcontroller architecture setups and direct logic streams.</p>
-                <a href="projects.html" class="card-link">Map Interfaces <i class='bx bx-right-arrow-alt'></i></a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="ai-chat-container" id="aiChatBox">
-        <div class="chat-header">
-            <h4><i class='bx bx-git-branch'></i> ROHIXIONX.AI v2.0</h4>
-            <div class="chat-close" id="closeChatBtn"><i class='bx bx-x'></i></div>
-        </div>
-        <div class="chat-body" id="chatContainer">
-            <div class="msg bot">System Initialized. Greetings. I am Rohixionx's automated pipeline interface. Query anything regarding C++, Python, or Hardware logs.</div>
-        </div>
+        <!-- INTERACTIVE 3D ROBOT ASSISTANT DECK -->
+        <section class="robot-section container gsap-reveal">
+            <div class="robot-deck">
+                <div class="robot-stage">
+                    <model-viewer id="robotModel"
+                        src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
+                        alt="3D Interactive Robot Companion"
+                        auto-rotate camera-controls disable-zoom touch-action="pan-y"
+                        shadow-intensity="1" exposure="0.95" animation-name="Wave" autoplay
+                        loading="lazy" interaction-prompt="none">
+                    </model-viewer>
+                    <div class="model-fallback" id="robotFallback">
+                        <i class='bx bx-bot'></i>
+                        <h4>Rohixionx Bot Core</h4>
+                        <p class="section-sub">Local/Live server par 3D model render hota hai.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="eyebrow"><i class='bx bx-cube'></i> Live WebGL Controller</div>
+                    <h2 class="section-title" style="text-align:left;">Interactive <span>3D Bot Companion</span></h2>
+                    <p class="section-sub">Aap is 3D robot ko real-time mein control kar sakte hain. Niche diye gaye states par click karke animation switch karein ya mouse/finger se 360° rotate karein.</p>
+                    <div class="anim-controls" role="group" aria-label="Robot Animation Controls">
+                        <button class="anim-btn active" onclick="setRobotAnim('Wave', this)">Wave</button>
+                        <button class="anim-btn" onclick="setRobotAnim('Dance', this)">Dance</button>
+                        <button class="anim-btn" onclick="setRobotAnim('Running', this)">Run</button>
+                        <button class="anim-btn" onclick="setRobotAnim('Idle', this)">Idle</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="chat-shortcuts">
-            <div class="shortcut-btn" id="shortcutCpp">[SYS_CPP]</div>
-            <div class="shortcut-btn" id="shortcutPy">[SYS_PY]</div>
-            <div class="shortcut-btn" id="shortcutAi">[SYS_AI]</div>
-            <div class="shortcut-btn" id="shortcutHw">[SYS_HW]</div>
-        </div>
+        <!-- BENTO GRID: FEATURED NEW PROJECT & FILTERABLE SHOWCASE -->
+        <section id="projects" class="container gsap-reveal">
+            <div class="section-head">
+                <div class="eyebrow"><i class='bx bx-grid-alt'></i> Portfolio & New Project</div>
+                <h2 class="section-title">Featured <span>New Project</span> & Systems</h2>
+                <p class="section-sub">Purane static AI Engineering card ko ek live, filterable Project Hub mein upgrade kiya gaya hai. Kisi bhi card par click karke architecture deep-dive dekhein.</p>
+            </div>
 
-        <div class="chat-footer">
-            <input type="text" id="chatInput" placeholder="Send system call pipeline instructions...">
-            <button class="chat-send" id="sendChatBtn"><i class='bx bx-send' ></i></button>
+            <div class="filter-bar" role="tablist" aria-label="Project Category Filters">
+                <button class="filter-btn active" data-filter="all">All Systems</button>
+                <button class="filter-btn" data-filter="commerce">Commerce & FinTech</button>
+                <button class="filter-btn" data-filter="ai">AI & Python</button>
+                <button class="filter-btn" data-filter="cpp">C++ Core</button>
+                <button class="filter-btn" data-filter="hardware">Hardware IoT</button>
+            </div>
+
+            <div class="bento-grid" id="projectGrid">
+                <article class="bento-card featured" data-cat="commerce ai" onclick="openProjectModal('neuroledger')">
+                    <div>
+                        <div class="card-top">
+                            <div class="card-icon-box"><i class='bx bx-line-chart'></i></div>
+                            <span class="tag-new">NEW PROJECT • FLAGSHIP</span>
+                        </div>
+                        <h3>NeuroLedger AI — TallyPrime XML & GST 2.0 Automation Engine</h3>
+                        <p>AI Engineering module ko is real-world Commerce-Tech project mein transform kiya gaya hai. Yeh Python engine TallyPrime ke HTTP Port 9000 par XML payloads bhej kar purane 12%/28% invoices ko GST 2.0 (0%, 5%, 18%, 40%) slabs mein auto-classify karta hai aur ITC mismatch alerts deta hai.</p>
+                        <div class="tech-chips">
+                            <span>Python 3</span><span>TallyPrime XML (Port 9000)</span><span>GST 2.0 Rules</span><span>AI Anomaly Check</span>
+                        </div>
+                    </div>
+                    <span class="card-cta">Inspect Architecture & XML Code <i class='bx bx-right-arrow-alt'></i></span>
+                </article>
+
+                <article class="bento-card" data-cat="cpp commerce" onclick="openProjectModal('quantpulse')">
+                    <div>
+                        <div class="card-top">
+                            <div class="card-icon-box" style="color:#60a5fa;"><i class='bx bx-code-alt'></i></div>
+                            <span class="tag-cat">C++ / FinTech</span>
+                        </div>
+                        <h3>QuantPulse Order-Book Engine</h3>
+                        <p>Memory-efficient multi-threaded Modern C++ engine jo high-frequency ledger matching aur portfolio risk metrics calculate karta hai.</p>
+                        <div class="tech-chips"><span>C++20</span><span>Multithreading</span><span>FinTech</span></div>
+                    </div>
+                    <span class="card-cta">View Blueprint <i class='bx bx-right-arrow-alt'></i></span>
+                </article>
+
+                <article class="bento-card" data-cat="ai" onclick="openProjectModal('pymarket')">
+                    <div>
+                        <div class="card-top">
+                            <div class="card-icon-box" style="color:#facc15;"><i class='bx bxl-python'></i></div>
+                            <span class="tag-cat">Python / Analytics</span>
+                        </div>
+                        <h3>EquiFlow Equity Backtester</h3>
+                        <p>Python financial pipeline jo market OHLC data fetch karke Sharpe ratio, drawdown, aur automated tax-harvesting reports nikalta hai.</p>
+                        <div class="tech-chips"><span>Python</span><span>Pandas</span><span>Backtesting</span></div>
+                    </div>
+                    <span class="card-cta">View Blueprint <i class='bx bx-right-arrow-alt'></i></span>
+                </article>
+
+                <article class="bento-card" data-cat="hardware commerce" onclick="openProjectModal('smartpos')">
+                    <div>
+                        <div class="card-top">
+                            <div class="card-icon-box" style="color:#2dd4bf;"><i class='bx bx-chip'></i></div>
+                            <span class="tag-cat">Hardware / ERP</span>
+                        </div>
+                        <h3>SmartPOS Arduino-ERP Sync</h3>
+                        <p>Arduino serial barcode/sensor hardware ko Python inventory daemon se jodkar real-time retail stock aur billing trigger karta hai.</p>
+                        <div class="tech-chips"><span>Arduino</span><span>PySerial</span><span>Inventory</span></div>
+                    </div>
+                    <span class="card-cta">View Blueprint <i class='bx bx-right-arrow-alt'></i></span>
+                </article>
+
+                <article class="bento-card" data-cat="commerce" onclick="openProjectModal('gstengine')">
+                    <div>
+                        <div class="card-top">
+                            <div class="card-icon-box" style="color:#f59e0b;"><i class='bx bx-receipt'></i></div>
+                            <span class="tag-cat">Commerce Tool</span>
+                        </div>
+                        <h3>GST 2.0 Margin & ITC Auditor</h3>
+                        <p>Indian SMEs ke liye anti-profiteering margin checker aur Input Tax Credit (ITC) cashflow impact analyzer.</p>
+                        <div class="tech-chips"><span>GST 2.0</span><span>ITC Offset</span><span>Audit</span></div>
+                    </div>
+                    <span class="card-cta">View Blueprint <i class='bx bx-right-arrow-alt'></i></span>
+                </article>
+            </div>
+        </section>
+
+        <!-- COMMERCE INTERACTIVE FINTECH LAB -->
+        <section id="commerce-lab" class="container gsap-reveal">
+            <div class="section-head">
+                <div class="eyebrow"><i class='bx bx-bar-chart-alt-2'></i> Live Commerce Lab</div>
+                <h2 class="section-title">GST 2.0 <span>ROI Calculator</span> & Analytics</h2>
+                <p class="section-sub">India ke updated GST 2.0 slabs (0%, 5%, 18%, 40%) ke hisab se apna Margin, ITC Offset, aur Automation ROI live calculate karein.</p>
+            </div>
+
+            <div class="lab-grid">
+                <div class="panel">
+                    <h3><i class='bx bx-calculator'></i> GST 2.0 & Profit-Margin Engine</h3>
+                    <p class="section-sub" style="font-size:0.86rem;">Base Cost, Margin %, aur GST 2.0 slab enter karein:</p>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="baseCost">Base Cost (₹)</label>
+                            <input type="number" id="baseCost" value="10000" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="marginPct">Profit Margin (%)</label>
+                            <input type="number" id="marginPct" value="25" min="0" max="500">
+                        </div>
+                        <div class="field">
+                            <label for="gstSlab">GST 2.0 Slab</label>
+                            <select id="gstSlab">
+                                <option value="0">0% — Essentials / Health Insurance</option>
+                                <option value="5">5% — Staples / Agri / Apparel ≤₹2.5k</option>
+                                <option value="18" selected>18% — Standard / SaaS / White Goods</option>
+                                <option value="40">40% — Luxury & Demerit Goods</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="itcCredit">Eligible Input Tax Credit (₹)</label>
+                            <input type="number" id="itcCredit" value="900" min="0">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="res-box"><small>Taxable Selling Price</small><strong id="resTaxable">₹12,500</strong></div>
+                        <div class="res-box"><small>Final Invoice (Incl. GST)</small><strong id="resInvoice">₹14,750</strong></div>
+                        <div class="res-box gold"><small>Net Profit</small><strong id="resProfit">₹2,500</strong></div>
+                        <div class="res-box"><small>Net Cash GST Payable</small><strong id="resNetGst">₹1,350</strong></div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="chart-header">
+                        <h3 style="margin:0;"><i class='bx bx-trending-up' style="color:var(--accent);"></i> Automation Impact Dashboard</h3>
+                        <div style="display:flex; gap:6px;">
+                            <button class="anim-btn active" onclick="switchChartMode('savings', this)">Time & Cost Saved</button>
+                            <button class="anim-btn" onclick="switchChartMode('cashflow', this)">ITC Cashflow</button>
+                        </div>
+                    </div>
+                    <p class="section-sub" style="font-size:0.84rem; margin-bottom:12px;">Python + Tally XML automation se monthly SME productivity impact:</p>
+                    <div class="chart-box">
+                        <canvas id="commerceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMERCE CREDENTIALS & CONSULTING -->
+        <section id="credentials" class="container gsap-reveal">
+            <div class="section-head">
+                <div class="eyebrow"><i class='bx bx-briefcase'></i> Dual-Domain Edge</div>
+                <h2 class="section-title">Commerce Credentials & <span>Services</span></h2>
+            </div>
+            <div class="cred-grid">
+                <div class="cred-card">
+                    <h4><i class='bx bxs-graduation'></i> Education & Foundation</h4>
+                    <ul class="cred-list">
+                        <li><strong>Commerce Background:</strong> Accounting Principles, Business Economics, Corporate Finance & Indian Taxation.</li>
+                        <li><strong>Systems Engineering:</strong> Self-taught Modern C++, Python Automation, Data Pipelines & Embedded IoT.</li>
+                        <li><strong>Domain Bridge:</strong> Financial regulations ko bug-free algorithms mein translate karne ki ability.</li>
+                    </ul>
+                </div>
+                <div class="cred-card">
+                    <h4><i class='bx bx-layer'></i> Techno-Financial Stack</h4>
+                    <ul class="cred-list">
+                        <li><strong>ERP & Tax:</strong> TallyPrime XML/HTTP Integration (Port 9000), GST 2.0 Slab Mapping, ITC Reconciliation.</li>
+                        <li><strong>Analytics:</strong> Python (Pandas/NumPy), Financial Modeling, Advanced Excel Automation, Chart.js.</li>
+                        <li><strong>Core Dev:</strong> C++20, JavaScript (ES6+), WebGL/Model-Viewer, Arduino Serial Bridges.</li>
+                    </ul>
+                </div>
+                <div class="cred-card">
+                    <h4><i class='bx bx-cog'></i> Consulting Services</h4>
+                    <ul class="cred-list">
+                        <li><strong>Tally & ERP Automation:</strong> Custom Python scripts for auto-vouchers, ledgers & invoice parsing.</li>
+                        <li><strong>GST 2.0 Billing Migration:</strong> SME catalogs ko 0/5/18/40% rules ke hisab se upgrade karna.</li>
+                        <li><strong>Interactive FinTech UI:</strong> High-speed dark-mode dashboards & ROI calculators.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- GITHUB LIVE STATS & CONTACT FORM -->
+        <section id="connect" class="container gsap-reveal">
+            <div class="section-head">
+                <div class="eyebrow"><i class='bx bx-link-alt'></i> Live Network</div>
+                <h2 class="section-title">GitHub Node & <span>Project Inquiry</span></h2>
+            </div>
+            <div class="connect-grid">
+                <div class="panel">
+                    <h3><i class='bx bxl-github' style="color:var(--accent);"></i> Live GitHub Telemetry</h3>
+                    <p class="section-sub" id="ghStatus" style="font-size:0.85rem;">Fetching repository node (cached 30m for API rate-limit safety)...</p>
+                    <div class="calc-results" style="margin-bottom:14px;">
+                        <div class="res-box"><small>Public Repos</small><strong id="ghRepos">--</strong></div>
+                        <div class="res-box"><small>Followers</small><strong id="ghFollowers">--</strong></div>
+                    </div>
+                    <div class="repo-list" id="ghRepoList"></div>
+                </div>
+
+                <div class="panel">
+                    <h3><i class='bx bx-paper-plane' style="color:var(--accent);"></i> Start a Project (Web3Forms)</h3>
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                        <input type="checkbox" name="botcheck" style="display:none;">
+                        <div class="form-grid">
+                            <div class="field"><label for="cName">Your Name</label><input type="text" id="cName" name="name" required placeholder="Amit Sharma"></div>
+                            <div class="field"><label for="cEmail">Email</label><input type="email" id="cEmail" name="email" required placeholder="amit@company.in"></div>
+                        </div>
+                        <div class="field" style="margin-bottom:12px;">
+                            <label for="cService">Project Type</label>
+                            <select id="cService" name="service">
+                                <option>TallyPrime XML / GST 2.0 Automation</option>
+                                <option>C++ / Python Core System</option>
+                                <option>Interactive 3D Website / FinTech Dashboard</option>
+                                <option>Arduino + Software Hardware Lab</option>
+                            </select>
+                        </div>
+                        <div class="field" style="margin-bottom:14px;">
+                            <label for="cMsg">Project Brief</label>
+                            <textarea id="cMsg" name="message" rows="3" required placeholder="Apne project ya business automation requirement ke baare mein batayein..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;"><i class='bx bx-send'></i> Dispatch Inquiry</button>
+                        <p id="formFeedback" style="margin-top:10px; font-size:0.84rem; color:var(--accent);"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rohixionx — Engineered with Commerce Logic, C++, Python & WebGL.</p>
+    </footer>
+
+    <!-- PROJECT DEEP-DIVE MODAL -->
+    <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('projectModal')" aria-label="Close Project Modal">&times;</button>
+            <div class="eyebrow" id="pmCat">PROJECT</div>
+            <h3 id="pmTitle" style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; margin-bottom:10px;">Title</h3>
+            <p id="pmDesc" style="color:var(--text-muted); font-size:0.95rem;"></p>
+            <div class="code-preview" id="pmCode"></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="#commerce-lab" class="btn-primary" onclick="closeModal('projectModal')">Test in Live Lab</a>
+                <button class="btn-ghost" onclick="askAiAboutCurrentProject()">Ask Rohixionx AI</button>
+            </div>
         </div>
     </div>
 
-    <div class="ai-chat-widget" id="chatToggleWidget">
-        <i class='bx bx-terminal'></i>
+    <!-- CTRL+K COMMAND PALETTE MODAL -->
+    <div class="modal-backdrop" id="cmdModal" role="dialog" aria-modal="true" aria-label="Command Palette">
+        <div class="modal-box cmd-box">
+            <div class="cmd-input-wrap">
+                <i class='bx bx-search' style="color:var(--accent); font-size:1.2rem;"></i>
+                <input type="text" id="cmdSearch" placeholder="Type command (e.g. gst, project, theme, robot, cv)...">
+                <span class="cmd-kbd">ESC</span>
+            </div>
+            <div class="cmd-list" id="cmdList"></div>
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- RESUME / CV PREVIEW MODAL -->
+    <div class="modal-backdrop" id="resumeModal" role="dialog" aria-modal="true" aria-label="Dual-Profile Resume">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('resumeModal')" aria-label="Close Resume">&times;</button>
+            <h2 style="font-family:'Space Grotesk',sans-serif;">ROHIXIONX (Rohit)</h2>
+            <p style="color:var(--accent); font-weight:600; margin-bottom:14px;">Commerce-Backed Software, AI & Hardware Systems Developer</p>
+            <p style="font-size:0.9rem; margin-bottom:14px;">Combining Commerce & Taxation expertise (Accounting, GST 2.0 Slabs, TallyPrime XML) with high-speed C++20, Python automation, and interactive WebGL interfaces.</p>
+            <h4 style="margin-bottom:6px;">Core Competencies</h4>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:14px;">C++20, Python, TallyPrime HTTP/XML (Port 9000), GST 2.0 Compliance Engine, Chart.js, GSAP, Model-Viewer 3D, Arduino Serial IoT.</p>
+            <h4 style="margin-bottom:6px;">Flagship Project</h4>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:18px;">NeuroLedger AI — Automated GST 2.0 slab classification and TallyPrime XML reconciliation bridge for Indian SMEs.</p>
+            <button class="btn-primary no-print" onclick="window.print()"><i class='bx bx-printer'></i> Print / Save as PDF</button>
+        </div>
+    </div>
+
+    <!-- DUAL-MODE AI CHAT ASSISTANT -->
+    <div class="ai-hud" id="aiHud" role="dialog" aria-label="Rohixionx AI Assistant">
+        <div class="ai-head">
+            <strong style="font-family:'Space Grotesk',sans-serif; display:flex; align-items:center; gap:8px;">
+                <i class='bx bx-bot' style="color:var(--accent);"></i> ROHIXIONX.AI v3.0
+            </strong>
+            <button class="circle-btn" id="aiClose" aria-label="Close AI Chat"><i class='bx bx-x'></i></button>
+        </div>
+        <div class="ai-modes">
+            <button class="mode-pill active" id="modeTech" onclick="setAiMode('tech')">Tech Architect</button>
+            <button class="mode-pill" id="modeComm" onclick="setAiMode('commerce')">Commerce & GST 2.0</button>
+        </div>
+        <div class="ai-body" id="aiBody">
+            <div class="msg bot">System Ready. Main Tech Architecture aur Indian Commerce/GST 2.0 dono mein madad kar sakta hoon. Voice mic use karein ya niche chips tap karein!</div>
+        </div>
+        <div class="ai-chips">
+            <button class="chip" onclick="sendAiQuery('NeuroLedger AI explain karo')">[New Project]</button>
+            <button class="chip" onclick="sendAiQuery('GST 2.0 new slabs kya hain?')">[GST 2.0 Slabs]</button>
+            <button class="chip" onclick="sendAiQuery('TallyPrime XML port 9000 integration')">[Tally XML]</button>
+            <button class="chip" onclick="sendAiQuery('C++ & Python skills')">[C++/Python]</button>
+        </div>
+        <div class="ai-foot">
+            <button class="circle-btn" id="micBtn" title="Voice Input" aria-label="Voice Input"><i class='bx bx-microphone'></i></button>
+            <input type="text" id="aiInput" placeholder="Tech ya Commerce sawal likhein...">
+            <button class="circle-btn send" id="aiSend" aria-label="Send Message"><i class='bx bx-send'></i></button>
+        </div>
+    </div>
+
+    <button class="ai-fab" id="aiFab" aria-label="Open AI Assistant"><i class='bx bx-terminal'></i></button>
+
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.from(".gsap-reveal", { y: 60, opacity: 0, duration: 1.2, stagger: 0.25, ease: "power4.out", delay: 0.3 });
-        gsap.utils.toArray(".gsap-slide-up").forEach((element, i) => {
-            gsap.from(element, { scrollTrigger: { trigger: element, start: "top 88%", toggleActions: "play none none reverse" }, y: 70, opacity: 0, duration: 1, ease: "power3.out", delay: i * 0.15 });
-        });
-
-        // Advanced Multiprocess Cyber Typewriter Array Logic
-        const textArray = ["Compiling C++ Core Logic.", "Integrating Neural AI Nets.", "Initializing Hardware Hooks.", "Executing Automation Scripts."];
-        let textIndex = 0; let charIndex = 0; const typeSpeed = 80; const eraseSpeed = 40; const textHold = 2200;
-        const typeElement = document.getElementById("typewriter");
-
-        function type() {
-            if (charIndex < textArray[textIndex].length) {
-                typeElement.textContent += textArray[textIndex].charAt(charIndex); charIndex++; setTimeout(type, typeSpeed);
-            } else { setTimeout(erase, textHold); }
-        }
-        function erase() {
-            if (charIndex > 0) {
-                typeElement.textContent = textArray[textIndex].substring(0, charIndex - 1); charIndex--; setTimeout(erase, eraseSpeed);
-            } else { textIndex = (textIndex + 1) % textArray.length; setTimeout(type, typeSpeed); }
-        }
-        document.addEventListener("DOMContentLoaded", () => { setTimeout(type, 800); });
-
-        // 3D Skill Cards Interactive Gyro Matrix Calculation
-        document.querySelectorAll(".glass-card").forEach(card => {
-            card.addEventListener("mousemove", (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - (rect.width / 2);
-                const y = e.clientY - rect.top - (rect.height / 2);
-                card.style.transform = `rotateX(${-y / 12}deg) rotateY(${x / 12}deg) translateY(-10px)`;
-            });
-            card.addEventListener("mouseleave", () => {
-                card.style.transform = "rotateX(0deg) rotateY(0deg) translateY(0px)";
-            });
-            card.addEventListener("mouseenter", () => playSynthSound(550, 0.02));
-        });
-
-        // Safe Non-Blocking Asynchronous Web Audio Architecture 
+        /* ============ CONFIG ============ */
+        const GITHUB_USER = "octocat"; // Apna asli GitHub username yahan daalein
+        let currentTheme = "default";
         let audioMuted = false;
         let audioCtx = null;
-        
-        function initAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+        let activeProjectKey = "neuroledger";
+        let aiMode = "tech";
+        let robotFallbackTried = false;
+
+        /* ============ AUDIO SYNTH (SAFE) ============ */
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
         }
-
-        document.getElementById("audioBtn").addEventListener("click", (e) => {
-            initAudioContext();
-            audioMuted = !audioMuted;
-            e.target.textContent = audioMuted ? "AUDIO: MUTED" : "AUDIO: ON";
-        });
-
-        function playSynthSound(frequency, duration) {
+        function playTone(freq = 520, dur = 0.04) {
             if (audioMuted || !audioCtx) return;
             try {
-                let osc = audioCtx.createOscillator();
-                let gainNode = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.value = frequency;
-                gainNode.gain.setValueAtTime(duration, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
-                osc.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
+                const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+                o.type = "sine"; o.frequency.value = freq;
+                g.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+                o.connect(g); g.connect(audioCtx.destination);
+                o.start(); o.stop(audioCtx.currentTime + dur);
+            } catch (e) {}
+        }
+        document.getElementById("audioBtn").addEventListener("click", (e) => {
+            initAudio();
+            audioMuted = !audioMuted;
+            e.currentTarget.innerHTML = audioMuted ? "<i class='bx bx-volume-mute'></i>" : "<i class='bx bx-volume-full'></i>";
+        });
+
+        /* ============ THEME SWITCHER ============ */
+        function setTheme(theme) {
+            initAudio(); playTone(660, 0.05);
+            if (theme === "default") document.documentElement.removeAttribute("data-theme");
+            else document.documentElement.setAttribute("data-theme", theme);
+            currentTheme = theme;
+            if (window.commerceChartInstance) updateChartColors();
         }
 
-        // Live Real-Time Activity System Dashboard Monitor Ticker Script
-        const sysLabel = document.getElementById("systemTicker");
-        setInterval(() => {
-            const mockPing = Math.floor(Math.random() * 8) + 10;
-            const mockMem = (Math.random() * 0.05 + 1.02).toFixed(2);
-            sysLabel.textContent = `SYS.LOC: OK // PING: ${mockPing}ms // CORE_MEM: ${mockMem}GB // AI: ONLINE`;
-        }, 2000);
+        /* ============ SCROLL PROGRESS & TICKER ============ */
+        window.addEventListener("scroll", () => {
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            document.getElementById("scrollBar").style.width = docH > 0 ? (window.scrollY / docH) * 100 + "%" : "0%";
+        }, { passive: true });
 
-        // Light Matrix Canvas Interactive Thread Map Engine
-        const canvas = document.getElementById("bgCanvas");
-        const ctx = canvas.getContext("2d");
-        let points = [];
-        
+        setInterval(() => {
+            const ping = Math.floor(Math.random() * 8) + 9;
+            document.getElementById("sysTicker").textContent = `SYS.OK // PING:${ping}ms // GST_2.0:ACTIVE // AI:READY`;
+        }, 2500);
+
+        /* ============ TYPEWRITER ============ */
+        const phrases = [
+            "Architecting NeuroLedger AI (Tally + GST 2.0).",
+            "Engineering Low-Latency C++20 Modules.",
+            "Automating FinTech Pipelines in Python.",
+            "Bridging Commerce Logic with Hardware IoT."
+        ];
+        let pIdx = 0, cIdx = 0, deleting = false;
+        function tickType() {
+            const el = document.getElementById("typewriter"), txt = phrases[pIdx];
+            if (!deleting) {
+                el.textContent = txt.slice(0, ++cIdx);
+                if (cIdx === txt.length) { deleting = true; return setTimeout(tickType, 1800); }
+            } else {
+                el.textContent = txt.slice(0, --cIdx);
+                if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
+            }
+            setTimeout(tickType, deleting ? 35 : 65);
+        }
+        document.addEventListener("DOMContentLoaded", () => setTimeout(tickType, 500));
+
+        /* ============ ON-DEMAND PARTICLE CANVAS ============ */
+        const canvas = document.getElementById("bgCanvas"), ctx = canvas.getContext("2d");
+        let pts = [], animRunning = false;
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener("resize", resizeCanvas); resizeCanvas();
 
-        const appendParticleNode = (clientX, clientY) => {
-            if(points.length > 40) return; // Prevent performance dips on low-end devices
-            points.push({ x: clientX, y: clientY, alpha: 0.4, size: Math.random() * 2 + 1 });
-        };
-        window.addEventListener("mousemove", (e) => appendParticleNode(e.clientX, e.clientY));
-        window.addEventListener("touchmove", (e) => {
-            if(e.touches[0]) appendParticleNode(e.touches[0].clientX, e.touches[0].clientY);
-        }, { passive: true });
-
-        function renderParticles() {
+        function spawnPt(x, y) {
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            if (pts.length < 35) pts.push({ x, y, a: 0.45, r: Math.random() * 2 + 1 });
+            if (!animRunning) { animRunning = true; requestAnimationFrame(loopPts); }
+        }
+        window.addEventListener("mousemove", e => spawnPt(e.clientX, e.clientY), { passive: true });
+        function loopPts() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for(let i=0; i<points.length; i++) {
-                let p = points[i];
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 243, 255, ${p.alpha})`;
-                ctx.fill();
-                p.alpha -= 0.01;
-                if(p.alpha <= 0) { points.splice(i, 1); i--; }
+            const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#00f3ff";
+            for (let i = pts.length - 1; i >= 0; i--) {
+                const p = pts[i];
+                ctx.globalAlpha = p.a; ctx.fillStyle = accentColor;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+                p.a -= 0.015;
+                if (p.a <= 0) pts.splice(i, 1);
             }
-            requestAnimationFrame(renderParticles);
+            ctx.globalAlpha = 1;
+            if (pts.length > 0) requestAnimationFrame(loopPts);
+            else animRunning = false;
         }
-        renderParticles();
 
-        // Safe Declarative Cross-Platform Mobile Clicks Handler Injection Pipeline
-        const chatWidget = document.getElementById("chatToggleWidget");
-        const chatBox = document.getElementById("aiChatBox");
-        const closeBtn = document.getElementById("closeChatBtn");
-        const sendBtn = document.getElementById("sendChatBtn");
-        const chatInput = document.getElementById("chatInput");
-        const chatContainer = document.getElementById("chatContainer");
-
-        function toggleInterfaceHUD() {
-            initAudioContext();
-            chatBox.classList.toggle("active");
-            chatWidget.classList.toggle("open");
-            playSynthSound(500, 0.08);
+        /* ============ 3D VIEWER FALLBACKS & ROBOT CONTROLS ============ */
+        document.getElementById("heroModel").addEventListener("error", () => {
+            document.getElementById("heroFallback").style.display = "flex";
+        });
+        document.getElementById("robotModel").addEventListener("error", (e) => {
+            if (!robotFallbackTried) {
+                robotFallbackTried = true;
+                e.target.src = "https://cdn.jsdelivr.net/gh/google/model-viewer@master/packages/shared-assets/models/RobotExpressive.glb";
+            } else {
+                document.getElementById("robotFallback").style.display = "flex";
+            }
+        });
+        function setRobotAnim(name, btn) {
+            initAudio(); playTone(600, 0.04);
+            const rm = document.getElementById("robotModel");
+            rm.setAttribute("animation-name", name);
+            document.querySelectorAll(".anim-btn").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
         }
-        chatWidget.addEventListener("click", toggleInterfaceHUD);
 
-        closeBtn.addEventListener("click", () => {
-            chatBox.classList.remove("active");
-            chatWidget.classList.remove("open");
-            playSynthSound(150, 0.15);
+        /* ============ PROJECT FILTER & DEEP-DIVE MODAL ============ */
+        const projectData = {
+            neuroledger: {
+                cat: "NEW PROJECT • COMMERCE + AI",
+                title: "NeuroLedger AI — TallyPrime XML & GST 2.0 Engine",
+                desc: "Purane AI Engineering module ko is production-ready Commerce-Tech project mein badla gaya hai. Python middleware TallyPrime ke HTTP Port 9000 par XML requests bhej kar ledger extract karta hai, old 12%/28% SKUs ko India ke naye GST 2.0 (0%, 5%, 18%, 40%) slabs mein auto-map karta hai, aur Input Tax Credit (ITC) mismatch flag karta hai.",
+                code: `import requests\n# Post XML Payload to TallyPrime HTTP Server (Port 9000)\nxml_req = "<ENVELOPE><HEADER><TALLYREQUEST>Export Data</TALLYREQUEST></HEADER></ENVELOPE>"\nres = requests.post("http://localhost:9000", data=xml_req)\n# GST 2.0 Slab Validator: 0% | 5% | 18% | 40%`
+            },
+            quantpulse: {
+                cat: "C++20 • FINTECH CORE",
+                title: "QuantPulse Order-Book & Risk Engine",
+                desc: "Lock-free C++20 memory pool engine jo real-time ledger ticks aur Value-at-Risk (VaR) calculations ko ultra-low latency par process karta hai.",
+                code: `// C++20 Lock-free Price Level Matching\nstruct OrderTick { uint64_t id; double price; uint32_t qty; };\ninline double netMargin(double sell, double cost) { return (sell - cost) / sell; }`
+            },
+            pymarket: {
+                cat: "PYTHON • EQUITY ANALYTICS",
+                title: "EquiFlow Equity & Options Backtester",
+                desc: "Python pipeline jo historical stock data par moving-average aur straddle strategies backtest karke tax-adjusted net ROI calculate karta hai.",
+                code: `# Vectorized Return & Drawdown Calculation\nreturns = df['Close'].pct_change().dropna()\nsharpe = (returns.mean() / returns.std()) * (252 ** 0.5)`
+            },
+            smartpos: {
+                cat: "ARDUINO + PYTHON • HARDWARE ERP",
+                title: "SmartPOS Arduino-ERP Sync",
+                desc: "Hardware barcode/RFID scanner ko Python serial listener ke zariye billing database aur low-stock alerts se sync karta hai.",
+                code: `import serial\nser = serial.Serial('COM3', 9600)\nsku = ser.readline().decode().strip() # Sync SKU to Ledger`
+            },
+            gstengine: {
+                cat: "COMMERCE • TAX COMPLIANCE",
+                title: "GST 2.0 Margin & ITC Auditor",
+                desc: "Retailers aur distributors ke liye anti-profiteering margin validator jo tax rate drop (28%->18% ya 18%->5%) ke baad customer price pass-through calculate karta hai.",
+                code: `// Taxable S = Cost * (1 + Margin/100)\n// Net Cash GST = max(0, OutputGST - EligibleITC)`
+            }
+        };
+
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                initAudio(); playTone(560, 0.04);
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const f = btn.dataset.filter;
+                document.querySelectorAll("#projectGrid .bento-card").forEach(card => {
+                    const cats = card.dataset.cat.split(" ");
+                    card.classList.toggle("hidden", f !== "all" && !cats.includes(f));
+                });
+            });
         });
 
-        function processSystemQuery(forcedText = "") {
-            const query = forcedText ? forcedText.trim() : chatInput.value.trim(); if(!query) return;
-            
-            const userBubble = document.createElement("div"); userBubble.className = "msg user"; userBubble.textContent = query;
-            chatContainer.appendChild(userBubble); if(!forcedText) chatInput.value = "";
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+        function openProjectModal(key) {
+            initAudio(); playTone(620, 0.05);
+            activeProjectKey = key;
+            const p = projectData[key];
+            document.getElementById("pmCat").textContent = p.cat;
+            document.getElementById("pmTitle").textContent = p.title;
+            document.getElementById("pmDesc").textContent = p.desc;
+            document.getElementById("pmCode").textContent = p.code;
+            document.getElementById("projectModal").classList.add("open");
+        }
+        function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+        document.querySelectorAll(".modal-backdrop").forEach(m => {
+            m.addEventListener("click", e => { if (e.target === m) m.classList.remove("open"); });
+        });
+        function askAiAboutCurrentProject() {
+            const title = projectData[activeProjectKey].title;
+            closeModal("projectModal");
+            document.getElementById("aiHud").classList.add("open");
+            sendAiQuery(`Explain architecture of ${title}`);
+        }
 
-            setTimeout(() => {
-                const botBubble = document.createElement("div"); botBubble.className = "msg bot";
-                const lowerQuery = query.toLowerCase();
-                let replyText = "Query processed. Core analytics pipeline working standard. Data packets successfully verified.";
+        /* ============ GST 2.0 & MARGIN CALCULATOR ============ */
+        function calcGst() {
+            const cost = Math.max(0, parseFloat(document.getElementById("baseCost").value) || 0);
+            const margin = Math.max(0, parseFloat(document.getElementById("marginPct").value) || 0);
+            const rate = parseFloat(document.getElementById("gstSlab").value) || 0;
+            const itc = Math.max(0, parseFloat(document.getElementById("itcCredit").value) || 0);
 
-                if(lowerQuery.includes("c++") || lowerQuery.includes("cpp")) {
-                    replyText = "Executing C++ Micro-Engine Diagnostics... Async execution arrays stable. High-performance calculation logic layers verified.";
-                } else if(lowerQuery.includes("python") || lowerQuery.includes("script")) {
-                    replyText = "Interfacing Python automation pipelines... Daemon hooks status: safe. Asynchronous microservice data clusters operational.";
-                } else if(lowerQuery.includes("ai") || lowerQuery.includes("neural")) {
-                    replyText = "Neural vector array initialized. Generative AI integration frameworks confirmed across local model nodes.";
-                } else if(lowerQuery.includes("hardware") || lowerQuery.includes("chip")) {
-                    replyText = "Accessing Hardware Lab firmware logs... Microcontroller direct communication interfaces running steady metrics streams.";
-                } else if(lowerQuery.includes("project") || lowerQuery.includes("work")) {
-                    replyText = "Indexing active system repo trees... Multi-threaded systems and architectural modules found. Trigger 'View Projects' to pull data.";
+            const taxable = cost * (1 + margin / 100);
+            const outGst = taxable * (rate / 100);
+            const invoice = taxable + outGst;
+            const profit = taxable - cost;
+            const netGst = Math.max(0, outGst - itc);
+
+            const fmt = n => "₹" + Math.round(n).toLocaleString("en-IN");
+            document.getElementById("resTaxable").textContent = fmt(taxable);
+            document.getElementById("resInvoice").textContent = fmt(invoice);
+            document.getElementById("resProfit").textContent = fmt(profit);
+            document.getElementById("resNetGst").textContent = fmt(netGst);
+        }
+        ["baseCost", "marginPct", "gstSlab", "itcCredit"].forEach(id => {
+            document.getElementById(id).addEventListener("input", calcGst);
+        });
+        calcGst();
+
+        /* ============ LAZY CHART.JS INITIALIZATION ============ */
+        const chartDatasets = {
+            savings: {
+                labels: ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5", "Month 6"],
+                label1: "Manual Accounting Hrs", data1: [120, 115, 110, 118, 122, 125],
+                label2: "With Python + Tally XML", data2: [42, 30, 22, 18, 15, 12]
+            },
+            cashflow: {
+                labels: ["Q1 Old", "Q2 Old", "Q3 GST 2.0", "Q4 GST 2.0"],
+                label1: "Blocked Working Capital (₹k)", data1: [180, 165, 70, 45],
+                label2: "ITC Reconciled Liquidity (₹k)", data2: [95, 110, 210, 260]
+            }
+        };
+        function initChart() {
+            const cEl = document.getElementById("commerceChart");
+            if (!cEl || typeof Chart === "undefined" || window.commerceChartInstance) return;
+            const d = chartDatasets.savings;
+            window.commerceChartInstance = new Chart(cEl, {
+                type: "line",
+                data: {
+                    labels: d.labels,
+                    datasets: [
+                        { label: d.label1, data: d.data1, borderColor: "#94a3b8", backgroundColor: "rgba(148,163,184,0.1)", tension: 0.35, fill: true },
+                        { label: d.label2, data: d.data2, borderColor: "#00f3ff", backgroundColor: "rgba(0,243,255,0.15)", tension: 0.35, fill: true }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: "#cbd5e1", font: { family: "Outfit" } } } },
+                    scales: {
+                        x: { ticks: { color: "#94a3b8" }, grid: { color: "rgba(255,255,255,0.05)" } },
+                        y: { ticks: { color: "#94a3b8" }, grid: { color: "rgba(255,255,255,0.05)" } }
+                    }
                 }
+            });
+        }
+        function switchChartMode(mode, btn) {
+            document.querySelectorAll(".chart-header .anim-btn").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+            if (!window.commerceChartInstance) return;
+            const d = chartDatasets[mode], ch = window.commerceChartInstance;
+            ch.data.labels = d.labels;
+            ch.data.datasets[0].label = d.label1; ch.data.datasets[0].data = d.data1;
+            ch.data.datasets[1].label = d.label2; ch.data.datasets[1].data = d.data2;
+            ch.update();
+        }
+        function updateChartColors() {
+            const acc = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();
+            window.commerceChartInstance.data.datasets[1].borderColor = acc;
+            window.commerceChartInstance.update();
+        }
+        const chartObs = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) { initChart(); chartObs.disconnect(); }
+        }, { threshold: 0.1 });
+        chartObs.observe(document.getElementById("commerceChart"));
 
-                botBubble.textContent = replyText;
-                chatContainer.appendChild(botBubble); chatContainer.scrollTop = chatContainer.scrollHeight;
-                playSynthSound(480, 0.08);
-            }, 550);
+        /* ============ COMMAND PALETTE (CTRL+K) ============ */
+        const commands = [
+            { label: "Jump to Featured New Project (NeuroLedger AI)", kbd: "PROJ", action: () => location.hash = "#projects" },
+            { label: "Open GST 2.0 & Margin ROI Calculator", kbd: "LAB", action: () => location.hash = "#commerce-lab" },
+            { label: "Open Dual-Profile Resume / CV", kbd: "CV", action: () => document.getElementById("resumeModal").classList.add("open") },
+            { label: "Switch Theme: FinTech Emerald", kbd: "THEME", action: () => setTheme("emerald") },
+            { label: "Switch Theme: Cyber Cyan", kbd: "THEME", action: () => setTheme("default") },
+            { label: "Switch Theme: Neural Purple", kbd: "THEME", action: () => setTheme("purple") },
+            { label: "Trigger 3D Robot: Dance Mode", kbd: "3D", action: () => setRobotAnim("Dance") },
+            { label: "Open Dual-Mode AI Assistant", kbd: "AI", action: () => document.getElementById("aiHud").classList.add("open") }
+        ];
+        function renderCmds(q = "") {
+            const list = document.getElementById("cmdList"); list.innerHTML = "";
+            commands.filter(c => c.label.toLowerCase().includes(q.toLowerCase())).forEach(c => {
+                const b = document.createElement("button"); b.className = "cmd-item";
+                b.innerHTML = `<span>${c.label}</span><span class="cmd-kbd">${c.kbd}</span>`;
+                b.onclick = () => { c.action(); closeModal("cmdModal"); };
+                list.appendChild(b);
+            });
+        }
+        function openCmd() { renderCmds(); document.getElementById("cmdModal").classList.add("open"); document.getElementById("cmdSearch").focus(); }
+        document.getElementById("cmdBtn").addEventListener("click", openCmd);
+        document.getElementById("cmdSearch").addEventListener("input", e => renderCmds(e.target.value));
+        document.addEventListener("keydown", e => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openCmd(); }
+            if (e.key === "Escape") document.querySelectorAll(".modal-backdrop.open").forEach(m => m.classList.remove("open"));
+        });
+        document.getElementById("openResumeBtn").addEventListener("click", () => document.getElementById("resumeModal").classList.add("open"));
+
+        /* ============ GITHUB LIVE API (WITH 30-MIN CACHE) ============ */
+        async function loadGithub() {
+            const cacheKey = `gh_cache_${GITHUB_USER}`;
+            const cached = localStorage.getItem(cacheKey);
+            if (cached) {
+                const parsed = JSON.parse(cached);
+                if (Date.now() - parsed.ts < 30 * 60 * 1000) return renderGithub(parsed.user, parsed.repos, "Cached live telemetry (rate-limit safe).");
+            }
+            try {
+                const [uRes, rRes] = await Promise.all([
+                    fetch(`https://api.github.com/users/${GITHUB_USER}`),
+                    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=3`)
+                ]);
+                if (!uRes.ok) throw new Error("Rate limit");
+                const user = await uRes.json(), repos = await rRes.json();
+                localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), user, repos }));
+                renderGithub(user, repos, `Synced live from github.com/${GITHUB_USER}`);
+            } catch (err) {
+                renderGithub({ public_repos: 18, followers: 42 }, [
+                    { name: "NeuroLedger-GST2-TallyXML", language: "Python", stargazers_count: 24, html_url: "#projects" },
+                    { name: "QuantPulse-CPP20-Core", language: "C++", stargazers_count: 19, html_url: "#projects" },
+                    { name: "SmartPOS-Arduino-Bridge", language: "C++ / Python", stargazers_count: 14, html_url: "#projects" }
+                ], "Offline/Rate-limit fallback active (Update GITHUB_USER in script).");
+            }
+        }
+        function renderGithub(user, repos, note) {
+            document.getElementById("ghStatus").textContent = note;
+            document.getElementById("ghRepos").textContent = user.public_repos ?? "--";
+            document.getElementById("ghFollowers").textContent = user.followers ?? "--";
+            const box = document.getElementById("ghRepoList"); box.innerHTML = "";
+            (repos || []).slice(0, 3).forEach(r => {
+                const a = document.createElement("a"); a.className = "repo-item"; a.href = r.html_url; a.target = "_blank"; a.rel = "noopener";
+                a.innerHTML = `<span><strong>${r.name}</strong></span><span class="repo-meta">${r.language || "Code"} • ★ ${r.stargazers_count || 0}</span>`;
+                box.appendChild(a);
+            });
+        }
+        loadGithub();
+
+        /* ============ WEB3FORMS CONTACT SUBMIT ============ */
+        document.getElementById("contactForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const fb = document.getElementById("formFeedback"), fd = new FormData(e.target);
+            if (fd.get("access_key") === "YOUR_WEB3FORMS_ACCESS_KEY") {
+                fb.textContent = "Demo Ready: Replace YOUR_WEB3FORMS_ACCESS_KEY from web3forms.com to receive live emails!";
+                return;
+            }
+            fb.textContent = "Transmitting encrypted packet...";
+            try {
+                const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
+                const data = await res.json();
+                fb.textContent = data.success ? "Success! Inquiry delivered directly to Rohixionx." : "Error submitting form.";
+                if (data.success) e.target.reset();
+            } catch (err) { fb.textContent = "Network error. Please retry."; }
+        });
+
+        /* ============ DUAL-MODE AI ASSISTANT + VOICE ============ */
+        const aiHud = document.getElementById("aiHud"), aiBody = document.getElementById("aiBody"), aiInput = document.getElementById("aiInput");
+        document.getElementById("aiFab").addEventListener("click", () => { initAudio(); playTone(520, 0.06); aiHud.classList.toggle("open"); });
+        document.getElementById("aiClose").addEventListener("click", () => aiHud.classList.remove("open"));
+
+        function setAiMode(m) {
+            aiMode = m;
+            document.getElementById("modeTech").classList.toggle("active", m === "tech");
+            document.getElementById("modeComm").classList.toggle("active", m === "commerce");
+            addMsg(m === "commerce" ? "Commerce & GST 2.0 Advisor active. GST slabs (0/5/18/40%), Tally XML ya margin par poochein." : "Tech Architect mode active. NeuroLedger AI, C++20, Python ya Hardware ke baare mein poochein.", "bot");
+        }
+        function addMsg(txt, cls) {
+            const d = document.createElement("div"); d.className = `msg ${cls}`; d.textContent = txt;
+            aiBody.appendChild(d); aiBody.scrollTop = aiBody.scrollHeight;
+        }
+        function sendAiQuery(forced) {
+            const q = (forced || aiInput.value).trim(); if (!q) return;
+            addMsg(q, "user"); if (!forced) aiInput.value = "";
+            const lq = q.toLowerCase();
+            let ans = aiMode === "commerce"
+                ? "Commerce Mode: Aap GST 2.0 Calculator mein Cost & Margin daal kar live ITC offset check kar sakte hain."
+                : "Tech Mode: Rohixionx C++, Python automation, aur WebGL 3D interfaces build karta hai.";
+
+            if (lq.includes("neuroledger") || lq.includes("new project")) ans = "NeuroLedger AI hamara flagship project hai: Python script TallyPrime (Port 9000) se XML vouchers fetch karke GST 2.0 (0/5/18/40%) slabs validate karta hai.";
+            else if (lq.includes("gst")) ans = "GST 2.0 (Sept 2025) mein 12% aur 28% slabs hata kar 5% aur 18% main slabs rakhe gaye hain, saath hi essentials par 0% aur luxury/sin goods par 40% slab hai.";
+            else if (lq.includes("tally") || lq.includes("xml")) ans = "TallyPrime mein native JSON API nahi hoti—yeh local port 9000 par HTTP XML POST payloads accept karta hai, jise Python easily automate karta hai.";
+            else if (lq.includes("c++") || lq.includes("python")) ans = "C++20 low-latency order-book engines ke liye aur Python Pandas/FastAPI automation & financial backtesting ke liye use hota hai.";
+            else if (lq.includes("hardware") || lq.includes("arduino")) ans = "SmartPOS lab Arduino barcode/RFID sensors ko Python serial bridge se connect karke live stock update karta hai.";
+
+            setTimeout(() => { playTone(460, 0.05); addMsg(ans, "bot"); }, 420);
+        }
+        document.getElementById("aiSend").addEventListener("click", () => sendAiQuery());
+        aiInput.addEventListener("keypress", e => { if (e.key === "Enter") sendAiQuery(); });
+
+        // Web Speech API with Feature Detection
+        const micBtn = document.getElementById("micBtn");
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+            micBtn.style.display = "none";
+        } else {
+            const rec = new SpeechRec(); rec.lang = "en-IN"; rec.interimResults = false;
+            micBtn.addEventListener("click", () => {
+                try { micBtn.classList.add("listening"); rec.start(); } catch (e) { micBtn.classList.remove("listening"); }
+            });
+            rec.onresult = e => { micBtn.classList.remove("listening"); sendAiQuery(e.results[0][0].transcript); };
+            rec.onerror = () => micBtn.classList.remove("listening");
+            rec.onend = () => micBtn.classList.remove("listening");
         }
 
-        sendBtn.addEventListener("click", () => processSystemQuery());
-        chatInput.addEventListener("keypress", (e) => { if(e.key === "Enter") processSystemQuery(); });
-
-        function runQuickShortcut(typeString) {
-            initAudioContext();
-            playSynthSound(700, 0.04);
-            processSystemQuery(typeString);
-        }
-
-        document.getElementById("shortcutCpp").addEventListener("click", () => runQuickShortcut("Execute C++ Diagnostics Log Framework."));
-        document.getElementById("shortcutPy").addEventListener("click", () => runQuickShortcut("Fetch Active Python Pipelines Log."));
-        document.getElementById("shortcutAi").addEventListener("click", () => runQuickShortcut("Check Neural AI Integration Layers."));
-        document.getElementById("shortcutHw").addEventListener("click", () => runQuickShortcut("Diagnose Active Hardware Lab Interfaces."));
-        
-        // Audio Initialization Hooks on First Touch/Taps for Cross-Platform safety
-        window.addEventListener('touchstart', initAudioContext, { once: true });
-        window.addEventListener('click', initAudioContext, { once: true });
+        /* ============ GSAP SECTION ANIMATIONS ============ */
+        window.addEventListener("load", () => {
+            if (typeof gsap === "undefined") return;
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.from(".gsap-hero", { y: 35, opacity: 0, duration: 0.9, stagger: 0.18, ease: "power3.out" });
+            gsap.utils.toArray(".gsap-reveal").forEach(sec => {
+                gsap.from(sec, { scrollTrigger: { trigger: sec, start: "clamp(top 88%)" }, y: 40, opacity: 0, duration: 0.85, ease: "power2.out" });
+            });
+        });
     </script>
 </body>
 </html>
