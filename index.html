@@ -1,144 +1,742 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090b16">
-<meta name="description" content="A creative digital universe — portfolio, experiments, projects and play.">
-<title>NOCTRA — A Creative Universe</title>
+<meta name="theme-color" content="#080a0e">
+<meta name="description" content="KAGE — Where stillness reveals the unseen. A creative digital experience.">
+<title>KAGE — Creative Digital Experience</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
-:root{--bg:#090b16;--panel:#101426;--panel2:#151b30;--ink:#f4f2ee;--muted:#9ca4ba;--violet:#8a64f6;--blue:#087eae;--gold:#d7b879;--line:rgba(220,225,255,.13);--radius:24px;--max:1180px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 12% 8%,rgba(75,52,147,.22),transparent 36%),radial-gradient(ellipse at 88% 30%,rgba(8,126,174,.12),transparent 34%),linear-gradient(180deg,#090b16,#0a0d19 55%,#090b16)}
-a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}.mono{font:11px 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.serif{font-family:'Playfair Display',serif;font-weight:500}.section{padding:110px 0;position:relative}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:42px}.section-head h2{font-size:clamp(34px,5vw,60px);letter-spacing:-.055em;line-height:1;margin:12px 0 0}.section-head p{max-width:390px;color:var(--muted);line-height:1.8;font-size:14px}.eyebrow{display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";width:28px;height:1px;background:var(--gold)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:13px 20px;color:var(--ink);background:rgba(255,255,255,.04);font-size:12px;font-weight:800;letter-spacing:.04em;transition:.25s}.btn:hover{transform:translateY(-3px);border-color:rgba(215,184,121,.7);background:rgba(215,184,121,.1)}.btn.primary{background:var(--ink);color:#11131d;border-color:var(--ink)}.btn.primary:hover{background:var(--gold);border-color:var(--gold)}.topbar{height:78px;position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid transparent;transition:.3s;background:linear-gradient(180deg,rgba(9,11,22,.88),rgba(9,11,22,.25));backdrop-filter:blur(16px)}.topbar.scrolled{border-color:var(--line);background:rgba(9,11,22,.88)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.14em;font-size:13px}.brand-mark{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font:15px 'Playfair Display',serif}.navlinks{display:flex;align-items:center;gap:26px;color:#c1c6d4;font-size:11px;font-weight:700}.navlinks a{transition:.2s}.navlinks a:hover{color:var(--gold)}.nav-right{display:flex;gap:10px;align-items:center}.menu-toggle{display:none;background:none;border:1px solid var(--line);color:white;border-radius:50%;width:42px;height:42px}
-.hero{min-height:790px;display:grid;align-items:center;padding:145px 0 90px;position:relative;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:42px;align-items:center}.hero h1{font-size:clamp(56px,8.2vw,108px);line-height:.94;letter-spacing:-.075em;margin:24px 0}.hero h1 em{font-family:'Playfair Display',serif;font-weight:500;color:var(--gold);letter-spacing:-.06em}.hero-copy{max-width:510px;color:#aeb5c8;line-height:1.9;font-size:15px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.hero-meta{display:flex;gap:30px;margin-top:58px;color:var(--muted);font:10px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}.hero-meta strong{display:block;color:var(--ink);font:600 19px Manrope;margin-bottom:5px;letter-spacing:-.04em}.hero-art{height:520px;position:relative;display:grid;place-items:center}.orb{width:min(430px,82vw);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 36% 30%,rgba(202,190,255,.8),rgba(138,100,246,.45) 16%,rgba(37,35,83,.8) 42%,rgba(8,126,174,.35) 65%,transparent 72%);filter:drop-shadow(0 0 80px rgba(107,81,219,.3));animation:float 8s ease-in-out infinite}.orb:before,.orb:after{content:"";position:absolute;inset:7%;border:1px solid rgba(232,225,255,.26);border-radius:50%;transform:rotateX(68deg) rotateZ(-24deg)}.orb:after{inset:17% -8%;transform:rotateX(68deg) rotateZ(35deg);border-color:rgba(215,184,121,.35)}.orb-core{position:absolute;inset:32%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#a9a0e9 12%,#5a49a5 42%,#17152f 75%);box-shadow:0 0 55px rgba(138,100,246,.6),inset -20px -25px 45px #090b16}.art-label{position:absolute;bottom:38px;left:4%;font:10px 'DM Mono',monospace;letter-spacing:.15em;color:var(--muted)}.art-index{position:absolute;right:2%;top:10%;font:10px 'DM Mono',monospace;color:var(--gold);writing-mode:vertical-rl;letter-spacing:.2em}.float-tag{position:absolute;padding:12px 16px;border:1px solid var(--line);background:rgba(15,19,38,.65);backdrop-filter:blur(12px);border-radius:14px;font:10px 'DM Mono',monospace;color:#d8d9e5;box-shadow:0 15px 50px #050611}.tag-a{top:15%;left:2%}.tag-b{right:0;bottom:18%}
-@keyframes float{50%{transform:translateY(-18px) rotate(3deg)}}@keyframes pulse{50%{opacity:.35;transform:scale(1.4)}}@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font:9px 'DM Mono',monospace;color:#7e879d;letter-spacing:.2em;display:flex;gap:12px;align-items:center}.scroll-cue:before{content:"";height:1px;width:38px;background:var(--gold)}
-.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:18px 0;background:rgba(255,255,255,.015)}.ticker-track{display:flex;gap:46px;white-space:nowrap;animation:marquee 30s linear infinite;width:max-content;color:#858da3;font:10px 'DM Mono',monospace;letter-spacing:.2em;text-transform:uppercase}.ticker b{color:var(--gold);font-weight:400}@keyframes marquee{to{transform:translateX(-50%)}}
-.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}.about-stamp{height:360px;border:1px solid var(--line);border-radius:var(--radius);position:relative;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(138,100,246,.28),transparent 45%),linear-gradient(145deg,#141a30,#0b0e1a);display:grid;place-items:center}.stamp-ring{width:210px;aspect-ratio:1;border:1px solid rgba(215,184,121,.55);border-radius:50%;display:grid;place-items:center;position:relative}.stamp-ring:before,.stamp-ring:after{content:"";position:absolute;inset:14px;border:1px dashed rgba(215,184,121,.35);border-radius:50%}.stamp-ring span{font:italic 74px 'Playfair Display',serif;color:var(--gold)}.stamp-caption{position:absolute;bottom:22px;left:24px;right:24px;display:flex;justify-content:space-between;color:var(--muted);font:9px 'DM Mono',monospace;letter-spacing:.12em}.about-text h3{font-size:clamp(28px,4vw,46px);line-height:1.16;letter-spacing:-.05em;margin:8px 0 24px}.about-text h3 em{color:var(--gold);font-family:'Playfair Display',serif}.about-text p{color:var(--muted);line-height:1.95;font-size:14px;max-width:670px}.skill-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}.chip{padding:9px 13px;border:1px solid var(--line);border-radius:999px;color:#c7ccda;font:10px 'DM Mono',monospace}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(22,28,49,.92),rgba(12,15,29,.92));border-radius:var(--radius);padding:26px;min-height:280px;position:relative;overflow:hidden;transition:.35s}.feature-card:hover{transform:translateY(-7px);border-color:rgba(215,184,121,.48);box-shadow:0 22px 60px rgba(0,0,0,.2)}.feature-card .number{font:10px 'DM Mono',monospace;color:var(--gold)}.feature-icon{width:48px;height:48px;border:1px solid var(--line);border-radius:15px;display:grid;place-items:center;font-size:21px;margin:34px 0 22px;background:rgba(255,255,255,.03)}.feature-card h3{font-size:20px;letter-spacing:-.04em;margin:0 0 10px}.feature-card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}.feature-card .arrow{position:absolute;right:24px;top:23px;color:var(--gold)}
-.manuals{background:linear-gradient(180deg,transparent,rgba(20,22,42,.48),transparent)}.manual-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1000px}.manual{min-height:410px;position:relative;border-radius:7px 18px 18px 7px;padding:28px;overflow:hidden;transform-style:preserve-3d;transition:transform .5s,border-color .3s;border:1px solid rgba(255,255,255,.13);box-shadow:15px 20px 40px rgba(0,0,0,.25)}.manual:hover{transform:rotateY(-7deg) translateY(-8px)}.manual:before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(255,255,255,.08));z-index:2}.manual.codex{background:radial-gradient(circle at 80% 15%,rgba(210,183,123,.3),transparent 38%),linear-gradient(145deg,#303b35,#111b1b)}.manual.claude{background:radial-gradient(circle at 80% 15%,rgba(239,151,112,.28),transparent 38%),linear-gradient(145deg,#55372e,#201b20)}.manual.cursor{background:radial-gradient(circle at 80% 15%,rgba(100,162,224,.32),transparent 38%),linear-gradient(145deg,#233a55,#111927)}.manual .mini{font:9px 'DM Mono',monospace;letter-spacing:.18em;color:rgba(255,255,255,.7)}.manual .big-glyph{font:110px 'Playfair Display',serif;position:absolute;right:25px;top:82px;color:rgba(255,255,255,.13)}.manual h3{font:38px 'Playfair Display',serif;margin:120px 0 12px;position:relative}.manual p{font-size:12px;line-height:1.8;color:rgba(255,255,255,.7);max-width:240px}.manual-foot{position:absolute;bottom:25px;left:28px;right:28px;display:flex;justify-content:space-between;align-items:center;font:9px 'DM Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.7)}.manual-detail{margin-top:26px;padding:25px;border:1px solid var(--line);border-radius:18px;background:rgba(16,20,38,.7);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.manual-detail h3{margin:0 0 8px;font-size:20px}.manual-detail p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f2ee;color:#11131d;border-radius:999px;padding:12px 18px;font-size:12px;font-weight:800;z-index:100;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
-.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.editor,.preview{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0d1120}.windowbar{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line);font:10px 'DM Mono',monospace;color:var(--muted)}.dots{display:flex;gap:6px}.dots i{width:7px;height:7px;border-radius:50%;background:#626b81}.editor textarea{display:block;width:100%;height:330px;resize:vertical;border:0;outline:0;background:#0d1120;color:#cdd7f4;padding:20px;font:12px/1.7 'DM Mono',monospace;tab-size:2}.preview iframe{display:block;width:100%;height:378px;border:0;background:white}.lab-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.lab-note{font-size:11px;color:var(--muted);line-height:1.7;margin-top:14px}
-.robot-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:35px;align-items:center}.robot-visual{min-height:430px;display:grid;place-items:center;position:relative;border:1px solid var(--line);border-radius:var(--radius);background:radial-gradient(circle at 50% 40%,rgba(8,126,174,.22),transparent 48%),#0d1222;overflow:hidden}.bot{width:180px;height:210px;position:relative;animation:float 5s ease-in-out infinite}.bot-head{width:150px;height:120px;margin:auto;border:2px solid rgba(152,197,255,.65);border-radius:48% 48% 42% 42%;background:linear-gradient(145deg,#253a5b,#11192d);box-shadow:0 0 45px rgba(8,126,174,.28),inset 0 0 25px rgba(138,100,246,.18);position:relative}.bot-head:before{content:"";position:absolute;left:25px;right:25px;top:45px;height:24px;border-radius:20px;background:#090e1c;border:1px solid rgba(138,190,255,.3)}.bot-eyes{position:absolute;top:51px;left:43px;right:43px;display:flex;justify-content:space-between}.bot-eyes i{width:11px;height:11px;border-radius:50%;background:#81dcff;box-shadow:0 0 13px #4fc9ff}.bot-antenna{height:35px;width:2px;background:#8c9cc1;margin:auto;position:relative}.bot-antenna:before{content:"";position:absolute;top:-6px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 15px var(--gold)}.bot-body{width:112px;height:75px;margin:12px auto 0;border:1px solid rgba(152,197,255,.55);border-radius:24px 24px 32px 32px;background:linear-gradient(145deg,#1d3151,#101629);position:relative}.bot-body:after{content:"";position:absolute;width:25px;height:8px;border-radius:10px;background:#67d9ff;box-shadow:0 0 18px #67d9ff;top:28px;left:43px}.robot-caption{position:absolute;bottom:22px;left:24px;right:24px;display:flex;justify-content:space-between;font:9px 'DM Mono',monospace;color:var(--muted);letter-spacing:.12em}.chat{border:1px solid var(--line);border-radius:var(--radius);background:rgba(16,20,38,.85);overflow:hidden}.chat-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.online{color:#79d6a4;font:9px 'DM Mono',monospace}.online:before{content:"";display:inline-block;width:6px;height:6px;background:#79d6a4;border-radius:50%;margin-right:8px;box-shadow:0 0 10px #79d6a4}.chat-log{height:290px;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:12px}.bubble{max-width:85%;padding:12px 15px;border-radius:14px;font-size:12px;line-height:1.7;background:#1a2138;color:#d9deec}.bubble.user{align-self:flex-end;background:#34295f}.chat-form{display:flex;gap:10px;padding:14px;border-top:1px solid var(--line)}.chat-form input{flex:1;min-width:0;background:#0b1020;border:1px solid var(--line);border-radius:999px;padding:12px 15px;color:white;outline:none;font-size:12px}.chat-form button{width:42px;border:0;border-radius:50%;background:var(--gold);color:#10131d;font-weight:900}.chat-disclaimer{padding:0 18px 14px;color:#788198;font-size:10px;line-height:1.6}
-.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.paper-feature{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:linear-gradient(140deg,#1a2630,#111523);min-height:280px;position:relative;overflow:hidden}.paper-feature:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(215,184,121,.28);border-radius:50%;right:-60px;top:35px;box-shadow:0 0 0 22px rgba(215,184,121,.04),0 0 0 48px rgba(215,184,121,.025)}.paper-feature h3{font:36px 'Playfair Display',serif;max-width:300px;margin:30px 0 12px}.paper-feature p{color:var(--muted);font-size:12px;line-height:1.8;max-width:340px}.paper-info{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:#101426}.paper-info h3{margin:0 0 12px;font-size:20px}.paper-info p,.paper-info li{color:var(--muted);font-size:12px;line-height:1.9}.paper-info ul{padding-left:18px}.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px}.contact-copy h2{font-size:clamp(38px,5vw,62px);line-height:1;letter-spacing:-.06em;margin:18px 0}.contact-copy p{color:var(--muted);font-size:13px;line-height:1.9}.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font:9px 'DM Mono',monospace;letter-spacing:.13em;color:var(--muted);text-transform:uppercase}.field input,.field textarea{width:100%;border:1px solid var(--line);background:#101426;border-radius:12px;padding:14px;color:var(--ink);outline:none;font-size:12px}.field textarea{min-height:130px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--gold)}.footer{padding:28px 0;border-top:1px solid var(--line);color:#7e879d;font:9px 'DM Mono',monospace;letter-spacing:.1em}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}.reveal.visible{opacity:1;transform:none}
-.games-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.game-card{border:1px solid var(--line);border-radius:var(--radius);padding:25px;background:#101426}.game-card h3{margin:0 0 8px}.game-card p{font-size:11px;color:var(--muted);line-height:1.7}.memory-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.memory-card{height:62px;border:1px solid var(--line);border-radius:10px;background:#171e34;color:transparent;font-size:20px}.memory-card.open,.memory-card.matched{color:var(--gold);background:#252343}.memory-card.matched{opacity:.5}.game-status{font:10px 'DM Mono',monospace;color:var(--gold);margin-top:12px}.ttt{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:220px;margin-top:18px}.ttt button{aspect-ratio:1;border:1px solid var(--line);border-radius:10px;background:#171e34;color:var(--gold);font-size:25px}
-@media(max-width:850px){.navlinks{display:none;position:absolute;top:78px;left:0;right:0;padding:22px;background:rgba(9,11,22,.97);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.menu-toggle{display:block}.nav-right>.btn{display:none}.hero-grid,.about-grid,.robot-wrap,.contact-grid{grid-template-columns:1fr}.hero{padding-top:125px}.hero-art{height:410px;grid-row:1}.hero-grid{gap:0}.hero-meta{margin-top:35px}.about-grid{gap:25px}.about-stamp{height:280px}.cards,.manual-grid{grid-template-columns:1fr 1fr}.manual{min-height:360px}.lab-grid{grid-template-columns:1fr}.paper-grid{grid-template-columns:1fr}.contact-grid{gap:28px}}
-@media(max-width:560px){.wrap{width:min(100% - 30px,var(--max))}.section{padding:76px 0}.section-head{display:block;margin-bottom:28px}.section-head p{margin-top:15px}.hero{min-height:auto;padding:112px 0 70px}.hero-art{height:310px}.orb{width:270px}.hero h1{font-size:clamp(53px,16vw,76px)}.hero-copy{font-size:13px}.hero-meta{gap:18px;font-size:8px}.hero-meta strong{font-size:16px}.art-label{bottom:10px}.tag-a{top:4%}.tag-b{bottom:12%}.cards,.manual-grid,.games-grid{grid-template-columns:1fr}.feature-card{min-height:230px}.manual{min-height:380px}.manual-detail{grid-template-columns:1fr}.manual-detail .btn{justify-self:start}.robot-visual{min-height:340px}.chat-log{height:260px}.contact-form{grid-template-columns:1fr}.field.full{grid-column:auto}.paper-feature{min-height:250px}.scroll-cue{display:none}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#080a0e;
+  --panel:#11151b;
+  --text:#e8e9e4;
+  --muted:#9b9f9d;
+  --gold:#c8aa76;
+  --red:#df463e;
+  --line:rgba(255,255,255,.12);
+  --serif:'Cormorant Garamond',serif;
+  --sans:'DM Sans',sans-serif;
+  --display:'Space Grotesk',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+::selection{background:var(--gold);color:#080a0e}
+.noise{
+  position:fixed;inset:0;pointer-events:none;z-index:20;
+  opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+}
+.container{width:min(1180px,90%);margin:auto}
+.eyebrow{
+  color:var(--gold);font-size:.68rem;letter-spacing:.28em;
+  text-transform:uppercase;font-weight:600
+}
+.section{padding:115px 0;position:relative}
+.section-heading{font:500 clamp(2.7rem,6vw,5.4rem)/.98 var(--serif);max-width:780px;margin:18px 0}
+.section-intro{color:var(--muted);max-width:580px;line-height:1.8}
+.gold{color:var(--gold)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:14px 22px;border:1px solid var(--line);border-radius:2px;
+  color:var(--text);background:transparent;transition:.3s;
+  font-size:.76rem;letter-spacing:.12em;text-transform:uppercase
+}
+.btn:hover{background:var(--gold);border-color:var(--gold);color:#080a0e}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#090a0d}
+.btn.primary:hover{background:#ead2a8}
+.topbar{
+  position:fixed;z-index:30;top:0;left:0;width:100%;
+  padding:22px 5%;display:flex;align-items:center;justify-content:space-between;
+  transition:.3s;border-bottom:1px solid transparent
+}
+.topbar.scrolled{background:rgba(8,10,14,.88);backdrop-filter:blur(18px);border-color:var(--line);padding-top:14px;padding-bottom:14px}
+.logo{font:600 1.45rem var(--display);letter-spacing:.22em}
+.logo span{color:var(--red)}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{font-size:.72rem;color:#c4c6c1;letter-spacing:.1em;text-transform:uppercase}
+.nav a:hover{color:var(--gold)}
+.menu-btn{display:none;background:none;color:white;border:0;font-size:1.5rem}
+.hero{
+  min-height:100svh;display:flex;align-items:center;position:relative;
+  overflow:hidden;background:
+  radial-gradient(ellipse at 70% 40%,rgba(76,92,78,.19),transparent 45%),
+  linear-gradient(110deg,#080a0e 20%,#111914 60%,#080a0e);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(5,7,9,.9),rgba(5,7,9,.18)),
+  repeating-linear-gradient(90deg,transparent 0 90px,rgba(255,255,255,.025) 91px);
+}
+.hero-art{
+  position:absolute;right:5%;top:12%;width:min(52vw,680px);height:78%;
+  display:grid;place-items:center;opacity:.95
+}
+.moon{
+  position:absolute;width:clamp(170px,24vw,340px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#d7d4c5,#74796d 48%,#30372f 72%,transparent 73%);
+  box-shadow:0 0 100px rgba(188,190,160,.13);
+  animation:moonFloat 8s ease-in-out infinite
+}
+.mountain{
+  position:absolute;bottom:0;width:100%;height:60%;
+  background:linear-gradient(145deg,#28352d,#111913 65%);
+  clip-path:polygon(0 100%,0 58%,15% 42%,29% 62%,46% 17%,62% 56%,78% 35%,100% 66%,100% 100%);
+}
+.mountain.back{
+  bottom:12%;height:50%;opacity:.45;filter:blur(2px);
+  background:#536052;clip-path:polygon(0 100%,0 65%,25% 28%,48% 69%,70% 15%,100% 63%,100% 100%)
+}
+.temple{
+  position:absolute;bottom:18%;width:38%;height:20%;background:#090c0b;
+  clip-path:polygon(0 25%,50% 0,100% 25%,92% 34%,92% 100%,8% 100%,8% 34%);
+}
+.temple::after{
+  content:"";position:absolute;left:47%;top:35%;width:6%;height:65%;
+  background:#c4a77a;opacity:.45
+}
+.hero-content{position:relative;z-index:2;width:min(1180px,90%);margin:auto;padding-top:80px}
+.hero-kicker{display:flex;align-items:center;gap:14px;color:var(--gold);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase}
+.hero-kicker::before{content:"";width:38px;height:1px;background:var(--gold)}
+.hero h1{
+  font:500 clamp(5rem,15vw,13rem)/.77 var(--serif);
+  letter-spacing:-.055em;margin:34px 0 28px;max-width:700px
+}
+.hero h1 span{display:block;color:var(--gold);font-style:italic;margin-left:12vw}
+.hero-copy{max-width:420px;color:#b6b9b3;line-height:1.8;font-size:.92rem}
+.hero-actions{display:flex;gap:14px;margin-top:35px;flex-wrap:wrap}
+.hero-bottom{
+  position:absolute;bottom:32px;left:5%;right:5%;z-index:2;
+  display:flex;justify-content:space-between;color:#858b83;
+  font-size:.65rem;letter-spacing:.18em;text-transform:uppercase
+}
+.scroll-line{display:flex;align-items:center;gap:12px}
+.scroll-line::before{content:"";width:45px;height:1px;background:var(--gold)}
+@keyframes moonFloat{50%{transform:translateY(-14px)}}
+.chapter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.chapter{
+  min-height:340px;padding:28px;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#1c2822,#0e1312);
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;
+  transition:.4s
+}
+.chapter:hover{transform:translateY(-7px);border-color:rgba(200,170,118,.55)}
+.chapter-number{font:italic 1.3rem var(--serif);color:var(--gold)}
+.chapter h3{font:500 2.1rem var(--serif);margin-bottom:10px}
+.chapter p{color:var(--muted);font-size:.85rem;line-height:1.7;max-width:270px}
+.chapter-art{position:absolute;right:-25px;top:35px;font:8rem var(--serif);opacity:.08}
+.chapter-link{font-size:.68rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.visual-panel{
+  min-height:500px;position:relative;overflow:hidden;
+  background:radial-gradient(circle at 50% 35%,#68776a,#1b2922 50%,#0c100e 80%);
+  border:1px solid var(--line);display:grid;place-items:center
+}
+.visual-panel::before,.visual-panel::after{
+  content:"";position:absolute;border:1px solid rgba(230,220,190,.22);
+  border-radius:50%;width:75%;aspect-ratio:1;transform:rotateX(68deg)
+}
+.visual-panel::after{width:55%;transform:rotateX(68deg) rotateZ(45deg)}
+.visual-orb{
+  width:145px;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 30% 25%,#e5dfc7,#8c907a 45%,#303a31 75%);
+  box-shadow:0 0 90px rgba(200,210,170,.25);
+  animation:moonFloat 7s infinite
+}
+.visual-caption{position:absolute;bottom:25px;left:25px;font-size:.65rem;letter-spacing:.2em;color:#d4d4c7}
+.manuals{background:#10120f}
+.manual-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
+.manual{
+  background:#1a1c17;border:1px solid var(--line);padding:30px;min-height:270px;
+  display:flex;flex-direction:column;justify-content:space-between;transition:.3s
+}
+.manual:hover{border-color:var(--gold);transform:translateY(-5px)}
+.manual .symbol{font:4rem var(--serif);color:var(--gold)}
+.manual h3{font:500 2rem var(--serif);margin:20px 0 8px}
+.manual p{color:var(--muted);font-size:.83rem;line-height:1.7}
+.portfolio-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:45px}
+.project-card{
+  min-height:290px;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;
+  background:linear-gradient(145deg,#303c39,#111714);border:1px solid var(--line);
+  position:relative;overflow:hidden
+}
+.project-card:nth-child(2){background:linear-gradient(145deg,#312a43,#111018)}
+.project-card:nth-child(3){background:linear-gradient(145deg,#44352b,#17120f)}
+.project-card h3{font:500 2rem var(--serif);position:relative}
+.project-card p{color:#c0c1bb;max-width:380px;line-height:1.7;font-size:.83rem;position:relative}
+.project-card::before{
+  content:"";position:absolute;width:240px;height:240px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);right:-70px;top:-90px;
+  box-shadow:0 0 0 30px rgba(255,255,255,.025),0 0 0 60px rgba(255,255,255,.02)
+}
+.robot-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+.robot{
+  width:220px;height:260px;margin:auto;position:relative;
+  border:1px solid rgba(200,170,118,.5);border-radius:45% 45% 35% 35%;
+  background:linear-gradient(145deg,#252d34,#101419);
+  box-shadow:0 0 60px rgba(100,140,170,.13);
+  animation:robotFloat 4s ease-in-out infinite
+}
+.robot::before{
+  content:"";position:absolute;top:75px;left:38px;right:38px;height:48px;
+  border-radius:25px;background:#080d12;border:1px solid #647a82
+}
+.robot::after{
+  content:"";position:absolute;top:92px;left:62px;width:14px;height:14px;
+  border-radius:50%;background:#73d9df;box-shadow:70px 0 #73d9df,0 0 18px #73d9df,70px 0 18px #73d9df
+}
+.robot-ear{position:absolute;top:90px;left:-18px;width:18px;height:45px;background:#8b7959;border-radius:8px}
+.robot-ear.right{left:auto;right:-18px}
+.robot-base{position:absolute;bottom:-17px;left:70px;width:80px;height:18px;border-radius:50%;background:#252d34}
+@keyframes robotFloat{50%{transform:translateY(-10px)}}
+.chatbox{background:#11161a;border:1px solid var(--line);padding:24px}
+.chat-log{height:210px;overflow:auto;display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.chat-msg{max-width:90%;padding:12px 14px;background:#202a2d;color:#d8e0dc;font-size:.84rem;line-height:1.6}
+.chat-msg.user{align-self:flex-end;background:#3b3529}
+.chat-input{display:flex;gap:8px}
+.chat-input input{flex:1;min-width:0;background:#080c10;border:1px solid var(--line);color:white;padding:13px}
+.chat-input button{background:var(--gold);border:0;padding:0 18px;color:#111}
+.lab{background:#10131a}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:35px}
+.code-area{
+  width:100%;min-height:300px;resize:vertical;background:#080b11;
+  color:#b8d8c9;border:1px solid var(--line);padding:18px;
+  font:13px/1.7 monospace;outline:none
+}
+.preview{width:100%;height:300px;background:white;border:1px solid var(--line)}
+.lab-controls{display:flex;justify-content:space-between;align-items:center;margin:15px 0;gap:10px;flex-wrap:wrap}
+.bag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.bag-card{padding:25px;background:#171a17;border:1px solid var(--line)}
+.bag-icon{font-size:3rem;margin-bottom:20px}
+.bag-card h3{font:500 1.8rem var(--serif);margin-bottom:8px}
+.bag-card p{font-size:.84rem;color:var(--muted);line-height:1.7}
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:35px}
+.game-card{background:#131820;padding:25px;border:1px solid var(--line)}
+.game-card h3{font:500 1.7rem var(--serif);margin-bottom:15px}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.memory-tile{
+  aspect-ratio:1;border:1px solid var(--line);background:#202933;color:var(--gold);
+  font-size:1.4rem
+}
+.memory-tile.open{background:#d2bd96;color:#151515}
+.tic-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:230px;gap:6px}
+.tic-cell{height:65px;background:#222a30;border:1px solid var(--line);color:var(--gold);font-size:1.7rem}
+.game-status{font-size:.82rem;color:var(--muted);margin:12px 0}
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.contact-form{display:grid;gap:13px}
+.contact-form input,.contact-form textarea{
+  width:100%;padding:15px;background:#11161a;color:white;
+  border:1px solid var(--line);outline:none
+}
+.contact-form textarea{min-height:130px;resize:vertical}
+footer{padding:35px 5%;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:.75rem}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:none}
+.toast{
+  position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);
+  background:var(--gold);color:#111;padding:12px 20px;z-index:50;
+  opacity:0;transition:.3s;pointer-events:none;font-size:.8rem
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:800px){
+  .nav{display:none;position:absolute;top:100%;left:0;width:100%;padding:25px 5%;
+    background:#0b0e12;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+  .nav.open{display:flex}
+  .menu-btn{display:block}
+  .hero-art{right:-15%;width:80vw;opacity:.55}
+  .hero h1{font-size:clamp(5rem,19vw,9rem)}
+  .chapter-grid,.manual-grid,.bag-grid{grid-template-columns:1fr 1fr}
+  .split,.robot-wrap,.contact-grid{grid-template-columns:1fr;gap:35px}
+  .portfolio-grid{grid-template-columns:1fr}
+  .lab-grid,.game-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .section{padding:80px 0}
+  .chapter-grid,.manual-grid,.bag-grid{grid-template-columns:1fr}
+  .hero-bottom{font-size:.55rem}
+  .visual-panel{min-height:340px}
+  .robot{transform:scale(.85)}
+  footer{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
 </style>
 </head>
+
 <body>
-<header class="topbar" id="topbar"><div class="wrap nav">
-<a class="brand" href="#home"><span class="brand-mark">N</span><span>NOCTRA <small style="color:var(--gold);font:9px 'DM Mono';letter-spacing:.2em">/ STUDIO</small></span></a>
-<nav class="navlinks" id="navlinks"><a href="#about">ABOUT</a><a href="#work">EXPERIENCE</a><a href="#manuals">FIELD NOTES</a><a href="#lab">PROJECT LAB</a><a href="#robot">AI ROBOT</a><a href="#contact">CONTACT</a></nav>
-<div class="nav-right"><a class="btn" href="#contact">LET'S CONNECT ↗</a><button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button></div>
-</div></header>
+<div class="noise"></div>
+
+<header class="topbar" id="topbar">
+  <a class="logo" href="#home">K<span>A</span>GE</a>
+  <nav class="nav" id="nav">
+    <a href="#chapters">Experience</a>
+    <a href="#manuals">Manuals</a>
+    <a href="#portfolio">Work</a>
+    <a href="#lab">Lab</a>
+    <a href="#games">Play</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+</header>
+
 <main>
-<section class="hero" id="home"><div class="wrap hero-grid">
-<div class="hero-copy-wrap">
-<div class="eyebrow mono">INDEPENDENT CREATIVE SPACE · EST. 2026</div>
-<h1>Ideas into<br><em>other worlds.</em></h1>
-<p class="hero-copy">A personal universe for experiments, digital craft and curious ideas. Explore the work, open the lab, meet the little robot — and see what happens when imagination gets room to move.</p>
-<div class="hero-actions"><a class="btn primary" href="#work">EXPLORE THE UNIVERSE ↗</a><a class="btn" href="#about">A LITTLE ABOUT ME</a></div>
-<div class="hero-meta"><div><strong>05+</strong>CREATIVE ZONES</div><div><strong>∞</strong>IDEAS IN PROGRESS</div><div><strong>01</strong>CURIOUS MIND</div></div>
-</div>
-<div class="hero-art" aria-label="Abstract glowing digital orb"><div class="orb"><div class="orb-core"></div></div><div class="float-tag tag-a">✳ DIGITAL EXPERIMENTS</div><div class="float-tag tag-b">BUILD / LEARN / REPEAT</div><div class="art-label">FIG. 001 — THE BEGINNING</div><div class="art-index">A STUDY IN POSSIBILITY</div></div>
-</div><div class="scroll-cue">SCROLL TO DISCOVER</div></section>
-<div class="ticker"><div class="ticker-track"><span>CREATIVE TECHNOLOGY</span><b>✳</b><span>VISUAL EXPERIMENTS</span><b>✳</b><span>SMALL IDEAS / BIG WORLDS</span><b>✳</b><span>DESIGN WITH INTENTION</span><b>✳</b><span>CREATIVE TECHNOLOGY</span><b>✳</b><span>VISUAL EXPERIMENTS</span><b>✳</b><span>SMALL IDEAS / BIG WORLDS</span><b>✳</b><span>DESIGN WITH INTENTION</span><b>✳</b></div></div>
-<section class="section" id="about"><div class="wrap about-grid">
-<div class="about-stamp reveal"><div class="stamp-ring"><span>N.</span></div><div class="stamp-caption"><span>PERSONAL ARCHIVE</span><span>VOL. 001 / 2026</span></div></div>
-<div class="about-text reveal"><div class="eyebrow mono">01 / THE PERSON BEHIND IT</div><h3>Curiosity is the beginning of <em>everything.</em></h3><p>This space is a growing collection of things I’m learning, making and imagining. It brings together creative experiments, practical projects and playful ideas — without pretending that every experiment has to be perfect.</p><p>The goal is simple: keep exploring, build useful things, and make the digital world feel a little more human.</p><div class="skill-list"><span class="chip">CREATIVE THINKING</span><span class="chip">WEB DESIGN</span><span class="chip">HTML / CSS / JS</span><span class="chip">VISUAL STORYTELLING</span><span class="chip">EXPERIMENTATION</span></div></div>
-</div></section>
-<section class="section" id="work"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow mono">02 / THE UNIVERSE</div><h2>Different worlds.<br><span class="serif" style="color:var(--gold)">One curious mind.</span></h2></div><p>Each space has its own purpose. Some are made to learn, some to build, and some simply to play.</p></div>
-<div class="cards">
-<a class="feature-card reveal" href="#lab"><span class="number">01 / EXPERIMENT</span><span class="arrow">↗</span><div class="feature-icon">⌘</div><h3>Project Lab</h3><p>A small playground for testing ideas, writing front-end code and seeing a live result.</p></a>
-<a class="feature-card reveal" href="#robot"><span class="number">02 / INTERACT</span><span class="arrow">↗</span><div class="feature-icon">◉</div><h3>AI Companion</h3><p>Meet a friendly on-page robot demo designed to guide visitors around this universe.</p></a>
-<a class="feature-card reveal" href="#paper"><span class="number">03 / CREATE</span><span class="arrow">↗</span><div class="feature-icon">▱</div><h3>Paper Studio</h3><p>A dedicated corner for a paper-bag idea, product presentation and enquiry details.</p></a>
-<a class="feature-card reveal" href="#games"><span class="number">04 / PLAY</span><span class="arrow">↗</span><div class="feature-icon">✳</div><h3>Mini Games</h3><p>Quick little games for a short break — memory matching and a classic grid challenge.</p></a>
-<a class="feature-card reveal" href="#manuals"><span class="number">05 / LEARN</span><span class="arrow">↗</span><div class="feature-icon">▤</div><h3>Field Manuals</h3><p>Curated notes inspired by creative tools and thoughtful ways of working.</p></a>
-<a class="feature-card reveal" href="#contact"><span class="number">06 / CONNECT</span><span class="arrow">↗</span><div class="feature-icon">↗</div><h3>Open Channel</h3><p>Have an idea, a question or a collaboration in mind? Send a message.</p></a>
-</div></div></section>
-<section class="section manuals" id="manuals"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow mono">03 / FIELD MANUALS</div><h2>Tools for <span class="serif" style="color:var(--gold)">thought.</span></h2></div><p>Three short field notes inspired by modern creative tools. Select a cover to open its note.</p></div>
-<div class="manual-grid">
-<button class="manual codex reveal" data-manual="codex" aria-label="Open Codex field note"><span class="mini">FIELD MANUAL / 001</span><span class="big-glyph">⌘</span><h3>Codex</h3><p>From a blank page to a working prototype. Make the next step visible.</p><div class="manual-foot"><span>BUILD WITH INTENT</span><span>OPEN NOTE ↗</span></div></button>
-<button class="manual claude reveal" data-manual="claude" aria-label="Open Claude field note"><span class="mini">FIELD MANUAL / 002</span><span class="big-glyph">✳</span><h3>Claude</h3><p>Slow down, ask better questions, and make room for clear thinking.</p><div class="manual-foot"><span>THINK WITH CARE</span><span>OPEN NOTE ↗</span></div></button>
-<button class="manual cursor reveal" data-manual="cursor" aria-label="Open Cursor field note"><span class="mini">FIELD MANUAL / 003</span><span class="big-glyph">⌁</span><h3>Cursor</h3><p>Stay close to the work. Small iterations create meaningful progress.</p><div class="manual-foot"><span>STAY IN FLOW</span><span>OPEN NOTE ↗</span></div></button>
-</div>
-<div class="manual-detail reveal" id="manualDetail"><div><h3 id="manualTitle">Choose a field manual</h3><p id="manualText">Select one of the covers above to reveal its short note and practical takeaway.</p></div><button class="btn" id="saveManual">☆ SAVE NOTE</button></div>
-</div></section>
-<section class="section" id="lab"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow mono">04 / PROJECT LAB</div><h2>Make it. <span class="serif" style="color:var(--gold)">See it.</span></h2></div><p>Try a little HTML, CSS and JavaScript experiment. The preview runs in an isolated frame.</p></div>
-<div class="lab-grid reveal"><div class="editor"><div class="windowbar"><span>✳ &nbsp; PLAYGROUND / index.html</span><span class="dots"><i></i><i></i><i></i></span></div><textarea id="codeInput" spellcheck="false" aria-label="HTML code editor"><!doctype html>
-<html>
-<body style="margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#17142f,#087eae);font-family:Arial;color:white;text-align:center">
-  <div>
-    <div style="font-size:42px">✦</div>
-    <h1>Hello, explorer.</h1>
-    <p>Your first experiment is alive.</p>
-    <button onclick="this.innerText='You made it happen ✨'" style="padding:12px 18px;border:0;border-radius:30px">Click me</button>
+<!-- KAGE: FIRST FULL-SCREEN HERO -->
+<section class="hero" id="home">
+  <div class="hero-art" aria-hidden="true">
+    <div class="moon"></div>
+    <div class="mountain back"></div>
+    <div class="mountain"></div>
+    <div class="temple"></div>
   </div>
+  <div class="hero-content">
+    <div class="hero-kicker">A journey into the unseen</div>
+    <h1>KAGE<span>影</span></h1>
+    <p class="hero-copy">
+      Somewhere between silence and wonder, a hidden world waits.
+      Step beyond the ordinary and discover the beauty of stillness.
+    </p>
+    <div class="hero-actions">
+      <a href="#chapters" class="btn primary">Explore the journey ↗</a>
+      <a href="#about" class="btn">Discover KAGE</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <span>Kyoto · Japan · After dusk</span>
+    <span class="scroll-line">Scroll to discover</span>
+    <span>01 / 05</span>
+  </div>
+</section>
+
+<!-- KAGE CHAPTERS -->
+<section class="section" id="chapters">
+  <div class="container">
+    <div class="eyebrow reveal">The five chapters</div>
+    <h2 class="section-heading reveal">A passage through <i class="gold">quiet wonder.</i></h2>
+    <p class="section-intro reveal">A slow journey through ancient architecture, silent gardens and the fleeting beauty of time.</p>
+
+    <div class="chapter-grid">
+      <article class="chapter reveal">
+        <span class="chapter-number">Chapter I</span><span class="chapter-art">門</span>
+        <div><h3>The Hidden Gate</h3><p>Cross the threshold. Let the noise of the outside world fall away.</p></div>
+        <a class="chapter-link" href="#about">Enter the gate ↗</a>
+      </article>
+      <article class="chapter reveal">
+        <span class="chapter-number">Chapter II</span><span class="chapter-art">庭</span>
+        <div><h3>Still Gardens</h3><p>Find meaning in carefully placed stones, moss and empty space.</p></div>
+        <a class="chapter-link" href="#about">Wander slowly ↗</a>
+      </article>
+      <article class="chapter reveal">
+        <span class="chapter-number">Chapter III</span><span class="chapter-art">心</span>
+        <div><h3>The Ritual</h3><p>Small gestures become a language. Attention becomes a practice.</p></div>
+        <a class="chapter-link" href="#about">Learn the ritual ↗</a>
+      </article>
+      <article class="chapter reveal">
+        <span class="chapter-number">Chapter IV</span><span class="chapter-art">時</span>
+        <div><h3>Afterlight</h3><p>Everything changes. Even the most beautiful moment must pass.</p></div>
+        <a class="chapter-link" href="#about">See the afterlight ↗</a>
+      </article>
+      <article class="chapter reveal">
+        <span class="chapter-number">Chapter V</span><span class="chapter-art">影</span>
+        <div><h3>Beyond Shadow</h3><p>Return to the world carrying a little more stillness within you.</p></div>
+        <a class="chapter-link" href="#contact">Continue onward ↗</a>
+      </article>
+      <article class="chapter reveal">
+        <span class="chapter-number">The journey</span><span class="chapter-art">月</span>
+        <div><h3>One Quiet Night</h3><p>Five chapters. One unforgettable passage through the unseen.</p></div>
+        <a class="chapter-link" href="#contact">Begin again ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / DITHERING-INSPIRED VISUAL -->
+<section class="section" id="about">
+  <div class="container split">
+    <div class="visual-panel reveal">
+      <div class="visual-orb"></div>
+      <span class="visual-caption">FIG. 01 — LIGHT / SHADOW / FORM</span>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">The philosophy</div>
+      <h2 class="section-heading">Less noise.<br><i class="gold">More meaning.</i></h2>
+      <p class="section-intro">
+        KAGE is an exploration of contrast — the visible and invisible,
+        the ancient and modern, the digital and the human.
+        This visual study uses layered gradients and motion to create
+        a calm, atmospheric experience.
+      </p>
+      <br>
+      <a href="#portfolio" class="btn">Explore the work ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FIELD MANUALS -->
+<section class="section manuals" id="manuals">
+  <div class="container">
+    <div class="eyebrow reveal">Field library / 001</div>
+    <h2 class="section-heading reveal">Tools for <i class="gold">thought.</i></h2>
+    <p class="section-intro reveal">A small library of practical guides for creative work and building with modern tools.</p>
+    <div class="manual-grid">
+      <article class="manual reveal">
+        <div><div class="symbol">⌘</div><h3>Codex</h3><p>Think through a problem, explore ideas and turn plans into working projects.</p></div>
+        <span class="eyebrow">Manual 001 · Creation</span>
+      </article>
+      <article class="manual reveal">
+        <div><div class="symbol">✳</div><h3>Claude Code</h3><p>Understand a codebase, work through changes and improve your development workflow.</p></div>
+        <span class="eyebrow">Manual 002 · Development</span>
+      </article>
+      <article class="manual reveal">
+        <div><div class="symbol">◈</div><h3>Cursor</h3><p>Explore AI-assisted editing, project context and a more focused coding process.</p></div>
+        <span class="eyebrow">Manual 003 · Workflow</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="eyebrow reveal">Selected explorations</div>
+    <h2 class="section-heading reveal">Ideas made <i class="gold">visible.</i></h2>
+    <div class="portfolio-grid">
+      <article class="project-card reveal">
+        <span class="eyebrow">01 / Digital experience</span>
+        <h3>KAGE — The quiet world</h3>
+        <p>An atmospheric digital journey inspired by Japanese architecture and nature.</p>
+      </article>
+      <article class="project-card reveal">
+        <span class="eyebrow">02 / Creative tools</span>
+        <h3>Field Manuals</h3>
+        <p>A focused collection of guides and workflows for makers.</p>
+      </article>
+      <article class="project-card reveal">
+        <span class="eyebrow">03 / Experiments</span>
+        <h3>Interactive Lab</h3>
+        <p>Small ideas, prototypes and playful digital experiments.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- AI ROBOT -->
+<section class="section" id="assistant">
+  <div class="container robot-wrap">
+    <div class="reveal">
+      <div class="eyebrow">Your digital companion</div>
+      <h2 class="section-heading">Meet the <i class="gold">little helper.</i></h2>
+      <p class="section-intro">A simple local demo assistant. Ask it about the sections on this website or try a greeting.</p>
+      <br><span class="eyebrow">Offline demo · No API required</span>
+    </div>
+    <div class="reveal">
+      <div class="robot">
+        <span class="robot-ear"></span><span class="robot-ear right"></span><span class="robot-base"></span>
+      </div>
+      <div class="chatbox">
+        <div class="chat-log" id="chatLog">
+          <div class="chat-msg">Hello! I'm your website helper. What would you like to explore?</div>
+        </div>
+        <div class="chat-input">
+          <input id="chatInput" type="text" placeholder="Ask me something..." aria-label="Chat message">
+          <button id="chatSend">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT LAB -->
+<section class="section lab" id="lab">
+  <div class="container">
+    <div class="eyebrow reveal">Build / test / learn</div>
+    <h2 class="section-heading reveal">The Project <i class="gold">Lab.</i></h2>
+    <p class="section-intro reveal">Write HTML and preview it in an isolated frame. Your code runs inside the preview, not the main page.</p>
+    <div class="lab-controls">
+      <span class="eyebrow">HTML playground</span>
+      <button class="btn primary" id="runCode">Run preview ↗</button>
+    </div>
+    <div class="lab-grid">
+      <textarea class="code-area" id="codeEditor" spellcheck="false" aria-label="HTML editor"><!DOCTYPE html>
+<html>
+<body style="font-family:Arial;text-align:center;padding:35px;background:#f3eee5">
+  <h1>Hello, Creator!</h1>
+  <p>Welcome to your first project.</p>
+  <button onclick="document.body.style.background='#dcebe5'">
+    Change background
+  </button>
 </body>
-</html></textarea></div><div class="preview"><div class="windowbar"><span>LIVE PREVIEW</span><span id="previewState">READY</span></div><iframe id="previewFrame" sandbox="allow-scripts" title="Code preview"></iframe></div></div>
-<div class="lab-actions"><button class="btn primary" id="runCode">▶ RUN PREVIEW</button><button class="btn" id="resetCode">↺ RESET EXAMPLE</button></div><p class="lab-note">Safety note: preview code runs inside a sandboxed iframe. This demo is for HTML/CSS/JS front-end experiments; it does not execute server-side code or provide a secure hosting environment.</p>
-</div></section>
-<section class="section" id="robot"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow mono">05 / MEET THE ROBOT</div><h2>A little help from <span class="serif" style="color:var(--gold)">a friend.</span></h2></div><p>This is a local demo assistant with preset guidance. It does not connect to an AI service or send your messages anywhere.</p></div>
-<div class="robot-wrap"><div class="robot-visual reveal"><div><div class="bot"><div class="bot-antenna"></div><div class="bot-head"><div class="bot-eyes"><i></i><i></i></div></div><div class="bot-body"></div></div></div><div class="robot-caption"><span>UNIT 001 / NOCTRA BOT</span><span>STATUS: ONLINE</span></div></div>
-<div class="chat reveal"><div class="chat-head"><strong style="font-size:13px">NOCTRA BOT</strong><span class="online">LOCAL DEMO</span></div><div class="chat-log" id="chatLog" aria-live="polite"><div class="bubble">Hey there! I’m the little guide for this website. Ask me where to find something, or type “help”.</div></div><form class="chat-form" id="chatForm"><input id="chatInput" placeholder="Ask me something..." autocomplete="off" aria-label="Message the robot"><button aria-label="Send message">↑</button></form><div class="chat-disclaimer">Demo assistant only. For a real AI assistant, connect a backend service and keep API keys on the server — never in this HTML file.</div></div></div>
-</div></section>
-<section class="section" id="paper"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow mono">06 / PAPER STUDIO</div><h2>Simple materials.<br><span class="serif" style="color:var(--gold)">Thoughtful making.</span></h2></div><p>A presentation space for a paper-bag venture. Add real product photographs, sizes and verified contact details when ready.</p></div>
-<div class="paper-grid"><div class="paper-feature reveal"><div class="mono">PAPER STUDIO / CONCEPT</div><h3>Carry good ideas forward.</h3><p>Practical paper packaging with a clean, considered look. This section can grow into a product catalogue and custom-order enquiry page.</p><a href="#contact" class="btn" style="margin-top:12px">ASK ABOUT CUSTOM WORK ↗</a></div><div class="paper-info reveal"><div class="mono">WHAT CAN BE ADDED</div><h3>Made for your requirements.</h3><ul><li>Product gallery with real bag photographs</li><li>Available sizes, paper types and handle options</li><li>Custom print and branding information</li><li>Bulk enquiry and contact details</li></ul><p>Product availability, pricing and delivery details should be added only after they are confirmed.</p></div></div>
-</div></section>
-<section class="section" id="games"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow mono">07 / THE PLAY ROOM</div><h2>A small pause for <span class="serif" style="color:var(--gold)">your brain.</span></h2></div><p>Two tiny browser games. No account, no leaderboard, no pressure — just a little play.</p></div>
-<div class="games-grid"><div class="game-card reveal"><div class="mono">GAME 01 / MEMORY</div><h3>Find the pairs</h3><p>Flip two cards and find matching symbols.</p><div class="memory-board" id="memoryBoard"></div><div class="game-status" id="memoryStatus">Moves: 0 · Pairs: 0/8</div><button class="btn" id="restartMemory" style="margin-top:14px">↺ SHUFFLE AGAIN</button></div>
-<div class="game-card reveal"><div class="mono">GAME 02 / THREE IN A ROW</div><h3>Tic Tac Toe</h3><p>Play as X. The computer takes O turns.</p><div class="ttt" id="tttBoard"></div><div class="game-status" id="tttStatus">Your turn — X</div><button class="btn" id="restartTtt" style="margin-top:14px">↺ NEW ROUND</button></div></div>
-</div></section>
-<section class="section" id="contact"><div class="wrap contact-grid"><div class="contact-copy reveal"><div class="eyebrow mono">08 / OPEN CHANNEL</div><h2>Have a thought?<br><em class="serif" style="color:var(--gold)">Send it over.</em></h2><p>For questions, project ideas or a friendly hello, use the form. This standalone demo opens your email app; connect a form service or backend to receive messages directly.</p><div class="mono" style="margin-top:25px">GOOD THINGS BEGIN WITH A HELLO ↗</div></div>
-<form class="contact-form reveal" id="contactForm"><div class="field"><label for="contactName">Your name</label><input id="contactName" required placeholder="Name"></div><div class="field"><label for="contactEmail">Email address</label><input id="contactEmail" type="email" required placeholder="you@example.com"></div><div class="field full"><label for="contactSubject">Subject</label><input id="contactSubject" required placeholder="What would you like to talk about?"></div><div class="field full"><label for="contactMessage">Message</label><textarea id="contactMessage" required placeholder="Write your message..."></textarea></div><div class="field full"><button class="btn primary" type="submit">PREPARE EMAIL ↗</button></div></form>
-</div></section>
+</html></textarea>
+      <iframe class="preview" id="preview" title="HTML preview" sandbox="allow-scripts"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- PAPER BAG BUSINESS -->
+<section class="section" id="business">
+  <div class="container">
+    <div class="eyebrow reveal">A thoughtful business idea</div>
+    <h2 class="section-heading reveal">Paper, purpose <i class="gold">& possibility.</i></h2>
+    <p class="section-intro reveal">A simple showcase for a paper bag brand — focused on presentation, custom orders and sustainable packaging.</p>
+    <div class="bag-grid">
+      <article class="bag-card reveal"><div class="bag-icon">🛍️</div><h3>Kraft Bags</h3><p>Everyday packaging with a natural, minimal look for shops and small businesses.</p></article>
+      <article class="bag-card reveal"><div class="bag-icon">🎁</div><h3>Custom Bags</h3><p>Personalised packaging for gifts, events, boutiques and special occasions.</p></article>
+      <article class="bag-card reveal"><div class="bag-icon">🌿</div><h3>Eco Collection</h3><p>A clean and thoughtful packaging direction for brands exploring paper alternatives.</p></article>
+    </div>
+    <br><a href="#contact" class="btn">Ask about a custom order ↗</a>
+  </div>
+</section>
+
+<!-- MINI GAMES -->
+<section class="section" id="games">
+  <div class="container">
+    <div class="eyebrow reveal">A little play</div>
+    <h2 class="section-heading reveal">The mini <i class="gold">game room.</i></h2>
+    <div class="game-grid">
+      <div class="game-card reveal">
+        <h3>Memory Match</h3>
+        <p class="section-intro">Find matching pairs.</p>
+        <p class="game-status" id="memoryStatus">Moves: 0</p>
+        <div class="memory-grid" id="memoryGrid"></div>
+        <br><button class="btn" id="memoryRestart">Restart game</button>
+      </div>
+      <div class="game-card reveal">
+        <h3>Tic Tac Toe</h3>
+        <p class="section-intro">Play against another player on this device.</p>
+        <p class="game-status" id="ticStatus">X's turn</p>
+        <div class="tic-grid" id="ticGrid">
+          <button class="tic-cell"></button><button class="tic-cell"></button><button class="tic-cell"></button>
+          <button class="tic-cell"></button><button class="tic-cell"></button><button class="tic-cell"></button>
+          <button class="tic-cell"></button><button class="tic-cell"></button><button class="tic-cell"></button>
+        </div>
+        <br><button class="btn" id="ticRestart">Restart game</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Start a conversation</div>
+      <h2 class="section-heading">Have an idea?<br><i class="gold">Let's make it.</i></h2>
+      <p class="section-intro">Share a project idea, ask a question or discuss a collaboration.</p>
+      <br><p class="eyebrow">A small note can start something big.</p>
+    </div>
+    <form class="contact-form reveal" id="contactForm">
+      <input type="text" id="contactName" placeholder="Your name" required>
+      <input type="email" id="contactEmail" placeholder="Email address" required>
+      <input type="text" id="contactSubject" placeholder="Subject">
+      <textarea id="contactMessage" placeholder="Tell me about your idea..." required></textarea>
+      <button class="btn primary" type="submit">Prepare message ↗</button>
+      <p class="game-status">This demo opens your email app; it does not store submissions.</p>
+    </form>
+  </div>
+</section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© 2026 NOCTRA STUDIO — A WORK IN PROGRESS</span><span>MADE WITH CURIOSITY · <a href="#home">BACK TO TOP ↑</a></span></div></footer>
+
+<footer>
+  <a class="logo" href="#home">K<span>A</span>GE</a>
+  <span>Where stillness reveals the unseen.</span>
+  <span>© <span id="year"></span> KAGE. Built with intention.</span>
+</footer>
+
 <div class="toast" id="toast" role="status"></div>
+
 <script>
-(()=>{
-const $=s=>document.querySelector(s);
-const topbar=$('#topbar'),nav=$('#navlinks');
-window.addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>24),{passive:true});
-$('#menuToggle').addEventListener('click',()=>nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
-const toast=$('#toast');let toastTimer;
-function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300)}
-const manualNotes={
-codex:{title:'Codex / Build with intent',text:'Start with a clear outcome. Break the idea into small steps, inspect the result, then improve one thing at a time. A useful prototype teaches you more than a perfect plan that never ships.'},
-claude:{title:'Claude / Think with care',text:'Give the problem context, explain what a good result looks like, and ask for trade-offs. Review the answer, verify important facts, and keep your own judgement in the loop.'},
-cursor:{title:'Cursor / Stay in flow',text:'Work close to the code. Make focused edits, run the project often, and keep changes small enough to understand. Good tools should help you stay in control of the work.'}
-};
-let activeManual='';
-document.querySelectorAll('[data-manual]').forEach(btn=>btn.addEventListener('click',()=>{activeManual=btn.dataset.manual;$('#manualTitle').textContent=manualNotes[activeManual].title;$('#manualText').textContent=manualNotes[activeManual].text;$('#saveManual').textContent='☆ SAVE NOTE';}));
-$('#saveManual').addEventListener('click',()=>{if(!activeManual){showToast('Choose a field manual first');return}try{localStorage.setItem('noctra-saved-note',activeManual);$('#saveManual').textContent='✓ SAVED';showToast('Note saved on this device')}catch(e){showToast('Storage is unavailable in this browser')}});
-const initialCode=$('#codeInput').value;
-function runPreview(){const code=$('#codeInput').value;$('#previewFrame').srcdoc=code;$('#previewState').textContent='UPDATED';}
-$('#runCode').addEventListener('click',runPreview);
-$('#resetCode').addEventListener('click',()=>{$('#codeInput').value=initialCode;runPreview();showToast('Example restored')});
-runPreview();
-const log=$('#chatLog');
-function addBubble(text,who='bot'){const b=document.createElement('div');b.className='bubble'+(who==='user'?' user':'');b.textContent=text;log.appendChild(b);log.scrollTop=log.scrollHeight}
-function botReply(q){const s=q.toLowerCase();if(/help|what can|commands/.test(s))return'You can ask about the portfolio, Project Lab, Paper Studio, mini games, field manuals or contact section.';if(/project|lab|code|playground/.test(s))return'Visit Project Lab to edit the sample HTML and run it in the live preview. The preview is sandboxed.';if(/paper|bag|studio|product/.test(s))return'Paper Studio is the place for the paper-bag concept, product photos and custom enquiries.';if(/game|play|memory|tic/.test(s))return'The Play Room has a memory matching game and Tic Tac Toe. Scroll down to give them a try.';if(/manual|codex|claude|cursor|learn/.test(s))return'Open Field Manuals to explore three short notes about building, thinking and staying in flow.';if(/robot|ai|you/.test(s))return'I’m a friendly local demo bot. I can guide you around the page, but I’m not connected to a live AI model.';if(/contact|email|message/.test(s))return'Use the Open Channel form near the bottom. It prepares an email in your email app.';if(/hello|hi|hey/.test(s))return'Hello! ✦ What would you like to explore today?';return'I’m still learning this little map. Try asking about Project Lab, Paper Studio, Field Manuals, games or contact.'}
-$('#chatForm').addEventListener('submit',e=>{e.preventDefault();const input=$('#chatInput'),q=input.value.trim();if(!q)return;addBubble(q,'user');input.value='';setTimeout(()=>addBubble(botReply(q)),250)});
-const symbols=['✦','☾','❖','✳','◇','♧','✺','⌘'];let deck=[],moves=0,pairs=0,lock=false,first=null;
-function startMemory(){deck=[...symbols,...symbols].sort(()=>Math.random()-.5);moves=0;pairs=0;lock=false;first=null;const board=$('#memoryBoard');board.innerHTML='';deck.forEach((sym,i)=>{const b=document.createElement('button');b.className='memory-card';b.textContent=sym;b.dataset.sym=sym;b.dataset.index=i;b.setAttribute('aria-label','Hidden memory card');b.addEventListener('click',()=>flipCard(b));board.appendChild(b)});updateMemory()}
-function updateMemory(){$('#memoryStatus').textContent=`Moves: ${moves} · Pairs: ${pairs}/8`}
-function flipCard(card){if(lock||card.classList.contains('open')||card.classList.contains('matched'))return;card.classList.add('open');card.setAttribute('aria-label',card.dataset.sym);if(!first){first=card;return}moves++;if(first.dataset.sym===card.dataset.sym){first.classList.add('matched');card.classList.add('matched');first=null;pairs++;updateMemory();if(pairs===8)showToast(`All pairs found in ${moves} moves!`)}else{lock=true;const prev=first;first=null;updateMemory();setTimeout(()=>{prev.classList.remove('open');card.classList.remove('open');prev.setAttribute('aria-label','Hidden memory card');card.setAttribute('aria-label','Hidden memory card');lock=false},750)}}
-$('#restartMemory').addEventListener('click',startMemory);startMemory();
-let cells=Array(9).fill(''),gameOver=false;
-function renderTtt(){const board=$('#tttBoard');board.innerHTML='';cells.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v;b.setAttribute('aria-label',`Cell ${i+1} ${v||'empty'}`);b.addEventListener('click',()=>playerMove(i));board.appendChild(b)})}
-function winner(a){const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];for(const line of lines){const [x,y,z]=line;if(a[x]&&a[x]===a[y]&&a[x]===a[z])return a[x]}return a.every(Boolean)?'draw':null}
-function finishCheck(){const w=winner(cells);if(w){gameOver=true;$('#tttStatus').textContent=w==='draw'?'It’s a draw.':' '+w+' wins!';return true}return false}
-function playerMove(i){if(gameOver||cells[i])return;cells[i]='X';renderTtt();if(finishCheck())return;$('#tttStatus').textContent='Computer thinking…';setTimeout(()=>{const empty=cells.map((v,i)=>v?null:i).filter(v=>v!==null);if(!empty.length)return;let pick=empty.find(i=>{const t=[...cells];t[i]='O';return winner(t)==='O'});if(pick===undefined)pick=empty.find(i=>{const t=[...cells];t[i]='X';return winner(t)==='X'});if(pick===undefined)pick=empty[Math.floor(Math.random()*empty.length)];cells[pick]='O';renderTtt();if(!finishCheck())$('#tttStatus').textContent='Your turn — X'},350)}
-function resetTtt(){cells=Array(9).fill('');gameOver=false;$('#tttStatus').textContent='Your turn — X';renderTtt()}
-$('#restartTtt').addEventListener('click',resetTtt);resetTtt();
-$('#contactForm').addEventListener('submit',e=>{e.preventDefault();const name=$('#contactName').value.trim(),email=$('#contactEmail').value.trim(),subject=$('#contactSubject').value.trim(),message=$('#contactMessage').value.trim();const body=`Name: ${name}\nEmail: ${email}\n\n${message}`;const href=`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;window.location.href=href;showToast('Opening your email app')});
-})();
+const $ = (selector) => document.querySelector(selector);
+
+const topbar = $('#topbar');
+window.addEventListener('scroll', () => {
+  topbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+$('#menuBtn').addEventListener('click', () => {
+  $('#nav').classList.toggle('open');
+});
+document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', () => $('#nav').classList.remove('open'));
+});
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+$('#year').textContent = new Date().getFullYear();
+
+let toastTimer;
+function toast(message){
+  const el = $('#toast');
+  el.textContent = message;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'),2500);
+}
+
+/* Local demo assistant */
+function assistantReply(message){
+  const q = message.toLowerCase();
+  if(q.includes('kage') || q.includes('chapter')) return 'KAGE is the first experience on this website. Explore its five chapters from the top.';
+  if(q.includes('manual') || q.includes('codex') || q.includes('cursor')) return 'Visit Field Manuals to explore the creative tool guides.';
+  if(q.includes('project') || q.includes('code') || q.includes('html')) return 'The Project Lab lets you write HTML and run a preview safely in a sandboxed frame.';
+  if(q.includes('bag') || q.includes('business')) return 'The Paper Bag section showcases kraft, custom and eco-inspired packaging ideas.';
+  if(q.includes('game') || q.includes('play')) return 'The Mini Game Room has Memory Match and Tic Tac Toe.';
+  if(q.includes('hello') || q.includes('hi')) return 'Hello! Nice to meet you. What would you like to explore today?';
+  return 'I am a local demo helper. Try asking about KAGE, Field Manuals, Project Lab, Paper Bags or Games.';
+}
+function sendChat(){
+  const input = $('#chatInput');
+  const message = input.value.trim();
+  if(!message) return;
+  const log = $('#chatLog');
+  const user = document.createElement('div');
+  user.className = 'chat-msg user';
+  user.textContent = message;
+  log.appendChild(user);
+  const answer = document.createElement('div');
+  answer.className = 'chat-msg';
+  answer.textContent = assistantReply(message);
+  log.appendChild(answer);
+  input.value = '';
+  log.scrollTop = log.scrollHeight;
+}
+$('#chatSend').addEventListener('click',sendChat);
+$('#chatInput').addEventListener('keydown',e => {
+  if(e.key === 'Enter') sendChat();
+});
+
+/* HTML playground */
+$('#runCode').addEventListener('click',() => {
+  $('#preview').srcdoc = $('#codeEditor').value;
+  toast('Preview updated');
+});
+$('#preview').srcdoc = $('#codeEditor').value;
+
+/* Memory match game */
+const symbols = ['月','花','山','雲','竹','鳥','星','石'];
+let memoryValues = [];
+let memoryOpen = [];
+let memoryMatched = [];
+let memoryMoves = 0;
+let memoryLock = false;
+
+function setupMemory(){
+  memoryValues = [...symbols,...symbols].sort(() => Math.random()-.5);
+  memoryOpen = [];
+  memoryMatched = [];
+  memoryMoves = 0;
+  memoryLock = false;
+  $('#memoryStatus').textContent = 'Moves: 0';
+  const grid = $('#memoryGrid');
+  grid.innerHTML = '';
+  memoryValues.forEach((symbol,index) => {
+    const button = document.createElement('button');
+    button.className = 'memory-tile';
+    button.textContent = '?';
+    button.setAttribute('aria-label','Hidden card');
+    button.addEventListener('click',() => flipMemory(index));
+    grid.appendChild(button);
+  });
+}
+function flipMemory(index){
+  if(memoryLock || memoryMatched.includes(index) || memoryOpen.includes(index)) return;
+  const tiles = [...document.querySelectorAll('.memory-tile')];
+  memoryOpen.push(index);
+  tiles[index].textContent = memoryValues[index];
+  tiles[index].classList.add('open');
+  if(memoryOpen.length === 2){
+    memoryMoves++;
+    $('#memoryStatus').textContent = 'Moves: ' + memoryMoves;
+    const [a,b] = memoryOpen;
+    if(memoryValues[a] === memoryValues[b]){
+      memoryMatched.push(a,b);
+      memoryOpen = [];
+      if(memoryMatched.length === memoryValues.length) toast('You matched every pair!');
+    }else{
+      memoryLock = true;
+      setTimeout(() => {
+        tiles[a].textContent = '?';
+        tiles[b].textContent = '?';
+        tiles[a].classList.remove('open');
+        tiles[b].classList.remove('open');
+        memoryOpen = [];
+        memoryLock = false;
+      },700);
+    }
+  }
+}
+$('#memoryRestart').addEventListener('click',setupMemory);
+setupMemory();
+
+/* Tic Tac Toe */
+let ticBoard = Array(9).fill('');
+let ticTurn = 'X';
+let ticFinished = false;
+const winningLines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function setupTic(){
+  ticBoard = Array(9).fill('');
+  ticTurn = 'X';
+  ticFinished = false;
+  $('#ticStatus').textContent = "X's turn";
+  document.querySelectorAll('.tic-cell').forEach((cell,index) => {
+    cell.textContent = '';
+    cell.disabled = false;
+    cell.onclick = () => playTic(index);
+  });
+}
+function playTic(index){
+  if(ticFinished || ticBoard[index]) return;
+  ticBoard[index] = ticTurn;
+  const cells = document.querySelectorAll('.tic-cell');
+  cells[index].textContent = ticTurn;
+  const won = winningLines.some(line => line.every(i => ticBoard[i] === ticTurn));
+  if(won){
+    $('#ticStatus').textContent = ticTurn + ' wins!';
+    ticFinished = true;
+    cells.forEach(cell => cell.disabled = true);
+    return;
+  }
+  if(ticBoard.every(Boolean)){
+    $('#ticStatus').textContent = "It's a draw!";
+    ticFinished = true;
+    return;
+  }
+  ticTurn = ticTurn === 'X' ? 'O' : 'X';
+  $('#ticStatus').textContent = ticTurn + "'s turn";
+}
+$('#ticRestart').addEventListener('click',setupTic);
+setupTic();
+
+/* Contact form: prepares an email, no backend storage */
+$('#contactForm').addEventListener('submit',event => {
+  event.preventDefault();
+  const name = $('#contactName').value.trim();
+  const email = $('#contactEmail').value.trim();
+  const subject = $('#contactSubject').value.trim() || 'Website enquiry';
+  const message = $('#contactMessage').value.trim();
+  const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+  const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+});
 </script>
 </body>
 </html>
